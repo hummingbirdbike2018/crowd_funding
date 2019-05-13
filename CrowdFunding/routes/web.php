@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-	return view('top');
-});
+//ホーム画面
+ Route::get('/', function () { return view('top'); });
+//認証機能
+Auth::routes();
+
+// Route::get('/', 'HomeController@index')->name('home');
