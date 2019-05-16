@@ -49,7 +49,7 @@
 														<div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalCenterTitle" aria-hidden="true">
 															<div class="modal-dialog modal-dialog-centered" role="document">
 																<div class="modal-content">
-																	<div class="modal-header">
+																	<div class="modal-header alert alert-dark">
 																		<h5 class="modal-title" id="LoginModalCenterTitle">ログイン画面</h5>
 																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 																			<span aria-hidden="true">&times;</span>
@@ -119,7 +119,7 @@
 														</div>
 														@if (Route::has('register'))
 																<li class="nav-item">
-																		<a class="nav-link" href="{{ route('register') }}">{{ __('新規登録') }}</a>
+																		<a class="nav-link" href="#register">{{ __('新規登録') }}</a>
 																</li>
 														@endif
 												@else
