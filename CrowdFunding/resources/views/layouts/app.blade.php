@@ -11,13 +11,14 @@
 		<!-- Fonts -->
 		<link rel="dns-prefetch" href="//fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<!-- Styles -->
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 		<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 	</head>
 		<body>
 			<div id="app">
-				<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+				<nav class="navbar navbar-expand-md navbar-dark bg-primary">
 					<div class="container">
 						<a class="navbar-brand" href="{{ url('/') }}">
 							{{ config('app.name', 'Laravel') }}
@@ -33,20 +34,20 @@
 								<ul class="navbar-nav ml-auto">
 								<!-- Authentication Links -->
 								@guest
-
-								<li class="nav-item" data-toggle="modal" data-target="#LoginModal">
-									<a class="nav-link" href="#login">{{ __('ログイン') }}</a>
-								</li>
-									<!-- ログイン画面モーダル -->
-									<div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalCenterTitle" aria-hidden="true">
-										<div class="modal-dialog modal-dialog-centered" role="document">
-											<div class="modal-content">
-												<div class="modal-header alert alert-dark">
-													<h5 class="modal-title" id="LoginModalCenterTitle">ログイン画面</h5>
-														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-														</button>
-												</div>
+						<!-- ログイン画面モーダルトリガー -->
+						<li class="nav-item" data-toggle="modal" data-target="#LoginModal">
+							<a class="nav-link" href="#login">{{ __('ログイン') }}</a>
+						</li>
+						<!-- ログイン画面モーダル -->
+						<div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header alert alert-primary">
+										<h6 class="modal-title" id="LoginModalCenterTitle">ログイン画面</h6>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+									</div>
 									<div class="modal-body">
 										<form method="POST" action="{{ route('login') }}">
 									@csrf
@@ -83,7 +84,7 @@
 												</div>
 											</div>
 												<div class="form-group row mb-0">
-													<div class="col-md-8 offset-md-4">
+													<div class="col-md-6 offset-md-4 btn-group-sm">
 														<button type="submit" class="btn btn-primary">
 															{{ __('ログイン') }}
 														</button>
@@ -100,33 +101,83 @@
 							</div>
 						</div>
 										@if (Route::has('register'))
-											<li class="nav-item">
-												<a class="nav-link" href="#register">{{ __('新規登録') }}</a>
-											</li>
+						<!-- 新規登録画面モーダルトリガー -->
+						<li class="nav-item" data-toggle="modal" data-target="#RegisterModal">
+							<a class="nav-link" href="#register">{{ __('新規登録') }}</a>
+						</li>
 										@endif
-										@else
-											<li class="nav-item dropdown">
-												<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-													{{ Auth::user()->name }} <span class="caret"></span>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-													<a class="dropdown-item" href="{{ route('logout') }}"
-														onclick="event.preventDefault();
-														document.getElementById('logout-form').submit();">
-															{{ __('ログアウト') }}
-													</a>
-												<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-											@csrf
-												</form>
-												</div>
-											</li>
-											@endguest
+						<!-- 新規登録画面モーダル -->
+						<div class="modal fade" id="RegisterModal" tabindex="-1" role="dialog" aria-labelledby="RegisterModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+											<div class="modal-header alert alert-primary">
+												<h6 class="modal-title" id="RegisterModalCenterTitle">新規登録画面</h6>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+											</div>
+						<div class="modal-body">
+							<div class="container">
+								<form method="POST" action="{{ route('register') }}">
+										@csrf
+									<div class="form-group row">
+										<label for="email" class="col-md-4 col-form-label text-md-right">{{ __('メールアドレス') }}</label>
+											<div class="col-md-6">
+													<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+										@error('email')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+										@enderror
+											</div>
+										</div>
+									<div class="form-group row">
+										<label for="password" class="col-md-4 col-form-label text-md-right">{{ __('パスワード') }}</label>
+											<div class="col-md-6 ">
+												<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+										@error('password')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+										@enderror
+											</div>
+										</div>
+									<div class="form-group row mb-0">
+										<div class="col-md-6 offset-md-4 btn-group-sm">
+											<button type="submit" class="btn btn-primary">
+												{{ __('登録') }}
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+								</div>
+							</div>
+						</div>
+									@else
+										<li class="nav-item dropdown">
+											<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+											{{ Auth::user()->name }} <span class="caret"></span>
+											</a>
+										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+											<a class="dropdown-item" href="{{ route('logout') }}"
+												onclick="event.preventDefault();
+												document.getElementById('logout-form').submit();">
+												{{ __('ログアウト') }}
+											</a>
+										<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+									@csrf
+										</form>
+										</div>
+										</li>
+									@endguest
 								</ul>
 							</div>
 						</div>
 				</nav>
 					<main class="py-4">
-											@yield('content')
+									@yield('content')
 					</main>
 				</div>
 		</body>
