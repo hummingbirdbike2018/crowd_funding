@@ -6,15 +6,15 @@
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<title>{{ config('app.name', 'Laravel') }}</title>
-		<!-- Scripts -->
-		<script src="{{ asset('js/app.js') }}" defer></script>
 		<!-- Fonts -->
 		<link rel="dns-prefetch" href="//fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-		<!-- Styles -->
+		<!-- CSS -->
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 		<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+		<!-- script -->
+		<script src="{{ asset('js/app.js') }}" defer></script>
 	</head>
 		<body>
 			<div id="app">
@@ -34,10 +34,24 @@
 								<ul class="navbar-nav ml-auto">
 								<!-- Authentication Links -->
 								@guest
-						<!-- ログイン画面モーダルトリガー -->
-						<li class="nav-item" data-toggle="modal" data-target="#LoginModal">
-							<a class="nav-link" href="#login">{{ __('ログイン') }}</a>
-						</li>
+						<li class="nav-item">
+							<a class="nav-link waves-effect waves-light" href="#">
+							<i class="fas fa-envelope"> CONTACT</i>
+						</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+							 aria-haspopup="true" aria-expanded="false">
+							 <i class="fas fa-user"> MENU</i>
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<!-- ログイン画面モーダルトリガー -->
+							<a class="dropdown-item" data-toggle="modal" data-target="#LoginModal" href="#login">LOG IN</a>
+							<!-- 新規登録画面モーダルトリガー -->
+								@if (Route::has('register'))
+							<a class="dropdown-item" data-toggle="modal" data-target="#RegisterModal" href="#register">REGISTRER</a>
+						</div>
+					</li>
 						<!-- ログイン画面モーダル -->
 						<div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalCenterTitle" aria-hidden="true">
 							<div class="modal-dialog modal-dialog-centered" role="document">
@@ -100,11 +114,6 @@
 								</div>
 							</div>
 						</div>
-										@if (Route::has('register'))
-						<!-- 新規登録画面モーダルトリガー -->
-						<li class="nav-item" data-toggle="modal" data-target="#RegisterModal">
-							<a class="nav-link" href="#register">{{ __('新規登録') }}</a>
-						</li>
 										@endif
 						<!-- 新規登録画面モーダル -->
 						<div class="modal fade" id="RegisterModal" tabindex="-1" role="dialog" aria-labelledby="RegisterModalCenterTitle" aria-hidden="true">
@@ -176,9 +185,10 @@
 							</div>
 						</div>
 				</nav>
-					<main class="py-4">
-									@yield('content')
-					</main>
 				</div>
+			<main class="py-4">
+								@yield('content')
+			</main>
+
 		</body>
 </html>
