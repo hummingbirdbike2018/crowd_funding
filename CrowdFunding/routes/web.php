@@ -12,7 +12,7 @@
 */
 
 //ホーム画面
-Route::get('/', function () { return view('layout'); });
+Route::get('/', function () { return view('top'); });
 Route::get('/terms', function () { return view('terms'); });
 //認証機能
 Auth::routes();
