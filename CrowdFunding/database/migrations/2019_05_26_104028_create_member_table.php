@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddUserIdMember extends Migration
+class CreateMemberTable extends Migration
 {
 		/**
 		 * Run the migrations.
@@ -14,9 +14,14 @@ class AddUserIdMember extends Migration
 		public function up()
 		{
 				Schema::create('member', function (Blueprint $table) {
-					$table->increments('id');
-					$table->integer('user_id', 20);
-			});
+						$table->increments('id')->unsigned;
+						$table->integer('user_id');
+						$table->string('name');
+						$table->string('email')->unique();
+						$table->string('password');
+						$table->rememberToken();
+						$table->timestamps();
+				});
 		}
 
 		/**
@@ -26,6 +31,6 @@ class AddUserIdMember extends Migration
 		 */
 		public function down()
 		{
-			Schema::dropIfExists('member');
+				Schema::dropIfExists('member');
 		}
 }

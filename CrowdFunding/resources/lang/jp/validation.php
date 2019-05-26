@@ -110,6 +110,7 @@ return [
 		],
 		'starts_with' => 'The :attribute must start with one of the following: :values',
 		'string' => 'The :attribute must be a string.',
+		'terms_chk' => '登録するには規約に同意する必要があります。',
 		'timezone' => 'The :attribute must be a valid zone.',
 		'unique' => '入力された :attribute はすでに使用されています。',
 		'uploaded' => 'The :attribute failed to upload.',

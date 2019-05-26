@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Member extends Authenticatable
 {
 		use Notifiable;
 
@@ -36,6 +36,6 @@ class User extends Authenticatable
 		protected $casts = [
 				'email_verified_at' => 'datetime',
 		];
-		//テーブル指定
-		protected $table = 'premember';
+
+		protected $table = 'member';
 }

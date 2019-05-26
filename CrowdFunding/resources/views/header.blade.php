@@ -39,21 +39,27 @@
 									</div>
 								</li>
 							@else
-								<li class="nav-item dropdown">
-									<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-										aria-haspopup="true" aria-expanded="false" v-pre>
-										{{ Auth::user()->name }} <span class="caret"></span>
+								<li class="nav-item">
+									<a class="nav-link waves-effect waves-light" href="#">
+										<i class="fas fa-envelope"> CONTACT</i>
 									</a>
-									<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-										<a class="dropdown-item" href="{{ route('logout') }}"
-											onclick="event.preventDefault();
-											document.getElementById('logout-form').submit();">
-											{{ __('ログアウト') }}
-										</a>
-										<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-											@csrf
-										</form>
-									</div>
+								</li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+										aria-haspopup="true" aria-expanded="false">
+										<i class="fas fa-user"> MENU</i>
+									</a>
+										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+											<a class="dropdown-item"  href="#mypage">MY PAGE</a>
+											<a class="dropdown-item" href="{{ route('logout') }}"
+												onclick="event.preventDefault();
+												document.getElementById('logout-form').submit();">
+												{{ __('LOG OUT') }}
+											</a>
+											<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+												@csrf
+											</form>
+										</div>
 								</li>
 							@endguest
 						</ul>
@@ -150,7 +156,7 @@
 									</div>
 									<div class="form-group row">
 										<label for="password" class="col-md-4 col-form-label text-md-right">{{ __('パスワード') }}</label>
-										<div class="col-md-6 ">
+										<div class="col-md-6">
 											<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 												@error('password')
 													<span class="invalid-feedback" role="alert">
@@ -161,7 +167,7 @@
 									</div>
 									<div class="form-group form-check">
 										<div class="col-md-6 offset-md-4 btn-group-sm">
-											<input type="checkbox" class="form-check-input" id="exampleCheck1">
+											<input type="checkbox" class="form-check-input" id="terms_chk" required>
 											<label class="form-check-label" for="terms-check">
 												<a href="{{ 'terms' }}">利用規約</a>に同意する
 											</label>
