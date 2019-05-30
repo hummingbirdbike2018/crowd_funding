@@ -49,9 +49,7 @@ html, body {
 	margin-bottom: 30px;
 }
 
-.topbanner {
-	width: 100%;
-	background-size: cover;
-	margin: 0px;
-	position: relative;
+.top_search {
+	top:300px;
+	left: 550px;
 }
