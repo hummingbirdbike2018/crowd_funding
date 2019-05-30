@@ -1,8 +1,5 @@
 @extends('layout')
 
-@include('head')
-@include('header')
-
 @section('content')
 <br>
 <br>
@@ -98,5 +95,3 @@
 		以上<p>
 
 @endsection
-
-@include('footer')

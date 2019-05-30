@@ -48,3 +48,10 @@ html, body {
 .m-b-md {
 	margin-bottom: 30px;
 }
+
+.topbanner {
+	width: 100%;
+	background-size: cover;
+	margin: 0px;
+	position: relative;
+}
