@@ -17,6 +17,8 @@ Route::get('/', 'HomeController@index')->name('top');
 Route::get('/terms', function () { return view('terms'); });
 //認証機能
 Auth::routes();
+//会員情報変更
+Route::get('/user/{id}/edit', 'UserController@index')->name('user/edit');
+Route::post('/user/{id}/edit', 'UserController@edit')->name('user/edit');
 //マイページ
-Route::get('/{id}/mypage', 'MemberController@index')->name('mypage');
-// Route::get('/', 'HomeController@index')->name('home');
+Route::get('/user/{id}/top', function () { return view('user/top'); });

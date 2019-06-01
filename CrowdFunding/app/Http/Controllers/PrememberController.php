@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Member;
+use App\Premember;
 use Illuminate\Http\Request;
 
-class MemberController extends Controller
+class PrememberController extends Controller
 {
 	public function index () {
 		$members = Member::all();	//Memberモデルのallクラスメソッドで全ての会員情報を取得

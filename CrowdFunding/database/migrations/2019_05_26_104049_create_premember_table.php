@@ -13,7 +13,7 @@ class CreatePrememberTable extends Migration
 		 */
 		public function up()
 		{
-			Schema::create('premember', function (Blueprint $table) {
+			Schema::create('premembers', function (Blueprint $table) {
 					$table->increments('id')->unsigned;
 					$table->string('email')->unique();
 					$table->string('password');
@@ -29,6 +29,6 @@ class CreatePrememberTable extends Migration
 		 */
 		public function down()
 		{
-			Schema::dropIfExists('premember');
+			Schema::dropIfExists('premembers');
 		}
 }

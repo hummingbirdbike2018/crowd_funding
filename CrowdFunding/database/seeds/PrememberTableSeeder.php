@@ -12,7 +12,7 @@ class PrememberTableSeeder extends Seeder
 		 */
 		public function run()
 		{
-			DB::table('premember')->insert([
+			DB::table('premembers')->insert([
 				 'email' => 'dummy@email.com',
 				 //bcryptで暗号化
 				 'password' => bcrypt('test1234'),

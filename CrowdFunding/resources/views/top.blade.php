@@ -11,6 +11,7 @@
 			<button class="btn btn-primary rounded-0" type="button" id="button-addon2">検索</button>
 		</div>
 	</div>
+
 @endsection
 
 @include('footer')

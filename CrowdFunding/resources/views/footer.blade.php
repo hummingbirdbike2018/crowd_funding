@@ -1,6 +1,6 @@
 @section('footer')
 
-		<ul class="nav justify-content-end navbar-light bg-light">
+		<ul class="nav justify-content-end navbar-light bg-light mt-4">
 						<li class="nav-item">
 								<a class="nav-link disabled" href="#">利用規約</a>
 						</li>

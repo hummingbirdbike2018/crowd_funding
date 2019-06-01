@@ -25,7 +25,7 @@ class User extends Authenticatable
 		 * @var array
 		 */
 		protected $hidden = [
-				'password', 'remember_token',
+				'password', 'reuser_token',
 		];
 
 		/**
@@ -36,6 +36,13 @@ class User extends Authenticatable
 		protected $casts = [
 				'email_verified_at' => 'datetime',
 		];
-		//テーブル指定
-		protected $table = 'premember';
+
+		public function index () {
+			$users = User::all();	//userモデルのallクラスメソッドで全ての会員情報を取得
+
+			return view('user/edit',
+			[
+				'users' => $users	//view関数でmypageに上で取得した情報をusersをキーとして渡す
+			]);
+		}
 }
