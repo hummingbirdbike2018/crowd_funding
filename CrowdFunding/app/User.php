@@ -36,13 +36,4 @@ class User extends Authenticatable
 		protected $casts = [
 				'email_verified_at' => 'datetime',
 		];
-
-		public function index () {
-			$users = User::all();	//userモデルのallクラスメソッドで全ての会員情報を取得
-
-			return view('user/edit',
-			[
-				'users' => $users	//view関数でmypageに上で取得した情報をusersをキーとして渡す
-			]);
-		}
 }

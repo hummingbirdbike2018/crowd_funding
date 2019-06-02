@@ -66,11 +66,12 @@
 																		<i class="fas fa-user"> MENU</i>
 																</a>
 																		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-																				<a class="dropdown-item"  href="#top">MY PAGE</a>
+																				<a class="dropdown-item"  href="{{ 'user/{id}/top' }}">マイページ</a>
+																				<a class="dropdown-item"  href="{{ 'user/{id}/edit' }}">会員情報変更</a>
 																				<a class="dropdown-item" href="{{ route('logout') }}"
 																						onclick="event.preventDefault();
 																						document.getElementById('logout-form').submit();">
-																						{{ __('LOG OUT') }}
+																						{{ __('ログアウト') }}
 																				</a>
 																				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 																						@csrf
