@@ -19,7 +19,7 @@
 <body>
 	<header>
 		<div id="app">
-				<nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
+				<nav class="navbar navbar-expand-md navbar-dark bg-primary">
 						<div class="container">
 								<a class="navbar-brand" href="{{ url('/') }}">
 										{{ config('app.name', 'Laravel') }}
@@ -36,34 +36,34 @@
 												<!-- Authentication Links -->
 												@guest
 														<li class="nav-item">
-																<a class="nav-link waves-effect waves-light" href="#">
-																		<i class="fas fa-envelope"> CONTACT</i>
+																<a class="nav-link waves-effect waves-light" href="{{ 'contact' }}">
+																		<i class="fas fa-envelope"> お問い合わせ</i>
 																</a>
 														</li>
 														<li class="nav-item dropdown">
 																<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
 																		aria-haspopup="true" aria-expanded="false">
-																		<i class="fas fa-user"> MENU</i>
+																		<i class="fas fa-user"> メニュー</i>
 																</a>
 																<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 																		<!-- ログイン画面モーダルトリガー -->
-																		<a class="dropdown-item" data-toggle="modal" data-target="#LoginModal" href="#login">LOG IN</a>
+																		<a class="dropdown-item" data-toggle="modal" data-target="#LoginModal" href="#login">ログイン</a>
 																		<!-- 新規登録画面モーダルトリガー -->
 																		@if (Route::has('register'))
-																		<a class="dropdown-item" data-toggle="modal" data-target="#RegisterModal" href="#register">REGISTRER</a>
+																		<a class="dropdown-item" data-toggle="modal" data-target="#RegisterModal" href="#register">新規登録</a>
 																		@endif
 																</div>
 														</li>
 												@else
 														<li class="nav-item">
 																<a class="nav-link waves-effect waves-light" href="#">
-																		<i class="fas fa-envelope"> CONTACT</i>
+																		<i class="fas fa-envelope"> お問い合わせ</i>
 																</a>
 														</li>
 														<li class="nav-item dropdown">
 																<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
 																		aria-haspopup="true" aria-expanded="false">
-																		<i class="fas fa-user"> MENU</i>
+																		<i class="fas fa-user"> メニュー</i>
 																</a>
 																		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 																				<a class="dropdown-item"  href="{{ 'user/{id}/top' }}">マイページ</a>

@@ -22,7 +22,8 @@
 	Route::get('/user/{id}/top', function () { return view('user/top'); });
 	//退会
 	Route::get('/user/{id}/disable', function () { return view('user/disable'); });
-
+	//問い合わせフォーム
+	Route::get('/contact', 'HomeController@contact')->name('contact');
 	//});
 //認証機能
 Auth::routes();
