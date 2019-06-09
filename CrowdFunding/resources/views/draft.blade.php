@@ -1,6 +1,14 @@
 @extends('layout')
 
 @section('content')
+<!-- パンくずリスト -->
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{{ url('/') }}">TOP</a></li>
+		<li class="breadcrumb-item active" aria-current="page">掲載に関するご相談</li>
+	</ol>
+</nav>
+
 <div class="container mx-auto">
 	<ul class="nav nav-pills my-3 active" id="pills-tab" role="tablist">
 		<li class="nav-item">
@@ -16,7 +24,7 @@
 			<!-- プロダクト起案フォーム -->
 			<div class= "container">
 				<div class="border bg-light rounded p-4 shadow p-3 mb-5 w-90 p-3 mx-auto">
-				<form action="{{ 'edit' }}" method="POST">
+				<form action="{{ 'store' }}" method="POST">
 					@csrf
 					<form>
 						<div class="contact_form row">
@@ -27,7 +35,7 @@
 									<input id="name" class="form-control rounded-0 mb-4" placeholder="例：山田　太郎" value="{{ old('name') }}">
 									<label for="email" class="font-weight-bold">{{ __('メールアドレス') }}</label>
 									<span class="required-item text-danger">*</span>
-									<input id="email" class="form-control rounded-0 mb-4" placeholder="例：exsample@crowdfunding.com" value="{{ old('email') }}">
+									<input id="email" class="form-control rounded-0 mb-4" placeholder="例：example@crowdfunding.com" value="{{ old('email') }}">
 									<label for="pj_title" class="font-weight-bold">{{ __('プロジェクト名') }}</label>
 									<span class="required-item text-danger">*</span>
 									<p>
@@ -37,14 +45,14 @@
 									<span class="required-item text-danger">*</span>
 									<p>
 									<small>総額でどの程度の金額を集めたいか入力してください。</small>
-									<input id="target_amount" class="form-control rounded-0 mb-5" placeholder="500000" value="{{ old('target_amount') }}">
+									<input id="target_amount" class="form-control rounded-0 mb-5" placeholder="例：500000" value="{{ old('target_amount') }}">
 									<label for="overview" class="font-weight-bold">{{ __('プロジェクト概要') }}</label>
 									<span class="required-item text-danger">*</span>
 									<textarea class="form-control rounded-0 mt-2 mb-5" id="overview" rows="5" placeholder="" value="{{ old('overview') }}"></textarea>
-									<label for="upload_file" class="font-weight-bold">{{ __('企画のイメージ画像') }}</label>
+									<label for="pj_image" class="font-weight-bold">{{ __('企画のイメージ画像') }}</label>
 									<p>
 									<small>行いたい企画内容が伝わる画像や写真があれば、添付してください（JPG、GIFもしくはPNG形式）。</small>
-									<input type="file" class="form-control-file" id="upload_file">
+									<input type="file" class="form-control-file" id="pj_image">
 									<label for="retrun" class="font-weight-bold mt-5">{{ __('リターン') }}</label>
 									<p>
 									<small>支援者へお返しの想定。空欄の場合は追ってご相談させていただきます。</small>
@@ -74,7 +82,7 @@
 			<!-- プロダクト以外 -->
 			<div class= "container">
 				<div class="border bg-light rounded p-4 shadow p-3 mb-5 w-90 p-3 mx-auto">
-				<form action="{{ 'edit' }}" method="POST">
+				<form action="{{ 'store' }}" method="POST">
 					@csrf
 					<form>
 						<div class="contact_form row">
@@ -85,7 +93,7 @@
 									<input id="name" class="form-control rounded-0 mb-4" placeholder="例：山田　太郎" value="{{ old('name') }}">
 									<label for="email" class="font-weight-bold">{{ __('メールアドレス') }}</label>
 									<span class="required-item text-danger">*</span>
-									<input id="email" class="form-control rounded-0 mb-4" placeholder="例：exsample@crowdfunding.com" value="{{ old('email') }}">
+									<input id="email" class="form-control rounded-0 mb-4" placeholder="例：example@crowdfunding.com" value="{{ old('email') }}">
 									<label for="tel" class="font-weight-bold">{{ __('電話番号') }}</label>
 									<span class="required-item text-danger">*</span>
 									<input id="tel" class="form-control rounded-0 mb-4" placeholder="例：0120-000-000" value="{{ old('tel') }}">
@@ -113,10 +121,10 @@
 									<p>
 									<small>クラウドファンディングを行いたい期間、集めたい金額について教えてください。</small>
 									<textarea class="form-control rounded-0 mb-5" id="howto" rows="5" placeholder="実施希望期間、目標金額" value="{{ old('howto') }}"></textarea>
-									<label for="upload_file" class="font-weight-bold">{{ __('企画のイメージ画像') }}</label>
+									<label for="image_url" class="font-weight-bold">{{ __('企画のイメージ画像') }}</label>
 									<p>
 									<small>行いたい企画内容が伝わる画像や写真があれば、添付してください（JPG、GIFもしくはPNG形式）。</small>
-									<input type="file" class="form-control-file mb-4" id="upload_file">
+									<input type="file" class="form-control-file mb-4" id="image_url">
 									<label for="faq1" class="font-weight-bold mt-4">{{ __('過去にクラウドファンディングの経験はありますか？') }}</label>
 									<textarea class="form-control rounded-0 mb-4" id="faq1" rows="3" placeholder="他社クラウドファンディングサイトで実施経験がある場合はURLをご記入ください" value="{{ old('faq1') }}"></textarea>
 									<label for="faq2" class="font-weight-bold">{{ __('どこでCrowdFundingをお知りになりましたか？') }}</label>

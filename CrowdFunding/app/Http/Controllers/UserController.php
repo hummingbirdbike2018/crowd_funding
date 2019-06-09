@@ -21,7 +21,7 @@ class UserController extends Controller
 	}
 
 
-	public function edit (Request $request) {
+	public function store (Request $request) {
 
 		//リクエストされたuer_idで会員情報を取得
 		$user = new User();

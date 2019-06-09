@@ -23,7 +23,12 @@
 	//退会
 	Route::get('/user/{id}/disable', function () { return view('user/disable'); });
 	//問い合わせフォーム
-	Route::get('/contact', 'HomeController@contact')->name('contact');
+	Route::get('/contact', 'HomeController@index')->name('contact');
+	Route::post('/contact', 'HomeController@store')->name('contact');
+	//掲載に関するご相談
+	Route::get('draft', 'DraftController@index');
+	Route::post('draft/confirm', 'DraftController@confirm')->name('confirm');
+	Route::post('draft/complete', 'DraftController@confirm')->name('complete');
 	//});
-//認証機能
-Auth::routes();
+	//認証機能
+	Auth::routes();

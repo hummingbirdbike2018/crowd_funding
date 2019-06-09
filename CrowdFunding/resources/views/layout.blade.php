@@ -30,6 +30,11 @@
 								<div class="collapse navbar-collapse" id="navbarSupportedContent">
 										<!-- Left Side Of Navbar -->
 										<ul class="navbar-nav mr-auto">
+											<li class="nav-item">
+													<a class="nav-link waves-effect waves-light" href="{{ 'draft' }}">
+															<i class="far fa-edit"> 掲載に関するご相談</i>
+													</a>
+											</li>
 										</ul>
 										<!-- Right Side Of Navbar -->
 										<ul class="navbar-nav ml-auto">
