@@ -16,8 +16,8 @@
 	//利用規約
 	Route::get('/terms', function () { return view('terms'); });
 	//会員情報変更
-	Route::get('/user/{id}/edit', 'UserController@index')->name('user/edit');
-	Route::post('/user/{id}/edit', 'UserController@store')->name('user/edit');
+	Route::get('user/{id}/edit', 'UserController@index');
+	Route::post('user/{id}/edit/store', 'UserController@store');
 	//マイページ
 	Route::get('/user/{id}/top', function () { return view('user/top'); });
 	//退会
@@ -27,8 +27,11 @@
 	Route::post('/contact', 'HomeController@store')->name('contact');
 	//掲載に関するご相談
 	Route::get('draft', 'DraftController@index');
-	Route::post('draft/confirm', 'DraftController@confirm')->name('confirm');
-	Route::post('draft/complete', 'DraftController@confirm')->name('complete');
+	Route::post('draft/store', 'DraftController@store');
+	//プロジェクトページ
+	Route::get('projects/{pj_id}', 'ProjectController@index');
+	// Route::post('draft/confirm', 'DraftController@confirm')->name('confirm');
+	// Route::post('draft/complete', 'DraftController@confirm')->name('complete');
 	//});
 	//認証機能
 	Auth::routes();

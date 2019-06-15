@@ -2,7 +2,7 @@
 
 @section('content')
 <div class= "container">
-	<form action="{{ 'edit' }}" method="POST">
+	<form action="{{ 'edit/store' }}" method="POST">
 		@csrf
 		<div class="edit_user row">
 			<div class= "edit_user is_basic col col-md-3 mx-auto">

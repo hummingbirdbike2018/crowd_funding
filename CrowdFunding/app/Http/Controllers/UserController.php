@@ -39,6 +39,6 @@ class UserController extends Controller
 		$user->save();
 
 		//
-		return view('変更を保存しました。');
+		return view('/');
 	}
 }

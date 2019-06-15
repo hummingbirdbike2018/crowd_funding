@@ -24,9 +24,8 @@
 			<!-- プロダクト起案フォーム -->
 			<div class= "container">
 				<div class="border bg-light rounded p-4 shadow p-3 mb-5 w-90 p-3 mx-auto">
-				<form action="{{ 'store' }}" method="POST">
+				<form action="{{ 'draft/store' }}" method="POST">
 					@csrf
-					<form>
 						<div class="contact_form row">
 							<div class= "contact_form is_products w-75 mx-auto">
 								<div class="form-group form-content">
@@ -41,7 +40,7 @@
 									<p>
 									<small>仮のタイトルで結構です。</small>
 									<input id="pj_title" class="form-control rounded-0 mb-3" placeholder="" value="{{ old('pj_title') }}">
-									<label for="target_amount" class="font-weight-bold">{{ __('目標額(円)') }}</label>
+									<label for="target_amount" class="font-weight-bold">{{ __('目標額 (円)') }}</label>
 									<span class="required-item text-danger">*</span>
 									<p>
 									<small>総額でどの程度の金額を集めたいか入力してください。</small>
