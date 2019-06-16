@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('content')
 <div class="border bg-light rounded p-4 shadow p-3 mt-3 w-75 mx-auto">
