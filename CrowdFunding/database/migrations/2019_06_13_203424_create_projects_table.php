@@ -16,25 +16,13 @@ class CreateProjectsTable extends Migration
 				Schema::create('projects', function (Blueprint $table) {
 					$table->increments('pj_id')->unsigned;
 					$table->string('pj_title');
-					$table->string('plannner_id');
+					$table->string('planner_id');
 					$table->string('product_detail_1');
 					$table->string('product_detail_2');
 					$table->string('product_detail_3');
-					// $table->addColumn('product_img_1', 'blob', [
-					// 	'default' => null,
-					// 	'limit' => 16777215,
-					// 	'null' => true,
-					// 	]);
-					// $table->addColumn('product_img_2', 'blob', [
-					// 	'default' => null,
-					// 	'limit' => 16777215,
-					// 	'null' => true,
-					// 	]);
-					// $table->addColumn('product_img_3', 'blob', [
-					// 	'default' => null,
-					// 	'limit' => 16777215,
-					// 	'null' => true,
-					// 	]);
+					$table->string('product_img_1');
+					$table->string('product_img_2');
+					$table->string('product_img_3');
 					$table->integer('target_amount');
 					$table->integer('reward_id');
 					$table->timestamps();

@@ -18,6 +18,8 @@
 	//会員情報変更
 	Route::get('user/{id}/edit', 'UserController@index');
 	Route::post('user/{id}/edit/store', 'UserController@store');
+	//アイコン設定
+	Route::post('user/{id}/edit/user_image', 'UserController@image');
 	//マイページ
 	Route::get('/user/{id}/top', function () { return view('user/top'); });
 	//退会

@@ -5,8 +5,9 @@
 @section('content')
 <div class="product-container bg-light">
 	<div class="container">
+		@foreach($projects as $project)
 		<div class="heading-container">
-				<h3 class="py-3">ここにプロジェクト名、キャッチコピーを表示</h3>
+			<h3 class="py-3" id="pj_title">{{ $project->pj_title }}</h3>
 		</div>
 		<div class="main-container">
 			<div class="row">
@@ -28,12 +29,12 @@
 						</div>
 						<div class="tab-content" id="nav-tabContent">
 							<div class="tab-pane fade show active " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-								{{ 'product_img_1' }}<p>
-								{{ 'product_detail_1' }}<p>
-								{{ 'product_img_2' }}<p>
-								{{ 'product_detail_2' }}<p>
-								{{ 'product_img_3' }}<p>
-								{{ 'product_detail_3' }}<p>
+								<img src="/storage/{{$project->product_img_1}}">
+								{{ $project->product_detail_1 }}<p>
+								<img src="/storage/{{$project->product_img_2}}">
+								{{ $project->product_detail_2 }}<p>
+								<img src="/storage/{{$project->product_img_3}}">
+								{{ $project->product_detail_3 }}<p>
 							</div>
 							<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 							</div>
@@ -47,12 +48,12 @@
 				<div class="shadow-sm p-3 mb-5 bg-white rounded w-75">
 					<div class="text text-muted text-small">現在の支援総額</div>
 					<strong>
-						<span class="text-warning display-4v project-status">¥{{ 'total_amount' }}</span>
+						<span class="text-warning display-4v project-status">¥{{ $total_amount }}</span>
 					</strong>
 					<div class="progress">
-						<div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">100%</div>
+						<div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="{{ $percent_complete }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $percent_complete }}%">{{ $percent_complete }}%</div>
 					</div>
-					<div class="text-muted text-small">目標金額 ¥{{ 'target_amount' }}</div>
+					<div class="text-muted text-small">目標金額 ¥{{ $project->target_amount }}</div>
 					<div class="border"></div>
 					<table class="table table-borderless">
 						<thead>
@@ -67,18 +68,18 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td class="project-supporter">{{ 'total_supporter' }} 人</td>
-								<td class="project-period">{{ 'period' }} 日</td>
+								<td class="project-supporter">{{ $total_supporter }} 人</td>
+								<td class="project-period">{{ $period }} 日</td>
 							</tr>
 						</tbody>
 					</table>
 					<button type="button" class="btn btn-primary">このプロジェクトを支援する</button><p>
-					<small>2019/07/31 23:59 までに目標金額に達すると、プロジェクトが成立となり、決済が完了します。</small>
+					<small>{{ $end_time }} までに目標金額に達すると、プロジェクトが成立となり、決済が完了します。</small>
 				</div>
 			</div>
 			</div>
 		</div>
-
+		@endforeach
 </div>
 </div>
 @endsection

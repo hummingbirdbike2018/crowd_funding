@@ -25,6 +25,7 @@ class CreateUserTable extends Migration
 						$table->string('building');
 						$table->string('email')->unique();
 						$table->string('password');
+						$table->string('user_image');
 						$table->integer('disable');
 						$table->integer('dis_reason');
 						$table->rememberToken();
