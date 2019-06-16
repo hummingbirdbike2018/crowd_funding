@@ -12,7 +12,7 @@
 <div class="container mx-auto">
 	<ul class="nav nav-pills my-3 active" id="pills-tab" role="tablist">
 		<li class="nav-item">
-			<a class="nav-link" id="pills-products-tab" data-toggle="pill" href="#pills-products" role="tab" aria-controls="pills-products" aria-selected="false">起案に関するお問い合わせ(プロダクト系)</a>
+			<a class="nav-link active show" id="pills-products-tab" data-toggle="pill" href="#pills-products" role="tab" aria-controls="pills-products" aria-selected="true">起案に関するお問い合わせ(プロダクト系)</a>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link" id="pills-not-products-tab" data-toggle="pill" href="#pills-not-products" role="tab" aria-controls="pills-not-products" aria-selected="false">起案に関するお問い合わせ(プロダクト以外)</a>
