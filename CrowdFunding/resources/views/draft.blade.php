@@ -68,7 +68,7 @@
 											<a href="{{ 'terms' }}">利用規約</a>に同意する
 										</label>
 									</div>
-									<button type="submit" class="btn btn-primary rounded-0 mt-3 px-5 float-right">送信する</button>
+									<button type="submit" class="btn btn-primary rounded-0 mt-3 px-5 float-right">確認画面へ</button>
 							</div>
 						</div>
 					</form>
