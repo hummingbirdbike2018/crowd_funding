@@ -2,7 +2,7 @@
 
 @section('content')
 <div class= "container">
-	<form action="{{ 'edit/store' }}" method="POST">
+	<form action="{{ 'edit/store' }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		<div class="edit_user row">
 			<div class= "edit_user is_basic col col-md-3 mx-auto">
@@ -50,24 +50,26 @@
 	</form>
 </div>
 <div class="container">
-	<div class="edit_user row">
-		<div class="edit_user is_icon col col-md-3 mx-auto" style="width: 810px;">
-			<h5 class="mt-5 mb-4">アイコン設定</h5>
-				<small>
-					<p class="font-weight-light">支援の際の応援コメントなどに表示されます。</p>
-				</small>
-			<input type="file" class="form-control-file mb-5" id="upload_file">
-			<input class="btn btn-primary rounded-0 float-right" type="submit" method="POST" value="アイコンを設定">
+	<form action="{{ 'edit/user_image' }}" method="POST" enctype="multipart/form-data">
+		<div class="edit_user row">
+			<div class="edit_user is_icon col col-md-3 mx-auto" style="width: 810px;">
+				<h5 class="mt-5 mb-4">アイコン設定</h5>
+					<small>
+						<p class="font-weight-light">支援の際の応援コメントなどに表示されます。</p>
+					</small>
+				<input type="file" class="form-control-file mb-5" name="user_image">
+				<input class="btn btn-primary rounded-0 float-right" type="submit" method="POST" value="アイコンを設定">
+			</div>
+		</form>
+		<span class="border-right"></span>
+			<div class="edit_user is_disable col col-md-3 mx-auto" style="width: 810px;">
+				<h5 class="mt-5 mb-5">退会</h5>
+					<small>
+						<p class="font-weight-light text-danger">クリックすると退会処理画面へ移動します</p>
+					</small>
+					<a class="btn btn-secondary rounded-0 float-right" href="{{ 'disable' }}" role="button">退会</a>
+			</div>
 		</div>
-	<span class="border-right"></span>
-		<div class="edit_user is_disable col col-md-3 mx-auto" style="width: 810px;">
-			<h5 class="mt-5 mb-5">退会</h5>
-				<small>
-					<p class="font-weight-light text-danger">クリックすると退会処理画面へ移動します</p>
-				</small>
-				<a class="btn btn-secondary rounded-0 float-right" href="{{ 'disable' }}" role="button">退会</a>
-		</div>
-	</div>
 </div>
 
 @endsection
