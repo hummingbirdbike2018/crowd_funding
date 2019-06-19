@@ -7,19 +7,19 @@
 	<div class="container">
 		@foreach($projects as $project)
 		<div class="heading-container">
-			<h3 class="py-3" id="pj_title">{{ $project->pj_title }}</h3>
+			<h3 class="py-3 mx-auto" id="pj_title">{{ $project->pj_title }}</h3>
 		</div>
 		<div class="main-container">
 			<div class="row">
-				<div class="col col-md-2 btn-group-vertical">
+				<!-- <div class="col col-md-2 btn-group-vertical">
 					<div class="shadow-sm p-3 mb-5 bg-white rounded">
 						<button type="button" class="btn btn-primary my-3">facebookでシェア</button>
 						<button type="button" class="btn btn-success my-3">Twitterでシェア</button>
 						<div class="border"></div>
 						<button type="button" class="btn btn-danger mt-5">支援する</button>
 					</div>
-				</div>
-			<div class="col-md-6">
+				</div> -->
+			<div class="col-md-7">
 				<div class="shadow-sm p-3 mb-5 bg-white rounded">
 					<nav>
 						<div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -29,11 +29,11 @@
 						</div>
 						<div class="tab-content" id="nav-tabContent">
 							<div class="tab-pane fade show active " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-								<img src="../storage/{{$project->product_img_1 }}">
+								<img src="../storage/{{$project->product_img_1 }}"><br>
 								{{ $project->product_detail_1 }}<br>
-								<img src="../storage/{{$project->product_img_2}}">
+								<img src="../storage/{{$project->product_img_2}}"><br>
 								{{ $project->product_detail_2 }}<br>
-								<img src="../storage/{{$project->product_img_3}}">
+								<img src="../storage/{{$project->product_img_3}}"><br>
 								{{ $project->product_detail_3 }}<br>
 							</div>
 							<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -45,7 +45,7 @@
 				</div>
 			</div>
 			<div class="col col-md-4">
-				<div class="shadow-sm p-3 mb-5 bg-white rounded w-75">
+				<div class="shadow-sm p-3 mb-5 bg-white rounded" style="width: 18rem;">
 					<div class="text text-muted text-small">現在の支援総額</div>
 					<strong>
 						<span class="text-warning display-4v project-status">¥{{ $total_amount }}</span>
@@ -75,6 +75,30 @@
 					</table>
 					<button type="button" class="btn btn-primary">このプロジェクトを支援する</button><p>
 					<small>{{ $end_time }} までに目標金額に達すると、プロジェクトが成立となり、決済が完了します。</small>
+				</div>
+			@foreach($rewards as $reward)
+				<div class="card" style="width: 18rem;">
+					<svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
+						<title>{{ $reward->rw_image }}</title>
+						<rect fill="#868e96" width="100%" height="100%"/>
+						<text fill="#dee2e6" dy=".3em" x="50%" y="50%"></text>
+					</svg>
+					<div class="card-body">
+						<h5 class="card-title">{{ $reward->rw-title }}</h5>
+						<p class="card-text">{{ $reward->rw-price }}</p>
+						<p class="card-text">{{ $reward->rw-body }}</p>
+						<span class="card-text">予定配送時期：{{ $reward->rw-season }}</span>
+						<table class="table table-borderless">
+							<tbody>
+								<tr>
+									<td class="supporter">{{ $supporter }} 人が支援</td>
+									<td class="quantity">残り {{ $period }} 個</td>
+								</tr>
+							</tbody>
+						</table>
+						<a href="{{ route('') }}" class="btn btn-primary">支援する</a>
+					</div>
+			@endforeach
 				</div>
 			</div>
 			</div>
