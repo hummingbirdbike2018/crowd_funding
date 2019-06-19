@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class SupportController extends Controller
 {
 
-	public function rewards()
+	public function reward()
 		{
 				return $this->belongsTo(App\Reward);//rewardテーブルとのリレーション
 		}

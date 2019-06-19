@@ -31,12 +31,7 @@ Route::post('draft/store', 'DraftController@store');
 //プロジェクトページ
 Route::get('projects/{pj_id}', 'ProjectController@index');
 Route::get('reward/{reward_id}', 'RewardController@index');
-Route::get('hasmany',function(){
 
-	$reward = App\Reward::find($id);
-	$supports = $reward->supports;
-
-});
 // Route::post('draft/confirm', 'DraftController@confirm')->name('confirm');
 // Route::post('draft/complete', 'DraftController@confirm')->name('complete');
 //});

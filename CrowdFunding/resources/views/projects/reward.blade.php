@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-
+@section('reward')
 
 @foreach($rewards as $reward)
 	<div class="card" style="width: 18rem;">
@@ -26,3 +26,5 @@
 		</div>
 	</div>
 @endforeach
+
+@endsection

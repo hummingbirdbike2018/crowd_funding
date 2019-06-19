@@ -24,6 +24,7 @@ class ProjectTableSeeder extends Seeder
 				'product_img_3' => 'test3.jpg',
 				'target_amount' => 100000,
 				'reward_id' => 1,
+				'period' => 10,
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now(),
 			]);

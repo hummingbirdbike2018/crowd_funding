@@ -12,6 +12,7 @@ class RewardsTableSeeder extends Seeder
 		public function run()
 		{
 			DB::table('rewards')->insert([
+					'pj_id' => 1,
 					'reward_id' => 1,
 					'rw_title' => 'リターン1',
 					'rw_body' => '＜リターンの詳細について＞',

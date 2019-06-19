@@ -4,14 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Support;
 use App\Reward;
+use App\Project;
 use Illuminate\Http\Request;
 
 class RewardController extends Controller
 {
 
-	public function supports() {
+	public function support() {
 		return $this->hasMany(App\Support);//supportテーブルとのリレーション
 	}
+
+
+	public function project()
+		{
+				return $this->belongsTo(App\Project);//rewardテーブルとのリレーション
+		}
+
 
 	public function index (int $id) {
 

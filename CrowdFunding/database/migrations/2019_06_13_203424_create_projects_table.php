@@ -24,6 +24,7 @@ class CreateProjectsTable extends Migration
 					$table->string('product_img_2');
 					$table->string('product_img_3');
 					$table->integer('target_amount');
+					$table->integer('period');
 					$table->timestamps();
 				});
 		}
