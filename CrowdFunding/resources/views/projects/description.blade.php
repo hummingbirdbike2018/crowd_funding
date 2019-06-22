@@ -48,12 +48,12 @@
 				<div class="shadow-sm p-3 mb-5 bg-white rounded" style="width: 20rem;">
 					<div class="text text-muted text-small">現在の支援総額</div>
 					<strong>
-						<span class="text-warning display-4v project-status">¥{{ $total_amount }}</span>
+						<span class="text-black display-4v project-status">¥{{ number_format($total_amount) }}</span>
 					</strong>
 					<div class="progress">
-						<div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="{{ $percent_complete }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $percent_complete }}%">{{ $percent_complete }}%</div>
+						<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="{{ $percent_complete }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $percent_complete }}%">{{ $percent_complete }}%</div>
 					</div>
-					<div class="text-muted text-small">目標金額 ¥{{ $project->target_amount }}</div>
+					<div class="text-muted text-small">目標金額 ¥{{ number_format($project->target_amount) }}</div>
 					<div class="border"></div>
 					<table class="table table-borderless">
 						<thead>
@@ -80,17 +80,19 @@
 
 					<div class="shadow-sm p-3 mb-5 bg-white rounded" style="width: 20rem;">
 						<h5 class="card-title">{{ $reward->rw_title }}</h5>
-						<p class="card-text">¥{{ $reward->rw_price }}</p>
+						<p class="card-text">¥ {{ number_format($reward->rw_price) }}</p>
 						<p class="card-text">限定 {{ $reward->rw_quantity }}個</p>
 						<img src="../storage/{{$reward->rw_image }}"><br>
 						<p class="card-text">{{ $reward->rw_body }}</p>
 						<span class="card-text">予定配送時期：{{ $reward->rw_season }}</span>
 						<table class="table table-borderless">
 							<tbody>
+								@foreach($supports as $support)
 								<tr>
-									<td class="supporter">{{ $total_supporter }} 人が支援</td>
-									<td class="quantity">残り {{ $period }} 個</td>
+									<td class="supporter">{{ $support->reward_id }} 人が支援</td>
+									<td class="quantity">残り {{ $stock }} 個</td>
 								</tr>
+								@endforeach
 							</tbody>
 						</table>
 						<a href="#" class="btn btn-primary">支援する</a>
@@ -100,7 +102,7 @@
 			</div>
 		</div>
 		@endforeach
-</div>
+	</div>
 </div>
 @endsection
 

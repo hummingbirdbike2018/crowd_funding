@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Rewards;
+use App\Reward;
 use App\Support;
 use Illuminate\Http\Request;
 
 class SupportController extends Controller
 {
-
-	public function reward()
-		{
-				return $this->belongsTo(App\Reward);//rewardテーブルとのリレーション
-		}
-
 
 	public function index (int $id) {
 
