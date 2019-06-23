@@ -13,7 +13,7 @@ class ProjectTableSeeder extends Seeder
 		public function run()
 		{
 			DB::table('projects')->insert([
-				'pj_id' => 1,
+				'id' => 1,
 				'pj_title' => 'プロジェクト１',
 				'planner_id' => 1,
 				'product_detail_1' => 'プロジェクト説明その１',

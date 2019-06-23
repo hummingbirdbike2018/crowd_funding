@@ -12,14 +12,14 @@ class RewardsTableSeeder extends Seeder
 		public function run()
 		{
 			DB::table('rewards')->insert([
-					'pj_id' => 1,
-					'reward_id' => 1,
-					'rw_title' => 'リターン1',
-					'rw_body' => '＜リターンの詳細について＞',
-					'rw_image' => 'reward_image.jpg',
-					'rw_quantity' => '300',
-					'rw_price' => '10000',
-					'rw_season' => '2019年8月',
+				'id' => 1,
+				'pj_id' => 1,
+				'rw_title' => 'リターン1',
+				'rw_body' => '＜リターンの詳細について＞',
+				'rw_image' => 'reward_image.jpg',
+				'rw_quantity' => '300',
+				'rw_price' => '10000',
+				'rw_season' => '2019年8月',
 			]);
 		}
 }

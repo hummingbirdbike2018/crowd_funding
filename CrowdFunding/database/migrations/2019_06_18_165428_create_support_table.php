@@ -13,11 +13,16 @@ class CreateSupportTable extends Migration
 		 */
 		public function up()
 		{
-				Schema::create('supports', function (Blueprint $table) {
-						$table->increments('id');
-						$table->integer('user_id');
-						$table->integer('reward_id');
-				});
+			Schema::create('supports', function (Blueprint $table) {
+				$table->increments('id');
+				$table->integer('user_id')->unsigned();
+				$table->integer('reward_id')->unsigned();
+
+				// 外部キーを設定する
+				$table->foreign('user_id')->references('id')->on('users');
+				// 外部キーを設定する
+				$table->foreign('reward_id')->references('id')->on('rewards');
+			});
 		}
 
 		/**
