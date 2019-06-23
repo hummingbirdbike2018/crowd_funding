@@ -8,14 +8,14 @@ class Support extends Model
 {
 
 	public function rewards()
-		{
-				return $this->belongsTo('App\Reward','reward_id');//rewardsテーブルとのリレーション
-		}
+	{
+		return $this->belongsTo('App\Reward','id');//rewardsテーブルとのリレーション
+	}
 
 	public function projects()
-		{
-				return $this->belongsTo('App\Project','pj_id');//projectsテーブルとのリレーション
-		}
+	{
+		return $this->belongsTo('App\Project','pj_id'); //projectsテーブルとのリレーション
+	}
 
 
 	protected $fillable = [

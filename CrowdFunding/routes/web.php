@@ -29,7 +29,7 @@ Route::post('/contact', 'HomeController@store')->name('contact');
 Route::get('draft', 'DraftController@index');
 Route::post('draft/store', 'DraftController@store');
 //プロジェクトページ
-Route::get('projects/{pj_id}', 'ProjectController@index');
+Route::get('projects/{id}', 'ProjectController@index');
 // Route::get('reward/{reward_id}', 'RewardController@index');
 
 // Route::post('draft/confirm', 'DraftController@confirm')->name('confirm');
