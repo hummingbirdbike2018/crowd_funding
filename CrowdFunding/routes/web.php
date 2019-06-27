@@ -30,7 +30,11 @@ Route::get('draft', 'DraftController@index');
 Route::post('draft/store', 'DraftController@store');
 //プロジェクトページ
 Route::get('projects/{id}', 'ProjectController@index');
-// Route::get('reward/{reward_id}', 'RewardController@index');
+//支援選択ページ
+Route::get('projects/{id}/supports/select', 'SupportController@index');
+//個別支援ページ
+Route::get('projects/{id}/supports/{reward_id}', 'SupportController@index');
+
 
 // Route::post('draft/confirm', 'DraftController@confirm')->name('confirm');
 // Route::post('draft/complete', 'DraftController@confirm')->name('complete');

@@ -14,11 +14,11 @@ class Support extends Model
 
 	public function projects()
 	{
-		return $this->belongsTo('App\Project','pj_id'); //projectsテーブルとのリレーション
+		return $this->belongsTo('App\Project','id'); //projectsテーブルとのリレーション
 	}
 
 
 	protected $fillable = [
-		 'reward_id', 'user_id',
+		 'reward_id', 'user_id', 'pj_id',
 	 ];
 }

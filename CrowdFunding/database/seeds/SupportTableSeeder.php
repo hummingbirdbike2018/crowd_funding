@@ -14,6 +14,7 @@ class SupportTableSeeder extends Seeder
 			DB::table('supports')->insert([
 				'user_id' => 1,
 				'reward_id' => 1,
+				'pj_id' => 1,
 			]);
 		}
 }

@@ -8,11 +8,11 @@ class Project extends Model
 {
 
 	public function rewards() {
-		return $this->hasMany('App\Reward','id');//Rewardテーブルとのリレーション
+		return $this->hasMany('App\Reward','pj_id');//Rewardテーブルとのリレーション
 	}
 
 	public function supports(){
-		return $this->hasMany('App\Support','reward_id');//supportテーブルとのリレーション
+		return $this->hasMany('App\Support','pj_id');//supportテーブルとのリレーション
 	}
 
 	protected $fillable = [
