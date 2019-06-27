@@ -67,7 +67,7 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td class="project-supporter">{{ $total_supporter }} 人</td>
+									<td class="project-supporter">{{ array_sum($supporter_list) }} 人</td>
 									<td class="project-period">{{ $period }} 日</td>
 								</tr>
 							</tbody>
@@ -75,27 +75,29 @@
 						<button type="button" class="btn btn-primary">このプロジェクトを支援する</button><p>
 						<small>{{ $end_time }} までに目標金額に達すると、プロジェクトが成立となり、決済が完了します。</small>
 					</div>
-						@foreach($rewards as $reward)
+					@for($i = 0; $i < count($rewards); $i++)
 						<div class="shadow-sm p-3 mb-5 bg-white rounded" style="width: 20rem;">
-							<h5 class="card-title">{{ $reward->rw_title }}</h5>
-							<p class="card-text">¥ {{ number_format($reward->rw_price) }}</p>
-							<p class="card-text">限定 {{ $reward->rw_quantity }}個</p>
-							<img src="../storage/{{$reward->rw_image }}"><br>
-							<p class="card-text">{{ $reward->rw_body }}</p>
-							<span class="card-text">予定配送時期：{{ $reward->rw_season }}</span>
-								<table class="table table-borderless">
-									<tbody>
-										<tr>
-											@for($i=0; $i < $get_reward; $i++)
-											<td class="supporter">{{ $supporter }} 人が支援</td>
-											<td class="quantity">残り {{ $stock - $i }} 個</td>
-											@endfor
-										</tr>
-									</tbody>
-								</table>
-							<a href="#" class="btn btn-primary">支援する</a>
+							<h5 class="card-title">{{ $rewards[$i]->rw_title }}</h5>
+							<p class="card-text">¥ {{ number_format($rewards[$i]->rw_price) }}</p>
+							<p class="card-text">限定 {{ $rewards[$i]->rw_quantity }}個</p>
+							<img src="../storage/{{$rewards[$i]->rw_image }}"><br>
+							<p class="card-text">{{ $rewards[$i]->rw_body }}</p>
+							<span class="card-text">予定配送時期：{{ $rewards[$i]->rw_season }}</span>
+							<table class="table table-borderless">
+								<tbody>
+									<tr>
+										<td class="supporter">{{ $supporter_list[$i] }} 人が支援</td>
+										<td class="quantity">残り {{ $stock_list[$i] }} 個</td>
+									</tr>
+								</tbody>
+							</table>
+							@if($stock_list[$i] != 0)
+								<a href="#" class="btn btn-primary">支援する</a>
+							@else
+								<a href="#" class="btn btn-primary disabled">SOLD OUT</a>
+							@endif
 						</div>
-						@endforeach
+					@endfor
 				</div>
 			</div>
 		</div>
