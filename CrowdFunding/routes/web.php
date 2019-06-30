@@ -29,11 +29,11 @@ Route::post('/contact', 'HomeController@store')->name('contact');
 Route::get('draft', 'DraftController@index');
 Route::post('draft/store', 'DraftController@store');
 //プロジェクトページ
-Route::get('projects/{id}', 'ProjectController@index');
+Route::get('/projects/{id}', 'ProjectController@index');
 //支援選択ページ
-Route::get('projects/{id}/supports/select', 'SupportController@index');
+Route::get('/projects/{id}/supports/select', 'SupportController@index');
 //個別支援ページ
-Route::get('projects/{id}/supports/{reward_id}', 'SupportController@index');
+Route::get('/projects/{id}/supports/{reward_id}', 'SupportController@getSelectedReward');
 
 
 // Route::post('draft/confirm', 'DraftController@confirm')->name('confirm');
