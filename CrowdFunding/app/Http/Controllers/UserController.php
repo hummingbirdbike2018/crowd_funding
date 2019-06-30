@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
 {
 
-	public function index (int $id) {
+	public function index () {
 
-		$selected_user = User::Find($id); //全てのユーザを取得
+		$selected_user = Auth::user(); //ログインのユーザを取得
 		$user = User::Where('user_id', $selected_user->id)->get(); //ユーザーID
 
-		return view('user/edit',
+		return view('projects/selected_support',
 		[
 			'users' => $user	//view関数でmypageに上で取得した情報をusersをキーとして渡す
 		]);
@@ -37,11 +38,6 @@ class UserController extends Controller
 		$user->email = $request->email;
 		$user->password = $request->password;
 		$user->save();
-
-		//
-		return redirect()->route('user.edit', [
-				'id' => $user->id,
-		 ]);
 	}
 
 

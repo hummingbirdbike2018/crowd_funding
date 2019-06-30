@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Project;
 use App\Reward;
 use App\Support;
+use App\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SupportController extends Controller
 {
@@ -70,9 +71,9 @@ class SupportController extends Controller
 			$target_amount = $project->target_amount; 							// 目標金
 			$percent_complete = floor($project->target_amount / $target_amount * 100);	// 達成率
 			$supporter =  Support::where('reward_id', $reward_id)->count();//支援者数
-
-
-
+			
+			$selected_user = Auth::user(); //ログインのユーザを取得
+			$user = User::Where('user_id', $selected_user->id)->get(); //ユーザーID
 
 			//view側へ値を渡す処理
 			return view('projects/selected_support',
@@ -83,6 +84,7 @@ class SupportController extends Controller
 				'percent_complete' => $percent_complete,
 				'rewards' => $reward,
 				'supporter' => $supporter,
+				'users' => $user
 			]);
 		}
 }

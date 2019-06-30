@@ -5,7 +5,7 @@
 <div class="col-md-7">
 	<div class="container">
 		<form action="{{ 'projects/commit' }}" method="POST" enctype="multipart/form-data">
-			<h3 class="py-3" id="pj_title">{{ $project->pj_title }}</h3>
+			<h3 class="py-3" id="pj_title"></h3>
 			<div class="shadow-sm p-3 mb-5 bg-white rounded">
 				<p class="py-3 mx-auto" id="selected_reward">支援内容</p>
 				<div class="reward_container">
@@ -41,39 +41,44 @@
 						<th scope="row">決済方法</th>
 							<td>
 								クレジットカード決済
-								<img src="../storage/card_icon.gif"><br>
+								<img src="../storage/visa.gif">
+								<img src="../storage/jcb.gif">
+								<img src="../storage/master.gif">
+								<img src="../storage/ae.gif">
 								<small>募集期間内に支援が目標金額に達した場合のみ、クレジットカード決済が行われます</small>
 							</td>
 					</tr>
 				</table>
 				<table class="table shipping_table">
+				@foreach($users as $user)
 					<tr>
 						<th scope="row">氏名</th>
-							<td><input type="text" class="form-control rounded-0 my-2" placeholder="例：山田　太郎"></td>
+							<td><input type="text" class="form-control rounded-0 my-2" value="{{ $user->name }}" placeholder="例：山田　太郎"></td>
 					</tr>
 					<tr>
 						<th scope="row">フリガナ</th>
-							<td><input type="text" class="form-control rounded-0 my-2" placeholder="例：ヤマダ　タロウ"></td>
+							<td><input type="text" class="form-control rounded-0 my-2" value="{{ $user->furigana }}" placeholder="例：ヤマダ　タロウ"></td>
 					</tr>
 					<tr>
 						<th scope="row">郵便番号</th>
-							<td><input type="text" class="form-control rounded-0 my-2" placeholder="例：150-0034"></td>
+							<td><input type="text" class="form-control rounded-0 my-2" value="{{ $user->post_code }}" placeholder="例：150-0034"></td>
 					</tr>
 					<tr>
 						<th scope="row">都道府県市区町村</th>
-							<td><input type="text" class="form-control rounded-0 my-2" placeholder="例：東京都渋谷区代官山町"></td>
+							<td><input type="text" class="form-control rounded-0 my-2" value="{{ $user->address }}" placeholder="例：東京都渋谷区代官山町"></td>
 					</tr>
 					<tr>
 						<th scope="row">番地・建物名</th>
-							<td><input type="text" class="form-control rounded-0 my-2" placeholder="例：1-1"></td>
+							<td><input type="text" class="form-control rounded-0 my-2" value="{{ $user->building }}" placeholder="例：1-1"></td>
 					</tr>
 					<tr>
 						<th scope="row">電話番号</th>
-							<td><input type="text" class="form-control rounded-0 my-2" placeholder="例：03-123-4567"></td>
+							<td><input type="text" class="form-control rounded-0 my-2" value="{{ $user->tel }}" placeholder="例：03-123-4567"></td>
 					</tr>
+				@endforeach
 				</table>
 					<input type="checkbox">この住所情報をマイページに登録する<br>
-					<input type="checkbox"><a href="{{ 'terms' }}">利用規約</a>に同意する<p>
+					<input type="checkbox"><a href="{{ '..../terms' }}">利用規約</a>に同意する<p>
 						<p>※入力された情報は、本プロジェクト起案者に提供されます</p>
 					<input type="submit" name="commit" value="内容を確認する" class="btn btn-primary">
 					<div class="suppport_notice">

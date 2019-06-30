@@ -34,6 +34,7 @@ Route::get('/projects/{id}', 'ProjectController@index');
 Route::get('/projects/{id}/supports/select', 'SupportController@index');
 //個別支援ページ
 Route::get('/projects/{id}/supports/{reward_id}', 'SupportController@getSelectedReward');
+Route::post('/projects/{id}/supports/{reward_id}/store', 'UserController@store');
 
 
 // Route::post('draft/confirm', 'DraftController@confirm')->name('confirm');
