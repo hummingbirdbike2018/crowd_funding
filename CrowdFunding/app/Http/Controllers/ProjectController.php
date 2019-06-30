@@ -16,21 +16,24 @@ class ProjectController extends Controller
 		// プロジェクトを取得
 		$project = Project::find($id);
 		// プロジェクトIDに紐づくリワードテーブルを取得
-		$reward = Reward::where('pj_id', $id)->get();
+		$rewards = $project->rewards;
 
 		$total_amount   = 0;			// 総支援額
 		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
 		$stock_list     = array();		// Rewardごとの残り個数を格納する配列
 
-		for($i = 0; $i < $reward->count(); $i++) {
+		for($i = 0; $i < $rewards->count(); $i++)
+		{
+			// TODO：プロジェクトIDに紐づくサポートテーブルを取得するようにする
 			$supporter_list[] = Support::where('reward_id', $id++)->get()->count();
-			$total_amount += $reward[$i]['rw_price'] * $supporter_list[$i];
-			$stock_list[] = $reward[$i]['rw_quantity'] - $supporter_list[$i];
+			$total_amount += $rewards[$i]['rw_price'] * $supporter_list[$i];
+			$stock_list[] = $rewards[$i]['rw_quantity'] - $supporter_list[$i];
 		}
 
 		// プロジェクトの開始日
 		$start_day = new Carbon($project->created_at);
 		// プロジェクトの終了日
+		// TODO：現在日時を取得する
 		$end_day = new Carbon($project->created_at);
 		$end_day->addDay($project->period);
 		$end_day_str = date_format($end_day , 'Y年m月d日');
@@ -48,7 +51,7 @@ class ProjectController extends Controller
 			'period' => $period,
 			'end_time' => $end_time,
 			'percent_complete' => $percent_complete,
-			'rewards' => $reward,
+			'rewards' => $rewards,
 			'stock_list' => $stock_list,
 		]);
 	}

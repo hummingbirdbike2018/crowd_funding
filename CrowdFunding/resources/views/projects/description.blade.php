@@ -72,7 +72,7 @@
 								</tr>
 							</tbody>
 						</table>
-						<a href="{{ 'supports/select' }}"  class="btn btn-primary">このプロジェクトを支援する</a><p>
+						<a href="{{ $project->id.'/supports/select' }}"  class="btn btn-primary">このプロジェクトを支援する</a><p>
 						<small>{{ $end_time }} までに目標金額に達すると、プロジェクトが成立となり、決済が完了します。</small>
 					</div>
 					@for($i = 0; $i < count($rewards); $i++)
@@ -92,7 +92,7 @@
 								</tbody>
 							</table>
 							@if($stock_list[$i] != 0)
-								<a href="{{ 'supports/'.$rewards[$i]->id }}" class="btn btn-primary">支援する</a>
+								<a href="{{ $project->id.'/supports/'.$rewards[$i]->id }}" class="btn btn-primary">支援する</a>
 							@else
 								<a href="#" class="btn btn-primary disabled">SOLD OUT</a>
 							@endif
