@@ -33,7 +33,7 @@ Route::get('/projects/{id}', 'ProjectController@index');
 //支援選択ページ
 Route::get('/projects/{id}/supports/select', 'SupportController@index');
 //個別支援ページ
-Route::get('/projects/{id}/supports/{reward_id}', 'SupportController@getSelectedReward');
+Route::get('/projects/{id}/supports/{reward_id}', 'SupportController@showSelectedReward');
 Route::post('/projects/{id}/supports/{reward_id}/store', 'UserController@store');
 
 

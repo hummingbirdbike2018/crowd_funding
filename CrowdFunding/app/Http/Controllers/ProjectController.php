@@ -43,7 +43,7 @@ class ProjectController extends Controller
 		$percent_complete = floor($total_amount / $target_amount * 100);	// 達成率
 
 		//view側へ値を渡す処理
-		return view('projects/description',
+		return view('projects/project_description',
 		[
 			'project' => $project,
 			'total_amount' => $total_amount,

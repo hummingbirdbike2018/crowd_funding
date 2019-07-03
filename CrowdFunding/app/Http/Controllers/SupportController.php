@@ -35,12 +35,13 @@ class SupportController extends Controller
 		$end_day->addDay($project->period);
 		$end_day_str = date_format($end_day , 'Y年m月d日');
 		$end_time = $end_day_str.'23:59';									// 終了までの日数
-		$period = $start_day->diffInDays($end_day); 						// 残り日数
+		$now_datetime = Carbon::now();
+		$period = $end_day->diffInDays($now_datetime);						// 残り日数
 		$target_amount = $project->target_amount; 							// 目標金
 		$percent_complete = floor($total_amount / $target_amount * 100);	// 達成率
 
 		//view側へ値を渡す処理
-		return view('projects/support',
+		return view('projects/select_support',
 		[
 			'project' => $project,
 			'total_amount' => $total_amount,
@@ -54,7 +55,7 @@ class SupportController extends Controller
 	}
 
 
-	public function getSelectedReward($id,$reward_id) {
+	public function showSelectedReward($id,$reward_id) {
 
 		// プロジェクトを取得
 		$project = Project::find($id);
@@ -86,5 +87,17 @@ class SupportController extends Controller
 			'supporter' => $supporter,
 			'users' => $user
 		]);
+	}
+
+
+	public function confirm () {
+
+		return view('projects/support_confirm');
+	}
+
+
+	public function sent (Request $request) {
+
+		return view('projects/support_payment');
 	}
 }
