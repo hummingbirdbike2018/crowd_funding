@@ -18,6 +18,7 @@ class CreateSupportTable extends Migration
 				$table->integer('user_id')->unsigned();
 				$table->integer('reward_id')->unsigned();
 				$table->integer('pj_id')->unsigned();
+				$table->string('comment')->nullable();
 
 				// 外部キーを設定する
 				$table->foreign('user_id')->references('id')->on('users');

@@ -2,63 +2,73 @@
 
 @section('content')
 
-<div class="col-md-7">
-	<div class="container">
-		<form action="{{ 'projects/commit' }}" method="POST" enctype="multipart/form-data">
-			<h3 class="py-3" id="pj_title"></h3>
-			<div class="shadow-sm p-3 mb-5 bg-white rounded">
-				<p class="py-3 mx-auto" id="selected_reward">内容をご確認の上、
-確定ボタンより決済画面にお進みください。</p>
-				<div class="reward_container">
-					<table class="table selected_reward_table">
-						<tr>
-							<th scope="row"><img src="./storage/{{$reward->rw_image }}"></th>
-								<td>
-									<p>{{ $reward->rw_title }}</p>
-									<p>限定 {{ $reward->rw_quantity }} 個</p>
-									<p>¥ {{ number_format($reward->rw_price) }}</p>
-									<p>{{ $reward->rw_body }}
-									<p>予定配送時期 {{ $reward->rw_season }}
-									<p>{{  $supporter }} 人が支援
-									<br>残り {{ $reward->rw_quantity - $supporter }} 個
-								</td>
-						</tr>
-					</table>
-						<tr>
-							<th scope="row">コメント</th>
-							<td class="comments"><textarea placeholder="例：応援しています。"></textarea><br>
-						</tr>
-				</table>
-				<p>配送先情報</p>
-				<table class="table shipping_table">
+<div class="container">
+	<div class="shadow-sm p-3 mb-5 bg-white rounded">
+		<p class="font-weight-light">内容をご確認の上、
+			確定ボタンより決済画面にお進みください。</p>
+		<form action="{{ 'payment' }}" method="post">
+			<!--  支援情報  -->
+			<table class="table">
+				<tbody>
 					<tr>
-						<th scope="row">氏名</th>
-							<td><input type="text" class="form-control rounded-0 my-2" value="{{ $user->name }}"></td>
+						<thead class="thead-light">
+							<th scope="row">支援額</th>
+							@foreach($rewards as $reward)
+							<td>¥ {{ number_format($reward->rw_price) }}</td>
 					</tr>
+					<tr>
+						<th scope="row">リターン内容</th>
+						<td>{{$reward->rw_body}}</td>
+							@endforeach
+					</tr>
+					<tr>
+						<th scope="row" >コメント</th>
+						@if($request->comment == null)
+						<td>（記入なし）</td>
+						@else
+						<td>{{$request->comment}}</td>
+						@endif
+					</tr>
+				</tbody>
+			</table>
+			<!--  配送先情報  -->
+			<p class="font-weight-light mt-3">配送先情報</p>
+			<table class="table">
+				<tbody>
+					<tr>
+						<thead class="thead-light">
+							<th scope="row">お名前</th>
+							<td>{{$request->name}}</td>
+							</tr>
 					<tr>
 						<th scope="row">フリガナ</th>
-							<td><input type="text" class="form-control rounded-0 my-2" value="{{ $user->furigana }}"></td>
+						<td>{{$request->name_kana}}</td>
 					</tr>
 					<tr>
-						<th scope="row">郵便番号</th>
-							<td><input type="text" class="form-control rounded-0 my-2" value="{{ $user->post_code }}"></td>
+						<th scope="row" >郵便番号</th>
+						<td>〒{{$request->post_code}}</td>
 					</tr>
 					<tr>
-						<th scope="row">都道府県市区町村</th>
-							<td><input type="text" class="form-control rounded-0 my-2" value="{{ $user->address }}"></td>
+						<th scope="row">住所</th>
+						<td>{{$request->address}}</td>
 					</tr>
 					<tr>
-						<th scope="row">番地・建物名</th>
-							<td><input type="text" class="form-control rounded-0 my-2" value="{{ $user->building }}"></td>
+						<th scope="row">建物名</th>
+						<td>{{$request->building}}</td>
 					</tr>
 					<tr>
 						<th scope="row">電話番号</th>
-							<td><input type="text" class="form-control rounded-0 my-2" value="{{ $user->tel }}"></td>
+						<td>{{$request->tel}}</td>
 					</tr>
-				</table>
-					</div>
-				</div>
-			</div>
+					<tr>
+						<th scope="row">メールアドレス</th>
+						<td>{{$request->email}}</td>
+					</tr>
+				</tbody>
+			</table>
+				@csrf
+			<button type="submit" name="action" class="btn btn-light rounded-0" value="back">内容を修正する</button>
+			<button type="submit" name="action" class="btn btn-primary rounded-0" value="next">決済画面へ進む</button>
 		</form>
 	</div>
 </div>

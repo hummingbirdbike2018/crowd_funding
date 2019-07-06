@@ -30,7 +30,7 @@ class UserController extends Controller
 		//編集対象の会員データに入力値を保存
 		$user->display = $request->display;
 		$user->name = $request->name;
-		$user->furigana = $request->furigana;
+		$user->name_kana = $request->name_kana;
 		$user->tel = $request->tel;
 		$user->post_code = $request->post_code;
 		$user->address = $request->address;

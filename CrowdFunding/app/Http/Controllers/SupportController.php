@@ -6,6 +6,7 @@ use App\Project;
 use App\Reward;
 use App\Support;
 use App\User;
+use App\Card;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +42,7 @@ class SupportController extends Controller
 		$percent_complete = floor($total_amount / $target_amount * 100);	// 達成率
 
 		//view側へ値を渡す処理
-		return view('projects/select_support',
+		return view('projects.select_support',
 		[
 			'project' => $project,
 			'total_amount' => $total_amount,
@@ -61,6 +62,7 @@ class SupportController extends Controller
 		$project = Project::find($id);
 		// 選択されたリターンIDに紐づくリワードテーブルを取得
 		$reward = Reward::where('id', $reward_id)->get();
+
 		// プロジェクトの開始日
 		$start_day = new Carbon($project->created_at);
 		// プロジェクトの終了日
@@ -77,7 +79,7 @@ class SupportController extends Controller
 		$user = User::Where('id', $selected_user->id)->get(); //ユーザーID
 
 		//view側へ値を渡す処理
-		return view('projects/selected_support',
+		return view('projects.selected_support',
 		[
 			'project' => $project,
 			'period' => $period,
@@ -90,14 +92,58 @@ class SupportController extends Controller
 	}
 
 
-	public function confirm () {
+	public function confirmSelectedReward (Request $request,$reward_id) {
 
-		return view('projects/support_confirm');
+		//
+		$reward = Reward::where('id', $reward_id)->get();
+		//二重送信防止
+		$request->session()->regenerateToken();
+
+		//配送先情報にチェックが入っている場合の処理
+		if($request->address_check != null) {
+			$user = new User();
+			$user->name = $request->name;
+			$user->name_kana = $request->name_kana;
+			$user->tel = $request->tel;
+			$user->post_code = $request->post_code;
+			$user->address = $request->address;
+			$user->building = $request->building;
+			$user->email = $request->email;
+			$user->update();
+		}
+
+		return view('projects.support_confirm',
+		[
+			'rewards' => $reward,
+			'request' => $request,
+		]);
 	}
 
 
-	public function sent (Request $request) {
+	public function paySelectedReward (Request $request,$reward_id) {
+		 //ログインのユーザを取得
+		$selected_user = Auth::user();
+		// 選択されたリターンIDに紐づくリワードテーブルを取得
+		$reward = Reward::where('id', $reward_id)->get();
+		//ユーザーIDに紐づくカード情報をcard_infoテーブルから取得
+		$payment = Card::where('user_id', $selected_user->id)->get();
 
-		return view('projects/support_payment');
+
+		return view('projects.support_payment',
+		[
+			'rewards' => $reward,
+			'payments' => $payment,
+		]);
+	}
+
+
+	public function completeSelectedReward (Request $request) {
+		
+
+
+		return view('projects.support_complete',
+		[
+
+		]);
 	}
 }

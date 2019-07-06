@@ -15,6 +15,7 @@ class SupportTableSeeder extends Seeder
 				'user_id' => 1,
 				'reward_id' => 1,
 				'pj_id' => 1,
+				'comment' => '商品の到着楽しみです！'
 			]);
 		}
 }
