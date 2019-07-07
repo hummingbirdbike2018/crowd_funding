@@ -6,17 +6,17 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
 class User extends Authenticatable
 {
-	use Notifiable;
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
+	public function supports()
+	{
+		return $this->belongsTo('App\Card', 'user_id');//card_infoテーブルとのリレーション
+	}
+
 	protected $fillable = [
-		'user_id', 'display', 'name', 'name_kana', 'tel', 'post_code', 'address', 'building',
+		'display', 'name', 'name_kana', 'tel', 'post_code', 'address', 'building',
 		'email', 'password', 'disable', 'dis_reason', 'remember_token',
 	];
 

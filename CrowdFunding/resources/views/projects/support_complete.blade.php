@@ -1,3 +1,5 @@
+@extends('layouts.layout')
+
 @section('content')
 
 <div class="container">
@@ -8,6 +10,7 @@
 			<tbody>
 				<tr>
 					<thead class="thead-light">
+						@foreach($rewards as $reward)
 						<th scope="row">支援額</th>
 						<td>{{$reward->rw_price}}</td>
 						</tr>
@@ -19,6 +22,7 @@
 					<th scope="row">予定配送時期</th>
 					<td>{{$reward->rw_season}}</td>
 				</tr>
+				@endforeach
 			</tbody>
 		</table>
 		<p>確認内容をご登録のメールアドレスに送信しました。</p>

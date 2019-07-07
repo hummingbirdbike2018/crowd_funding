@@ -62,7 +62,8 @@ class SupportController extends Controller
 		$project = Project::find($id);
 		// 選択されたリターンIDに紐づくリワードテーブルを取得
 		$reward = Reward::where('id', $reward_id)->get();
-
+		var_dump($reward);
+		exit;
 		// プロジェクトの開始日
 		$start_day = new Carbon($project->created_at);
 		// プロジェクトの終了日
@@ -121,13 +122,27 @@ class SupportController extends Controller
 
 
 	public function paySelectedReward (Request $request,$reward_id) {
-		 //ログインのユーザを取得
-		$selected_user = Auth::user();
+		 //ログインのユーザidを取得
+		$selected_user = Auth::user()->id;
 		// 選択されたリターンIDに紐づくリワードテーブルを取得
 		$reward = Reward::where('id', $reward_id)->get();
 		//ユーザーIDに紐づくカード情報をcard_infoテーブルから取得
-		$payment = Card::where('user_id', $selected_user->id)->get();
+		$payment = Card::where('user_id', $selected_user)->get();
+		// // var_dump($payment);
+		// exit;
 
+
+		//カード情報保存にチェックが入っている場合の処理
+		if($request->card_check != null) {
+			$card = new Card();
+			$card->card_no = $request->card_no;
+			$card->exp_mon = $request->exp_mon;
+			$card->exp_year = $request->exp_year;
+			$card->card_csv = $request->card_csv;
+			$card->first_name = $request->first_name;
+			$card->last_name = $request->last_name;
+			$card->save();
+		}
 
 		return view('projects.support_payment',
 		[
@@ -137,13 +152,14 @@ class SupportController extends Controller
 	}
 
 
-	public function completeSelectedReward (Request $request) {
-		
+	public function completeSelectedReward (Request $request, $reward_id) {
 
+		// 選択されたリターンIDに紐づくリワードテーブルを取得
+		$reward = Reward::where('id', $reward_id)->get();
 
 		return view('projects.support_complete',
 		[
-
+			'rewards' => $reward,
 		]);
 	}
 }

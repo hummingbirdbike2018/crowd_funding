@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
+
+	public function rewards()
+	{
+		return $this->hasMany('App\User','id');//Usersテーブルとのリレーション
+	}
+
 	protected $table = "card_info";
 
 	protected $fillable = [

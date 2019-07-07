@@ -1,18 +1,20 @@
+@extends('layouts.layout')
+
 @section('content')
 
 <div class="container">
 	<div class="shadow-sm p-3 mb-5 bg-white rounded">
 		<p class="font-weight-light">決済情報を入力してください。</p>
 		<!--  支援情報  -->
-		<form action= "complete" method="GET">
+		<form action="complete" method="GET">
 			<table class="table">
 				<tbody>
 					<tr>
 						<thead class="thead-light">
 							<th scope="row">支援額</th>
 							@foreach($rewards as $reward)
-							<td>{{$reward->rw_price}}</td>
-							</tr>
+							<td>¥ {{ number_format($reward->rw_price) }}</td>
+					</tr>
 					<tr>
 						<th scope="row">リターン内容</th>
 						<td>{{$reward->rw_body}}</td>
@@ -22,7 +24,7 @@
 						<th scope="row"></th>
 						<td>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+								<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
 								<label class="form-check-label" for="inlineRadio1">登録済みカードで決済</label>
 							</div>
 							<div class="form-check form-check-inline">
@@ -37,7 +39,11 @@
 							<div class="form-group">
 								<select class="custom-select rounded-0">
 									@foreach($payments as $payment)
+										@if($payment->card_no == null)
+									<option value="1">登録がありません。</option>
+										@else
 									<option value="1">{{$payment->card_no}}</option>
+										@endif
 									@endforeach
 								</select>
 							</div>
@@ -56,16 +62,14 @@
 					<tr>
 						<th scope="row">有効期限</th>
 						<td>
-							<form>
-								<div class="form-group row">
-									<div class="col">
-										<input type="text" name="exp_mon" class="form-control rounded-0" placeholder="MM">
-									</div>/
-									<div class="col">
-										<input type="text" name="exp_year" class="form-control rounded-0" placeholder="YY">
-									</div>
+							<div class="form-group row">
+								<div class="col">
+									<input type="text" name="exp_mon" class="form-control rounded-0" placeholder="MM">
+								</div>/
+								<div class="col">
+									<input type="text" name="exp_year" class="form-control rounded-0" placeholder="YY">
 								</div>
-							</form>
+							</div>
 						</td>
 					</tr>
 					<tr>
@@ -79,23 +83,21 @@
 					<tr>
 						<th scope="row">カード名義</th>
 						<td>
-							<form>
-								<div class="form-group row">
-									名<div class="col">
+							<div class="form-group row">
+								<div class="col">
 									<input type="text" name="first_name" class="form-control rounded-0" placeholder="例：TARO">
-									</div>/
-									姓<div class="col">
+								</div>/
+								<div class="col">
 									<input type="text" name="last_name" class="form-control rounded-0" placeholder="例：YAMADA">
-									</div>
 								</div>
-							</form>
-							<input type="checkbox">カード情報を保存する
+							</div>
+							<label><input type="checkbox" name="card_check">カード情報を保存する</label>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			@csrf
-			<button type="submit" name="action" class="btn btn-danger rounded-0" value="pay">決済する</button>
+			<button type="submit" name="action" class="btn btn-danger rounded-0 mx-auto" value="pay">決済する</button>
 		</form>
 	</div>
 </div>
