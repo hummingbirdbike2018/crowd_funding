@@ -62,8 +62,8 @@ class SupportController extends Controller
 		$project = Project::find($id);
 		// 選択されたリターンIDに紐づくリワードテーブルを取得
 		$reward = Reward::where('id', $reward_id)->get();
-		var_dump($reward);
-		exit;
+		// var_dump($reward);
+		// exit;
 		// プロジェクトの開始日
 		$start_day = new Carbon($project->created_at);
 		// プロジェクトの終了日
@@ -95,22 +95,20 @@ class SupportController extends Controller
 
 	public function confirmSelectedReward (Request $request,$reward_id) {
 
-		//
 		$reward = Reward::where('id', $reward_id)->get();
 		//二重送信防止
 		$request->session()->regenerateToken();
 
 		//配送先情報にチェックが入っている場合の処理
-		if($request->address_check != null) {
-			$user = new User();
-			$user->name = $request->name;
-			$user->name_kana = $request->name_kana;
-			$user->tel = $request->tel;
-			$user->post_code = $request->post_code;
-			$user->address = $request->address;
-			$user->building = $request->building;
-			$user->email = $request->email;
-			$user->update();
+		if($request->address_check != NULL) {
+			//ログインのユーザを取得
+			$selected_user = Auth::user();
+			User::where('id', $selected_user->id)->update(
+				['name' => $request->name], ['name_kana' => $request->name_kana],
+				['tel' => $request->tel], ['post_code' => $request->post_code],
+				['address' => $request->address], ['building' => $request->building],
+				['email' => $request->email]
+			);
 		}
 
 		return view('projects.support_confirm',
