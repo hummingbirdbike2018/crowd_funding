@@ -98,7 +98,7 @@ class SupportController extends Controller
 	}
 
 
-	public function confirmSelectedReward (Request $request) {
+	public function confirmSelectedReward (Request $request,$id,$reward_id) {
 
 		//うけとったリクエスト内容を格納
 		$support_data = $request->all();
@@ -133,19 +133,29 @@ class SupportController extends Controller
 			]);
 		}
 
-			//確認ページに$support_data(Requestで受けとったデータ)を渡す
-			return view('projects.support_confirm', $support_data);
+			//確認ページに$support_data(Requestで受けとったデータ)とpj_id,reward_idを渡す
+			return view('projects.support_confirm', $support_data,[
+				'pj_id' => $id,
+				'reward_id' => $reward_id,
+			]);
 		}
 
 
-		public function completeSelectedReward (Request $request) {
+		public function completeSelectedReward (Request $request,$id,$reward_id) {
 
-			//うけとったリクエスト内容を格納
+			//受け取ったリクエスト内容を格納
 			$support_data = $request->all();
+			// var_dump($support_data);
+			// exit;
 
 			//戻るボタン押下時、リクエスト内容を持たせて入力画面へリダイレクト
 			if($request->action === 'back') {
-					return back()->withInput([$support_data,]);
+					// return back()->withInput([$support_data,]);
+					return redirect()->route('selected', [
+						'id' => $id,
+						'reward_id' => $reward_id,
+					])
+						->withInput([$support_data,]);
 			}
 
 			//二重送信防止
@@ -153,6 +163,16 @@ class SupportController extends Controller
 			//ログインユーザのメールアドレスにメールを送信
 			Mail::to(Auth::user()->email)->send(new SupportConfirm($support_data));
 
+
+			//createメソッドでcard_infoテーブルにRequestで受けとった情報を保存
+			$data = Support::create([
+				'user_id' => Auth::id(),
+				'comment' => $request->comment,
+				'reward_id' => $request->reward_id,
+				'pj_id' => $request->pj_id,
+				'settlement' => 0,
+			]);
+			//支援完了ページに$support_data(Requestで受けとったデータ)を渡す
 			return view('projects.support_complete', $support_data);
 		}
-}
+	}

@@ -42,7 +42,7 @@
 							<tr>
 								<th scope="row">コメント</th>
 								<td class="comments w-75">
-									<textarea name="comment" value="{{ old('commnent') }}" placeholder="例：応援しています。"  cols="50" rows="3"></textarea><br>
+									<textarea name="comment" value="{{ old('comment') }}" placeholder="例：応援しています。"  cols="50" rows="3"></textarea><br>
 									<small class="text-danger">※記載したコメントと登録名は、支援したプロジェクトページの「応援コメント」欄に掲載されますので、個人情報に関する投稿はお控え下さい。</samll>
 								</td>
 							</tr>
