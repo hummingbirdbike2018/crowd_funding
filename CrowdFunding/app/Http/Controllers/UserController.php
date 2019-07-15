@@ -11,15 +11,25 @@ class UserController extends Controller
 
 	public function index () {
 
-		$selected_user = Auth::id(); //ログインのユーザを取得
-		$user = User::Where('user_id', $selected_user)->get(); //ユーザーID
+		$user_id = Auth::id(); //ログインのユーザを取得
+		$user = User::Where('user_id', $user_id)->get(); //ユーザーID
 
-		return view('projects/selected_support',
+		return view('user.top',
 		[
 			'users' => $user	//view関数でmypageに上で取得した情報をusersをキーとして渡す
 		]);
 	}
 
+	public function edit () {
+
+		$selected_user = Auth::user(); //ログインのユーザを取得
+		$user = User::Where('id', $selected_user->id)->get(); //ユーザーID
+
+		return view('user.edit',
+		[
+			'users' => $user	//view関数でmypageに上で取得した情報をusersをキーとして渡す
+		]);
+	}
 
 	public function store (Request $request) {
 
@@ -41,18 +51,15 @@ class UserController extends Controller
 
 
 	public function image(Request $request) {
-
-			//ログイン中のuer_idを取得
-			$selected_user = Auth::user()->id;
-			//
-			$user = User::where('id', $selected_user);
-			//画像の保存先
-			$user->user_image = $request->user_image->storeAs('public/storage', $time.'_'.Auth::user()->id . '.jpg');
-			//保存
-			$user->save();
-			//「設定する」をクリックしたら会員情報変更ページへリダイレクト
-			return redirect()->route('user.edit', [
-					'id' => $user->id,
-			 ]);
-		}
+		//ログイン中のuserを取得
+		$user = User::where('id', Auth::id);
+		//画像の保存先
+		$user->user_image = $request->user_image->storeAs('public/storage', $time.'_'.Auth::user()->id . '.jpg');
+		//保存
+		$user->save();
+		//「設定する」をクリックしたら会員情報変更ページへリダイレクト
+		return redirect()->route('user.edit', [
+			'id' => $user->id,
+		]);
 	}
+}
