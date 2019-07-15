@@ -71,8 +71,8 @@
 											<i class="fas fa-user">メニュー</i>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-											<a class="dropdown-item"  href="{{ 'user/{id}/top' }}">マイページ</a>
-											<a class="dropdown-item"  href="{{ 'user/{id}/edit' }}">会員情報変更</a>
+											<a class="dropdown-item" href="{{ url('user/'.Auth::id().'/top') }}">マイページ</a>
+											<a class="dropdown-item" href="{{ url('user/'.Auth::id().'/edit') }}">会員情報変更</a>
 											<a class="dropdown-item" href="{{ route('logout') }}"
 												onclick="event.preventDefault();
 												document.getElementById('logout-form').submit();">

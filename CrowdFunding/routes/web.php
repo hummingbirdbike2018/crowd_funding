@@ -16,7 +16,7 @@ Route::get('/', 'HomeController@index')->name('top');
 //利用規約
 Route::get('/terms', function () { return view('terms'); });
 //会員情報変更
-Route::get('user/{id}/edit', 'UserController@index');
+Route::get('user/{id}/edit', 'UserController@edit');
 Route::post('user/{id}/edit/store', 'UserController@store');
 //マイページ
 Route::get('/user/{id}/top', function () { return view('user/top'); });
