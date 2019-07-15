@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class CardTableSeeder extends Seeder
 {
@@ -20,6 +21,9 @@ class CardTableSeeder extends Seeder
 				'last_name' => 'YAMADA',
 				 //bcryptで暗号化
 				 'card_csv' => bcrypt('123'),
+				 'created_at' => Carbon::now(),
+				 'updated_at' => Carbon::now(),
+
 		]);
 	}
 }

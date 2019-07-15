@@ -18,8 +18,8 @@ class CreateUserTable extends Migration
 			$table->string('display')->nullable();
 			$table->string('name')->nullable();
 			$table->string('name_kana')->nullable();
-			$table->integer('tel')->nullable();
-			$table->integer('post_code')->nullable();
+			$table->string('tel')->nullable();
+			$table->string('post_code')->nullable();
 			$table->string('address')->nullable();
 			$table->string('building')->nullable();
 			$table->string('email')->unique();

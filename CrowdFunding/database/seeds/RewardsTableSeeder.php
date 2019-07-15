@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class RewardsTableSeeder extends Seeder
 {
@@ -20,6 +21,8 @@ class RewardsTableSeeder extends Seeder
 				'rw_quantity' => '300',
 				'rw_price' => '10000',
 				'rw_season' => '2019年8月',
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
 			]);
 		}
 }

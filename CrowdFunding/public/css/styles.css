@@ -60,3 +60,17 @@ html, body {
 	top:300px;
 	left: 550px;
 }
+
+.btn {
+	display: block;
+	margin:auto;
+	border-radius: 0;
+}
+
+.form-control {
+	border-radius: 0;
+}
+
+.terms_check {
+
+}

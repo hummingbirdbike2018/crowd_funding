@@ -6,7 +6,7 @@
 <div class="product-container bg-light">
 	<div class="container">
 		<div class="heading-container">
-			<h5 class="py-3 mx-auto" id="pj_title">{{ $project->pj_title }}</h5>
+			<h5 class="py-3 " id="pj_title">{{ $project->pj_title }}</h5>
 		</div>
 		<div class="main-container">
 			<div class="row">

@@ -31,15 +31,14 @@ Route::post('draft/store', 'DraftController@store');
 //プロジェクトページ
 Route::get('/projects/{id}', 'ProjectController@index');
 //支援選択ページ
-Route::get('/projects/{id}/supports/select', 'SupportController@index');
+Route::get('/projects/{id}/supports/select', 'SupportController@index')->name('select');
 //個別支援ページ
-Route::get('/projects/{id}/supports/{reward_id}', 'SupportController@showSelectedReward');
+Route::get('/projects/{id}/supports/{reward_id}', 'SupportController@showSelectedReward')->name('selected');
+Route::post('/projects/{id}/supports/{reward_id}', 'SupportController@storeSelectedReward');
 //支援内容確認ページ
 Route::post('/projects/{id}/supports/{reward_id}/confirm', 'SupportController@confirmSelectedReward')->name('confirm');
-//決済ページ
-Route::post('/projects/{id}/supports/{reward_id}/payment', 'SupportController@paySelectedReward')->name('payment');
 //支援完了ページ
-Route::get('/projects/{id}/supports/{reward_id}/complete', 'SupportController@completeSelectedReward')->name('complete');
+Route::post('/projects/{id}/supports/{reward_id}/complete', 'SupportController@completeSelectedReward')->name('complete');
 
 // Route::post('draft/confirm', 'DraftController@confirm')->name('confirm');
 // Route::post('draft/complete', 'DraftController@confirm')->name('complete');

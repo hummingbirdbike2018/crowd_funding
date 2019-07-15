@@ -6,14 +6,17 @@
 	<div class="container">
 		<h3 class="py-3" id="pj_title">{{ $project->pj_title }}</h3>
 		<div class="shadow-sm p-3 mb-5 bg-white rounded">
-			<p class="py-3 mx-auto" id="selected_reward">リターンを選択してください</p>
+			<p class="py-3 text-center" id="selected_reward">リターンを選択してください</p>
 		@for($i = 0; $i < count($rewards); $i++)
 			<div class="reward_container">
 				<a href="{{ $rewards[$i]->id }}">
 				<table class="table" style="width:100%">
 					<tr>
 						<div class="reward_header">
-							<td>¥ {{ number_format($rewards[$i]->rw_price) }}</td>
+							<td>
+								<img src="../../../storage/{{$rewards[$i]->rw_image }}"><p>
+								¥ {{ number_format($rewards[$i]->rw_price) }}
+							</td>
 						</div>
 						<div class="reward_body">
 							<td>
@@ -25,7 +28,6 @@
 						</div>
 					</tr>
 				</table>
-				</a>
 			</div>
 			@endfor
 		</div>

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class SupportTableSeeder extends Seeder
 {
@@ -15,7 +16,10 @@ class SupportTableSeeder extends Seeder
 				'user_id' => 1,
 				'reward_id' => 1,
 				'pj_id' => 1,
-				'comment' => '商品の到着楽しみです！'
+				'comment' => '商品の到着楽しみです！',
+				'settlement' => 0,
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
 			]);
 		}
 }

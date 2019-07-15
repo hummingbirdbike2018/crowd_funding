@@ -6,14 +6,13 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class UserController extends Controller
 {
 
 	public function index () {
 
-		$selected_user = Auth::user(); //ログインのユーザを取得
-		$user = User::Where('user_id', $selected_user->id)->get(); //ユーザーID
+		$selected_user = Auth::id(); //ログインのユーザを取得
+		$user = User::Where('user_id', $selected_user)->get(); //ユーザーID
 
 		return view('projects/selected_support',
 		[
@@ -24,31 +23,32 @@ class UserController extends Controller
 
 	public function store (Request $request) {
 
-		//リクエストされたuer_idで会員情報を取得
-		$user = new User();
-
-		//編集対象の会員データに入力値を保存
-		$user->display = $request->display;
-		$user->name = $request->name;
-		$user->name_kana = $request->name_kana;
-		$user->tel = $request->tel;
-		$user->post_code = $request->post_code;
-		$user->address = $request->address;
-		$user->building = $request->building;
-		$user->email = $request->email;
-		$user->password = $request->password;
-		$user->save();
+		//POSTで受けとったデータを配列に格納
+		$user_data = [
+			'display' => $request->display,
+			'name' => $request->name,
+			'name_kana' => $request->name_kana,
+			'tel' => $request->tel,
+			'post_code' => $request->post_code,
+			'address' => $request->address,
+			'building' => $request->building,
+			'email' => $request->email,
+			'password' => $request->password
+		];
+		//フォームに入力された内容をDBに上書き
+		User::where('id', Auth::id())->update($user_data);
 	}
 
 
 	public function image(Request $request) {
-			//インスタンスを用意
-			$user = new User();
+
+			//ログイン中のuer_idを取得
+			$selected_user = Auth::user()->id;
+			//
+			$user = User::where('id', $selected_user);
 			//画像の保存先
 			$user->user_image = $request->user_image->storeAs('public/storage', $time.'_'.Auth::user()->id . '.jpg');
-			//登録ユーザーからidを取得
-			$user->user_id = Auth::user()->id;
-			// インスタンスの状態をデータベースに書き込む
+			//保存
 			$user->save();
 			//「設定する」をクリックしたら会員情報変更ページへリダイレクト
 			return redirect()->route('user.edit', [

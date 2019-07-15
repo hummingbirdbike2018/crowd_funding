@@ -10,24 +10,21 @@
 			<tbody>
 				<tr>
 					<thead class="thead-light">
-						@foreach($rewards as $reward)
 						<th scope="row">支援額</th>
-						<td>{{$reward->rw_price}}</td>
+						<td class="w-75">{{$rw_price}}</td>
 						</tr>
 				<tr>
 					<th scope="row">リターン内容</th>
-					<td>{{$reward->rw_body}}</td>
+					<td class="w-75">{{$rw_body}}</td>
 				</tr>
-				<tr>
-					<th scope="row">予定配送時期</th>
-					<td>{{$reward->rw_season}}</td>
-				</tr>
-				@endforeach
 			</tbody>
 		</table>
 		<p>確認内容をご登録のメールアドレスに送信しました。</p>
-		<p>リターン発送までしばらくお待ちください。</p>
+		<small>※目標金額に達しない場合は、プロジェクト不成立となりカードの決済は行われません。<br>
+			また、リターンの発送も行われませんので、ご注意ください。</small>
 	</div>
 </div>
 
 @endsection
+
+@include('footer')

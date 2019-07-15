@@ -21,7 +21,8 @@ class CreateCardInfoTable extends Migration
 					$table->integer('exp_year');
 					$table->string('first_name');
 					$table->string('last_name');
-					$table->integer('card_csv');
+					$table->string('card_csv');
+					$table->timestamps();
 				});
 		}
 

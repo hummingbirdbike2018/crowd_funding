@@ -6,19 +6,17 @@
 	<div class="shadow-sm p-3 mb-5 bg-white rounded">
 		<p class="font-weight-light">決済情報を入力してください。</p>
 		<!--  支援情報  -->
-		<form action="complete" method="GET">
+		<form action="complete" method="POST">
 			<table class="table">
 				<tbody>
 					<tr>
 						<thead class="thead-light">
 							<th scope="row">支援額</th>
-							@foreach($rewards as $reward)
-							<td>¥ {{ number_format($reward->rw_price) }}</td>
+							<td>¥ {{ number_format($request->rw_price) }}</td>
 					</tr>
 					<tr>
 						<th scope="row">リターン内容</th>
-						<td>{{$reward->rw_body}}</td>
-							@endforeach
+						<td>{{$request->rw_body}}</td>
 					</tr>
 					<tr>
 						<th scope="row"></th>
@@ -39,11 +37,7 @@
 							<div class="form-group">
 								<select class="custom-select rounded-0">
 									@foreach($payments as $payment)
-										@if($payment->card_no == null)
-									<option value="1">登録がありません。</option>
-										@else
 									<option value="1">{{$payment->card_no}}</option>
-										@endif
 									@endforeach
 								</select>
 							</div>
