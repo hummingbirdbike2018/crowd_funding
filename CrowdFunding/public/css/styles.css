@@ -3,8 +3,29 @@ html, body {
 	color: #636b6f;
 	font-family: 'Nunito', sans-serif;
 	font-weight: 200;
-	height: 100vh;
-	margin: 0;
+	height: 100%;
+	margin: 0, auto;
+	position: relative;
+}
+
+main {
+	margin-top: 75px;
+}
+
+footer {
+	/* position: absolute;
+	width: 100%;
+	bottom: 0; */
+}
+
+.progress {
+	margin-bottom: 16px;
+}
+
+.project_card-progress_info {
+	margin-bottom: 2px;
+	color: #828e8d;
+	font-size: 80%;
 }
 
 .full-height {
@@ -49,16 +70,45 @@ html, body {
 	margin-bottom: 30px;
 }
 
-.top_bannner{
-	height: 0;
-	padding-top: 38.25%;
-	background-image: url('../img/header_1.png');
-	background-size: contain;
+.l-header {
+	z-index: 60;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: #fff;
+	overflow: visible;
 }
 
-.top_search {
-	top:300px;
-	left: 550px;
+.top_bannner{
+	height: 0;
+	padding-top: 30.25%;
+	background-image: url('../img/header_1.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+	position: relative;
+}
+
+.block {
+	/* padding: 60px 0 40px;
+	position: relative;
+	min-width: 1080px; */
+}
+
+.block_title {
+	font-weight: bold;
+	letter-spacing: .5em;
+	font-size: 124%;
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.sub_title {
+	display: block;
+	letter-spacing: .5em;
+	font-size: 80%;
+	margin-top: 12px;
+	color: #aaa;
 }
 
 .btn {
@@ -73,4 +123,40 @@ html, body {
 
 .terms_check {
 
+}
+
+.edit_user {
+	justify-content: center;
+}
+
+
+.cbox {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -webkit-flexbox;
+	display: -moz-flexbox;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: -moz-flex;
+	-js-display: flex;
+	display: flex;
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	-webkit-box-pack: justify;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.cbox-inner {
+	width:24%;
+}
+
+/* スマホ用スタイル */
+@media screen and (max-width: 767px) {
+
+/* 767pxまでの幅の場合に適応される */
+	.cbox-inner {
+		width:48%;
+	}
 }
