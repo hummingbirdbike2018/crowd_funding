@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="col-md-7">
+<div class="col-md-7" id="payment">
 	<div class="container">
 	@foreach($rewards as $reward)
 		<form action="{{ $reward->id.'/confirm' }}" method="POST" enctype="multipart/form-data">
@@ -93,25 +93,24 @@
 					<p class="mt-5" id="selected_reward">決済情報</p>
 					<table class="table payment_table">
 						<thead class="thead-light">
+
 						<tr>
 							<th scope="row">決済方法</th>
-								<td class="w-75">
-									クレジットカード決済
-									<img src="/crowd_funding/CrowdFunding/public/storage/visa.gif">
-									<img src="/crowd_funding/CrowdFunding/public/storage/jcb.gif">
-									<img src="/crowd_funding/CrowdFunding/public/storage/master.gif">
-									<img src="/crowd_funding/CrowdFunding/public/storage/ae.gif"><p>
-									<small>募集期間内に支援が目標金額に達した場合のみ、クレジットカード決済が行われます</small>
-				@if(array_has($payments,'0.card_no'))
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-										<label class="form-check-label" for="inlineRadio1">登録済みカードで決済</label>
-									</div>
-									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-										<label class="form-check-label" for="inlineRadio2">カード番号を入力</label>
-									</div>
-								</td>
+							<td class="w-75">
+								クレジットカード決済
+								<img src="/crowd_funding/CrowdFunding/public/storage/visa.gif">
+								<img src="/crowd_funding/CrowdFunding/public/storage/jcb.gif">
+								<img src="/crowd_funding/CrowdFunding/public/storage/master.gif">
+								<img src="/crowd_funding/CrowdFunding/public/storage/ae.gif"><p>
+								<small>募集期間内に支援が目標金額に達した場合のみ、クレジットカード決済が行われます</small>
+
+								<div class="form-check form-check-inline">
+									<label><input class="form-check-input" type="radio" v-on:change="handler" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>登録済みカードで決済</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<label><input class="form-check-input" type="radio" v-on:change="handler" name="inlineRadioOptions" id="inlineRadio2" value="option2">カード番号を入力</label>
+								</div>
+							</td>
 						</tr>
 						<tr>
 							<th scope="row">カード選択</th>
@@ -125,8 +124,8 @@
 								</div>
 							</td>
 						</tr>
-					@else
-						<tr>
+
+						<tr v-if="show">
 							<th scope="row">カード番号</th>
 							<td class="w-75">
 								<small>半角英数でご入力ください。</small>
@@ -136,7 +135,7 @@
 								<p></p>
 							</td>
 						</tr>
-						<tr>
+						<tr v-if="show">
 							<th scope="row">有効期限</th>
 							<td class="w-75">
 								<div class="form-group row">
@@ -149,7 +148,7 @@
 								</div>
 							</td>
 						</tr>
-						<tr>
+						<tr v-if="show">
 							<th scope="row">セキュリティ番号</th>
 							<td class="w-75">
 								<div class="form-group">
@@ -157,7 +156,7 @@
 								</div>
 							</td>
 						</tr>
-						<tr>
+						<tr v-if="show">
 							<th scope="row">カード名義</th>
 							<td class="w-75">
 								<div class="form-group row">
@@ -168,11 +167,12 @@
 										<input type="text" name="last_name" class="form-control rounded-0" value="{{ old('last_name') }}" placeholder="例：YAMADA">
 									</div>
 								</div>
-								@endif
 							</td>
 						</tr>
 					</table>
-					<label><input type="checkbox" class="mb-4" name="card_check">カード情報を保存する</label>
+
+						<label v-if="show"><input type="checkbox" class="mb-4" name="card_check">カード情報を保存する</label>
+
 						<p>※入力された配送先情報は、本プロジェクト起案者に提供されます</p>
 						@csrf
 						<label><input type="checkbox" class="terms_check" required><a href="{{ '/crowd_funding/CrowdFunding/public/terms' }}">利用規約</a>に同意する</label>
