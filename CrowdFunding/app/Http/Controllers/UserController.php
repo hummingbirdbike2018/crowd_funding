@@ -21,13 +21,13 @@ class UserController extends Controller
 	}
 
 	public function edit () {
-
-		$selected_user = Auth::user(); //ログインのユーザを取得
-		$user = User::Where('id', $selected_user->id)->get(); //ユーザーID
-
+		//ログインのユーザを取得
+		$selected_user = Auth::user();
+		// 対象のユーザ情報を取得する
+		$user = User::find($selected_user->id);
 		return view('user.edit',
 		[
-			'users' => $user	//view関数でmypageに上で取得した情報をusersをキーとして渡す
+			'user' => $user
 		]);
 	}
 

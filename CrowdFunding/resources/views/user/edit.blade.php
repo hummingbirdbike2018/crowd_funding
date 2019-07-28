@@ -1,13 +1,11 @@
 @extends('layouts.layout')
-
 @section('content')
 <div class= "container">
 	<form action="{{ 'edit/store' }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		<div class="edit_user row">
-			<div class= "edit_user is_basic col col-md-3 ">
+			<div class= "edit_user is_basic col col-md-4">
 				<h5 class="mt-4 mb-4">基本情報</h5>
-			@foreach($users as $user)
 				<label for="display">{{ __('表示名') }}</label>
 				<input id="display" class="form-control  mb-4" value="{{ $user->display }}">
 				<small>
@@ -26,7 +24,7 @@
 				<input class="btn btn-primary  float-right" type="submit" value="基本情報を更新">
 			</div>
 		<span class="border-right"></span>
-			<div class= "edit_user is_address col col-md-3 ">
+			<div class= "edit_user is_address col col-md-4">
 				<h5 class="mt-4 mb-4">配送先情報</h5>
 				<small>
 					<p class="font-weight-light text-danger">リターンの配送先となりますので、お間違いのないようお願いいたします。</p>
@@ -43,7 +41,6 @@
 				<input id="address" class="form-control  mb-2" value="{{ $user->address }}">
 				<label for="building">{{ __('建物名') }}</label>
 				<input id="building" class="form-control  mb-5" value="{{ $user->building }}">
-			@endforeach
 				<input class="btn btn-primary  float-right" type="submit" value="配送先情報を更新">
 			</div>
 		</div>
@@ -54,24 +51,22 @@
 		<div class="edit_user row">
 			<div class="edit_user is_icon col col-md-3 " style="width: 810px;">
 				<h5 class="mt-5 mb-4">アイコン設定</h5>
-					<small>
-						<p class="font-weight-light">支援の際の応援コメントなどに表示されます。</p>
-					</small>
+				<small>
+					<p class="font-weight-light">支援の際の応援コメントなどに表示されます。</p>
+				</small>
 				<input type="file" class="form-control-file mb-5" name="user_image">
 				<input class="btn btn-primary  float-right" type="submit" method="POST" value="アイコンを設定">
 			</div>
-		</form>
-		<span class="border-right"></span>
+			<span class="border-right"></span>
 			<div class="edit_user is_disable col col-md-3 " style="width: 810px;">
 				<h5 class="mt-5 mb-5">退会</h5>
-					<small>
-						<p class="font-weight-light text-danger">クリックすると退会処理画面へ移動します</p>
-					</small>
-					<a class="btn btn-secondary  float-right" href="{{ 'disable' }}" role="button">退会</a>
+				<small>
+					<p class="font-weight-light text-danger">クリックすると退会処理画面へ移動します</p>
+				</small>
+				<a class="btn btn-secondary  float-right" href="{{ 'disable' }}" role="button">退会</a>
 			</div>
 		</div>
+	</form>
 </div>
-
 @endsection
-
 @include('footer')
