@@ -15,7 +15,7 @@ class CreateCardInfoTable extends Migration
 		{
 				Schema::create('card_info', function (Blueprint $table) {
 					$table->increments('id');
-					$table->integer('user_id')->unsigned();
+					$table->unsignedInteger('user_id');
 					$table->bigInteger('card_no');
 					$table->integer('exp_mon');
 					$table->integer('exp_year');
@@ -23,6 +23,9 @@ class CreateCardInfoTable extends Migration
 					$table->string('last_name');
 					$table->string('card_csv');
 					$table->timestamps();
+
+					// 外部キーを設定する
+					$table->foreign('user_id')->references('id')->on('users');
 				});
 		}
 

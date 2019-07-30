@@ -17,7 +17,6 @@ class SupportTableSeeder extends Seeder
 				'reward_id' => 1,
 				'pj_id' => 1,
 				'comment' => '商品の到着楽しみです！',
-				'settlement' => 0,
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now(),
 			]);

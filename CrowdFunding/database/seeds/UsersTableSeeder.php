@@ -24,8 +24,6 @@ class UsersTableSeeder extends Seeder
 				'post_code' => '111-0000',
 				'address' => '東京都',
 				'building' => 'xxマンション',
-				'disable' => 0,
-				'dis_reason' => 0,
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now(),
 			]);

@@ -15,11 +15,10 @@ class CreateSupportTable extends Migration
 		{
 			Schema::create('supports', function (Blueprint $table) {
 				$table->increments('id');
-				$table->integer('user_id')->unsigned();
-				$table->integer('reward_id')->unsigned();
-				$table->integer('pj_id')->unsigned();
+				$table->unsignedInteger('user_id');
+				$table->unsignedInteger('reward_id');
+				$table->unsignedInteger('pj_id');
 				$table->string('comment')->nullable();
-				$table->integer('settlement');
 				$table->timestamps();
 
 				// 外部キーを設定する

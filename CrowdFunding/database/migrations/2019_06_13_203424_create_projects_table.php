@@ -25,7 +25,10 @@ class CreateProjectsTable extends Migration
 			$table->string('product_img_3');
 			$table->integer('target_amount');
 			$table->integer('period');
+			$table->integer('status')->default(1);
+			$table->string('dis_reason')->nullable();
 			$table->timestamps();
+
 		});
 	}
 

@@ -170,7 +170,6 @@ class SupportController extends Controller
 				'comment' => $request->comment,
 				'reward_id' => $request->reward_id,
 				'pj_id' => $request->pj_id,
-				'settlement' => 0,
 			]);
 			//支援完了ページに$support_data(Requestで受けとったデータ)を渡す
 			return view('projects.support_complete', $support_data);

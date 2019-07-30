@@ -24,10 +24,12 @@ class CreateUserTable extends Migration
 			$table->string('building')->nullable();
 			$table->string('email')->unique();
 			$table->string('password');
-			$table->integer('disable')->nullable();
-			$table->integer('dis_reason')->nullable();
+			$table->string('icon_img')->nullable();
+			$table->integer('status')->default(1);
+			$table->string('dis_reason')->nullable();
 			$table->rememberToken();
 			$table->timestamps();
+
 		});
 	}
 

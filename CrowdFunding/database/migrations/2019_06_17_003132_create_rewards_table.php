@@ -15,17 +15,17 @@ class CreateRewardsTable extends Migration
 	{
 		Schema::create('rewards', function (Blueprint $table) {
 			$table->increments('id');
-			$table->integer('pj_id')->unsigned();
+			$table->unsignedInteger('pj_id');
 			$table->string('rw_title');
 			$table->string('rw_body');
 			$table->string('rw_image');
 			$table->integer('rw_quantity');
 			$table->integer('rw_price');
 			$table->string('rw_season');
+			$table->integer('status')->default(1);
+			$table->string('dis_reason')->nullable();
 			$table->timestamps();
 
-			// 外部キーを設定する
-			$table->foreign('pj_id')->references('id')->on('projects');
 		});
 	}
 

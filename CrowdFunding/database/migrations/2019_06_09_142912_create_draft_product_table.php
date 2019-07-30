@@ -14,7 +14,7 @@ class CreateDraftProductTable extends Migration
 		public function up()
 		{
 			Schema::create('draft_product', function (Blueprint $table) {
-					$table->increments('id')->unsigned;
+					$table->increments('id');
 					$table->string('name');
 					$table->string('email');
 					$table->string('pj_title');
