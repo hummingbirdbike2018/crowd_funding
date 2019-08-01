@@ -16,6 +16,7 @@ class PlannersTableSeeder extends Seeder
 				'id' => 1,
 				'email' => 'planner1@email.com',
 				'password' => bcrypt('test1234'),
+				'planner_img' => 'planner1.jpg',
 				'name' => '株式会社クラウドファンディング',
 				'name_kana' => 'カブシキガイシヤクラウドファンディング',
 				'icon_img' => 'public/storage/planner_icon1.jpg',
