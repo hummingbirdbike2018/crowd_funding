@@ -24,7 +24,6 @@ class ProjectController extends Controller
 
 		for($i = 0; $i < $rewards->count(); $i++)
 		{
-			// TODO：プロジェクトIDに紐づくサポートテーブルを取得するようにする
 			$supporter_list[] = Support::where('reward_id', $id++)->get()->count();
 			$total_amount += $rewards[$i]['rw_price'] * $supporter_list[$i];
 			$stock_list[] = $rewards[$i]['rw_quantity'] - $supporter_list[$i];

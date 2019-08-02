@@ -30,8 +30,6 @@ class CreatePlannersTable extends Migration
 						$table->rememberToken();
 						$table->timestamps();
 
-						// 外部キーを設定する
-						// $table->foreign('id')->references('planner_id')->on('projects');
 					});
 		}
 

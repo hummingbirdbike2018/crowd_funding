@@ -16,7 +16,7 @@ class CreateProjectsTable extends Migration
 		Schema::create('projects', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('pj_title');
-			$table->string('planner_id');
+			$table->unsignedInteger('planner_id');
 			$table->string('product_detail_1');
 			$table->string('product_detail_2');
 			$table->string('product_detail_3');
@@ -28,6 +28,8 @@ class CreateProjectsTable extends Migration
 			$table->integer('status')->default(1);
 			$table->string('dis_reason')->nullable();
 			$table->timestamps();
+			//外部キー
+			$table->foreign('planner_id')->references('id')->on('planners');
 
 		});
 	}

@@ -26,6 +26,8 @@ class CreateRewardsTable extends Migration
 			$table->string('dis_reason')->nullable();
 			$table->timestamps();
 
+			//外部キー
+			$table->foreign('pj_id')->references('id')->on('projects');
 		});
 	}
 
