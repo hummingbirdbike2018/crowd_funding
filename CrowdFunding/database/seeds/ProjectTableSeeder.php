@@ -5,14 +5,15 @@ use Carbon\Carbon;
 
 class ProjectTableSeeder extends Seeder
 {
-		/**
-		 * Run the database seeds.
-		 *
-		 * @return void
-		 */
-		public function run()
-		{
-			DB::table('projects')->insert([
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		DB::table('projects')->insert([
+			[
 				'id' => 1,
 				'pj_title' => 'プロジェクト１',
 				'planner_id' => 1,
@@ -24,8 +25,130 @@ class ProjectTableSeeder extends Seeder
 				'product_img_3' => 'test3.jpg',
 				'target_amount' => 100000,
 				'period' => 10,
+				'status' => 0,
+				'dis_reason' => 0,
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now(),
-			]);
-		}
+			],
+			[
+				'id' => 2,
+				'pj_title' => 'プロジェクト2',
+				'planner_id' => 1,
+				'product_detail_1' => 'プロジェクト説明その１',
+				'product_detail_2' => 'プロジェクト説明その２',
+				'product_detail_3' => 'プロジェクト説明その３',
+				'product_img_1' => 'test1.jpg',
+				'product_img_2' => 'test2.jpg',
+				'product_img_3' => 'test3.jpg',
+				'target_amount' => 200000,
+				'period' => 20,
+				'status' => 0,
+				'dis_reason' => 0,
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
+			],
+			[
+				'id' => 3,
+				'pj_title' => 'プロジェクト3',
+				'planner_id' => 1,
+				'product_detail_1' => 'プロジェクト説明その１',
+				'product_detail_2' => 'プロジェクト説明その２',
+				'product_detail_3' => 'プロジェクト説明その３',
+				'product_img_1' => 'test1.jpg',
+				'product_img_2' => 'test2.jpg',
+				'product_img_3' => 'test3.jpg',
+				'target_amount' => 100000,
+				'period' => 10,
+				'status' => 0,
+				'dis_reason' => 0,
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
+			],
+			[
+				'id' => 4,
+				'pj_title' => 'プロジェクト4',
+				'planner_id' => 1,
+				'product_detail_1' => 'プロジェクト説明その１',
+				'product_detail_2' => 'プロジェクト説明その２',
+				'product_detail_3' => 'プロジェクト説明その３',
+				'product_img_1' => 'test1.jpg',
+				'product_img_2' => 'test2.jpg',
+				'product_img_3' => 'test3.jpg',
+				'target_amount' => 100000,
+				'period' => 10,
+				'status' => 0,
+				'dis_reason' => 0,
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
+			],
+			[
+				'id' => 5,
+				'pj_title' => 'プロジェクト5',
+				'planner_id' => 1,
+				'product_detail_1' => 'プロジェクト説明その１',
+				'product_detail_2' => 'プロジェクト説明その２',
+				'product_detail_3' => 'プロジェクト説明その３',
+				'product_img_1' => 'test1.jpg',
+				'product_img_2' => 'test2.jpg',
+				'product_img_3' => 'test3.jpg',
+				'target_amount' => 100000,
+				'period' => 10,
+				'status' => 0,
+				'dis_reason' => 0,
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
+			],
+			[
+				'id' => 6,
+				'pj_title' => 'プロジェクト6',
+				'planner_id' => 1,
+				'product_detail_1' => 'プロジェクト説明その１',
+				'product_detail_2' => 'プロジェクト説明その２',
+				'product_detail_3' => 'プロジェクト説明その３',
+				'product_img_1' => 'test1.jpg',
+				'product_img_2' => 'test2.jpg',
+				'product_img_3' => 'test3.jpg',
+				'target_amount' => 100000,
+				'period' => 10,
+				'status' => 0,
+				'dis_reason' => 0,
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
+			],
+			[
+				'id' => 7,
+				'pj_title' => 'プロジェクト7',
+				'planner_id' => 1,
+				'product_detail_1' => 'プロジェクト説明その１',
+				'product_detail_2' => 'プロジェクト説明その２',
+				'product_detail_3' => 'プロジェクト説明その３',
+				'product_img_1' => 'test1.jpg',
+				'product_img_2' => 'test2.jpg',
+				'product_img_3' => 'test3.jpg',
+				'target_amount' => 100000,
+				'period' => 10,
+				'status' => 0,
+				'dis_reason' => 0,
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
+			],
+			[
+				'id' => 8,
+				'pj_title' => 'プロジェクト8',
+				'planner_id' => 1,
+				'product_detail_1' => 'プロジェクト説明その１',
+				'product_detail_2' => 'プロジェクト説明その２',
+				'product_detail_3' => 'プロジェクト説明その３',
+				'product_img_1' => 'test1.jpg',
+				'product_img_2' => 'test2.jpg',
+				'product_img_3' => 'test3.jpg',
+				'target_amount' => 100000,
+				'period' => 10,
+				'status' => 0,
+				'dis_reason' => 0,
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
+			]
+		]);
+	}
 }
