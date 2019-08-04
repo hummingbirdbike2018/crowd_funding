@@ -1,7 +1,4 @@
 @extends('layouts.layout')
-
-
-
 @section('content')
 <div class="product-container bg-light">
 	<div class="container">
@@ -28,11 +25,11 @@
 							</div>
 							<div class="tab-content" id="nav-tabContent">
 								<div class="tab-pane fade show active " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-									<img src="../storage/{{$project->product_img_1 }}"><br>
+									<img src="../../storage/product_img/project_{{$project->id}}/{{$project->product_img_1}}"><br>
 									{{ $project->product_detail_1 }}<br>
-									<img src="../storage/{{$project->product_img_2}}"><br>
+									<img src="../../storage/{{$project->product_img_2}}"><br>
 									{{ $project->product_detail_2 }}<br>
-									<img src="../storage/{{$project->product_img_3}}"><br>
+									<img src="../../storage/{{$project->product_img_3}}"><br>
 									{{ $project->product_detail_3 }}<br>
 								</div>
 								<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -104,5 +101,4 @@
 	</div>
 </div>
 @endsection
-
 @include('footer')

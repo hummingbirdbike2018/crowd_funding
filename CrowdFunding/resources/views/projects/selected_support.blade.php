@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="col-md-7" id="payment">
+<div id="payment">
 	<div class="container">
 	@foreach($rewards as $reward)
 		<form action="{{ $reward->id.'/confirm' }}" method="POST" enctype="multipart/form-data">
@@ -12,7 +12,7 @@
 				<div class="reward_container">
 					<table class="table selected_reward_table">
 						<tr>
-							<th scope="row"><img src="../../../storage/{{$reward->rw_image }}"></th>
+							<th scope="row"><img src="../../../storage/product_img/project_{{$reward->id}}/{{$reward->rw_image }}"></th>
 							<td>
 								<p>{{ $reward->rw_title }}</p>
 									<input type="hidden" name="rw_title" class="" value="{{ $reward->rw_title }}">
@@ -41,8 +41,8 @@
 							</tr>
 							<tr>
 								<th scope="row">コメント</th>
-								<td class="comments w-75">
-									<textarea name="comment" value="{{ old('comment') }}" placeholder="例：応援しています。"  cols="50" rows="3"></textarea><br>
+								<td class="w-75">
+									<textarea class="w-75" name="comment" value="{{ old('comment') }}" placeholder="例：応援しています。"  cols="50" rows="3"></textarea><br>
 									<small class="text-danger">※記載したコメントと登録名は、支援したプロジェクトページの「応援コメント」欄に掲載されますので、個人情報に関する投稿はお控え下さい。</samll>
 								</td>
 							</tr>
@@ -54,37 +54,37 @@
 						<tr>
 							<th scope="row">氏名</th>
 								<td class="w-75">
-									<input type="text" name="name" class="form-control  my-2" value="{{ $user->name }}" placeholder="例：山田　太郎">
+									<input type="text" name="name" class="form-control my-2" value="{{ $user->name }}" placeholder="例：山田　太郎">
 								</td>
 						</tr>
 						<tr>
 							<th scope="row">フリガナ</th>
 								<td class="w-75">
-									<input type="text" name="name_kana" class="form-control  my-2" value="{{ $user->name_kana }}" placeholder="例：ヤマダ　タロウ">
+									<input type="text" name="name_kana" class="form-control my-2" value="{{ $user->name_kana }}" placeholder="例：ヤマダ　タロウ">
 								</td>
 						</tr>
 						<tr>
 							<th scope="row">郵便番号</th>
 								<td class="w-75">
-									<input type="text" name="post_code" class="form-control  my-2" value="{{ $user->post_code }}" placeholder="例：150-0034">
+									<input type="text" name="post_code" class="form-control my-2" value="{{ $user->post_code }}" placeholder="例：150-0034">
 								</td>
 						</tr>
 						<tr>
 							<th scope="row">都道府県市区町村</th>
 								<td class="w-75">
-									<input type="text" name="address" class="form-control  my-2" value="{{ $user->address }}" placeholder="例：東京都渋谷区代官山町">
+									<input type="text" name="address" class="form-control my-2" value="{{ $user->address }}" placeholder="例：東京都渋谷区代官山町">
 								</td>
 						</tr>
 						<tr>
 							<th scope="row">番地・建物名</th>
 								<td class="w-75">
-									<input type="text" name="building" class="form-control  my-2" value="{{ $user->building }}" placeholder="例：1-1">
+									<input type="text" name="building" class="form-control my-2" value="{{ $user->building }}" placeholder="例：1-1">
 								</td>
 						</tr>
 						<tr>
 							<th scope="row">電話番号</th>
 								<td class="w-75">
-									<input type="text" name="tel" class="form-control  my-2" value="{{ $user->tel }}" placeholder="例：03-123-4567">
+									<input type="text" name="tel" class="form-control my-2" value="{{ $user->tel }}" placeholder="例：03-123-4567">
 								</td>
 						</tr>
 					@endforeach
