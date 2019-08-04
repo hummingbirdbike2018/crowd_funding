@@ -17,7 +17,7 @@ class ProjectController extends Controller
 		$project = Project::find($id);
 		// プロジェクトIDに紐づくリワードテーブルを取得
 		$rewards = $project->rewards;
-
+		
 		$total_amount   = 0;			// 総支援額
 		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
 		$stock_list     = array();		// Rewardごとの残り個数を格納する配列
