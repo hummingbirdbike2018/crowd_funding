@@ -44,7 +44,7 @@ class HomeController extends Controller
 			// 総支援者数を設定する
 			$supporter_list[] = Support::where('reward_id', $id)->count();
 			// 総支援額を設定する
-			$total_amount_list[] = Reward::where('pj_id', $id)->sum('rw_price');;
+			$total_amount_list[] = Reward::where('pj_id', $id)->sum('rw_price');
 			// 達成率を設定する
 			$percent_completes[] = floor($total_amount_list[$i] / $projects[$i]->target_amount * 100);
 			// 残り日数を設定する
