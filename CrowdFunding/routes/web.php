@@ -22,9 +22,6 @@ Route::post('user/{id}/edit/store', 'UserController@store');
 Route::get('/user/{id}/top', function () { return view('user/top'); });
 //退会
 Route::get('/user/{id}/disable', function () { return view('user/disable'); });
-//問い合わせフォーム
-Route::get('/contact', 'HomeController@index')->name('contact');
-Route::post('/contact', 'HomeController@store')->name('contact');
 //掲載に関するご相談
 Route::get('draft', 'DraftController@index');
 Route::post('draft/store', 'DraftController@store');
@@ -46,6 +43,9 @@ Route::post('/projects/{id}/supports/{reward_id}/complete', 'SupportController@c
 //認証機能
 Auth::routes();
 
-
+// お問い合わせフォーム
+Route::get('contact', 'ContactController@index')->name('contact');
+Route::post('contact/confirm', 'ContactController@confirm')->name('confirm');
+Route::post('contact/sent', 'ContactController@sent')->name('sent');
 // 本人確認URL
 Route::get('register/verify/{token}', 'Auth\RegisterController@showForm');
