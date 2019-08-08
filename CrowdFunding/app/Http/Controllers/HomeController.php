@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Project;
 use App\Reward;
 use App\Support;
+use App\Planner;
 use Carbon\Carbon;
 
 class HomeController extends Controller
@@ -38,9 +39,17 @@ class HomeController extends Controller
 		$supporter_list = array();
 		// 各プロジェクトの残り日数を格納する配列
 		$period = array();
+		// 起案者を格納する配列
+		$planner_list = array();
 
 		for($i = 0; $i < $projects->count(); $i++)
 		{
+
+			// 起案者を設定する
+			$planner = Planner::select()
+														->join('projects', 'projects.planner_id', '=', 'planners.id')
+														->get();
+			$planner_list[] = $planner[$i]['name'];
 			// 総支援者数を設定する
 			$supporter_list[] = Support::where('reward_id', $id)->count();
 			// 総支援額を設定する
@@ -61,7 +70,8 @@ class HomeController extends Controller
 			'total_amounts' => $total_amount_list,
 			'percent_completes' => $percent_completes,
 			'period' => $period,
-			'supporters' => $supporter_list
+			'supporters' => $supporter_list,
+			'planner_list' => $planner_list,
 		]);
 	}
 

@@ -17,9 +17,9 @@ class CreateProjectsTable extends Migration
 			$table->increments('id');
 			$table->string('pj_title');
 			$table->unsignedInteger('planner_id');
-			$table->string('product_detail_1');
-			$table->string('product_detail_2');
-			$table->string('product_detail_3');
+			$table->text('product_detail_1');
+			$table->text('product_detail_2');
+			$table->text('product_detail_3');
 			$table->string('product_img_1');
 			$table->string('product_img_2');
 			$table->string('product_img_3');
