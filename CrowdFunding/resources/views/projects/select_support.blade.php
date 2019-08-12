@@ -1,9 +1,11 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="container">
+<div class="container bg-light">
+	<div class="heading-container">
+		<h4 class="py-3 text-center" id="pj_title">{!! nl2br(e( $project->pj_title )) !!}</h4>
+	</div>
 	<div class="row">
-		<h3 class="py-3" id="pj_title">{{ $project->pj_title }}</h3>
 		<div class="col-md-7">
 			<div class="shadow-sm p-3 mb-5 bg-white rounded">
 				<p class="py-3 text-center" id="selected_reward">リターンを選択してください</p>

@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 
 @section('content')
-
 <div class="container">
 	<div class="shadow-sm p-3 mb-5 bg-white rounded">
 		<p class="font-weight-light">以下の内容で、支援が完了しました。</p>
@@ -19,10 +18,12 @@
 				</tr>
 			</tbody>
 		</table>
+		<div class="message">
 		<p>確認内容をご登録のメールアドレスに送信しました。</p>
 		<small>※目標金額に達しない場合は、プロジェクト不成立となりカードの決済は行われません。<br>
 			また、リターンの発送も行われませんので、ご注意ください。</small>
 	</div>
+</div>
 </div>
 
 @endsection
