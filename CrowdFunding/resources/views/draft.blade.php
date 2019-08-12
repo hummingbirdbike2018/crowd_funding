@@ -60,8 +60,8 @@
 									<textarea class="form-control  mb-2" id="faq2" rows="3" placeholder="クラウドファンディング経験のある方からの紹介の場合もお書きください(審査が通りやすくなります)" value="{{ old('faq2') }}"></textarea>
 									<small class="required-item text-danger">*は必須入力です。</small>
 								</div>
-									<label><input type="checkbox" class="terms_check" required><a href="{{ 'terms' }}">利用規約</a>に同意する</label>
-									<button type="submit" class="btn btn-primary  mt-3 px-5 float-right">確認画面へ</button>
+								<label><input type="checkbox" class="terms_check" required><a href="{{ 'terms' }}">利用規約</a>に同意する</label>
+								<button type="submit" class="btn btn-primary  mt-3 px-5">確認画面へ</button>
 							</div>
 						</div>
 					</form>
@@ -122,8 +122,8 @@
 									<textarea class="form-control  mb-2" id="faq2" rows="3" placeholder="クラウドファンディング経験のある方からの紹介の場合もお書きください(審査が通りやすくなります)" value="{{ old('faq2') }}"></textarea>
 									<small class="required-item text-danger">*は必須入力です。</small>
 								</div>
-									<label><input type="checkbox" class="terms_check" required><a href="{{ 'terms' }}">利用規約</a>に同意する</label>
-									<button type="submit" class="btn btn-primary  mt-3 px-5 float-right">送信する</button>
+								<label><input type="checkbox" class="terms_check" required><a href="{{ 'terms' }}">利用規約</a>に同意する</label>
+								<button type="submit" class="btn btn-primary  mt-3 px-5">送信する</button>
 							</div>
 						</div>
 					</form>
