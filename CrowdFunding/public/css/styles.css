@@ -124,7 +124,6 @@ img {
 	justify-content: center;
 }
 
-
 .cbox {
 	display: -webkit-box;
 	display: -moz-box;
@@ -233,6 +232,12 @@ img {
 .card-brand {
 	display: inline;
 	list-style: none;
+}
+
+.nav-link {
+	border: 1px solid transparent;
+		border-top-left-radius: 0.25rem;
+		border-top-right-radius: 0.25rem;
 }
 /* スマホ用スタイル */
 @media screen and (max-width: 767px) {

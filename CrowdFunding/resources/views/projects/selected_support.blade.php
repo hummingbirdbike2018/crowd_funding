@@ -3,9 +3,11 @@
 @section('content')
 
 <div id="payment">
-	<div class="container">
+	<div class="container bg-light">
+		<div class="heading-container">
+			<h4 class="py-3 text-center" id="pj_title">{!! nl2br(e( $project->pj_title )) !!}</h4>
+		</div>
 		<div class="row">
-			<h3 class="py-3" id="pj_title">{!! nl2br(e( $project->pj_title )) !!}</h3>
 			<div class="col-md-7">
 			@foreach($rewards as $reward)
 				<form action="{{ $reward->id.'/confirm' }}" method="POST" enctype="multipart/form-data">
@@ -15,9 +17,9 @@
 						<div class="reward_container">
 							<table class="table selected_reward_table">
 								<tr>
-									<th scope="row"><img src="../../../../storage/product_img/project_{{$reward->id}}/{{$reward->rw_image }}"></th>
+									<th scope="row"><img src="../../../../storage/product_img/project_{{$reward->pj_id}}/{{$reward->rw_image }}"></th>
 									<td>
-										<h5 class="card-title">{{ $reward->rw_title }}</h5>
+										<h5 class="card-title">{!! nl2br(e( $reward->rw_title )) !!}</h5>
 											<input type="hidden" name="rw_title" class="" value="{{ $reward->rw_title }}">
 										<p class="quantity">限定 {{ $reward->rw_quantity }} 個</p>
 											<input type="hidden" name="rw_quantity" class="" value="{{ $reward->rw_quantity }}">
