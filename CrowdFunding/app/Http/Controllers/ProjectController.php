@@ -3,33 +3,56 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Reward;
+use App\Support;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 
 class ProjectController extends Controller
 {
 	public function index (int $id) {
+		// プロジェクトを取得
+		$project = Project::find($id);
+		// プロジェクトIDに紐づくリワードテーブルを取得
+		$rewards = $project->rewards;
 
-		$selected_project = Project::Find($id); //全てのプロジェクトを取得
-		$project = Project::Where('planner_id', $selected_project->pj_id)->get();
-		$total_amount = 200000;//仮
-		$total_supporter = 100;//仮
-		$period = 10;//仮
-		$end_time = "23:59";//仮
-		$target_amount = $selected_project->target_amount;
-		$percent_complete = floor($total_amount / $target_amount * 100);//仮
-		// var_dump($selected_project->product_img_1);
-		// exit;
+		$total_amount = Reward::where('pj_id', $id)->sum('rw_price'); // 総支援額
+		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
+		$stock_list     = array();		// Rewardごとの残り個数を格納する配列
+		$itr = 1;
+		for($i = 0; $i < $rewards->count(); $i++)
+		{
+			$supporter_list[] = Support::where('reward_id', $itr)
+				->where('pj_id', $id)->count();
+			$stock_list[] = $rewards[$i]['rw_quantity'] - $supporter_list[$i];
+			$itr++;
+		}
+
+		// プロジェクトの開始日
+		$start_day = new Carbon($project->created_at);
+		// プロジェクトの終了日
+		$end_day = new Carbon($project->created_at);
+		$end_day->addDay($project->period);
+		$end_day_str = date_format($end_day , 'Y年m月d日');
+		$end_time = $end_day_str.'23:59';									// 終了までの日数
+		$now_datetime = Carbon::now();
+		$period = $end_day->diffInDays($now_datetime);						// 残り日数
+		$target_amount = $project->target_amount; 							// 目標金
+		$percent_complete = floor($total_amount / $target_amount * 100);	// 達成率
 
 		//view側へ値を渡す処理
-		return view('projects/description',
+		return view('projects/project_description',
 		[
-			'projects' => $project,
+			'project' => $project,
 			'total_amount' => $total_amount,
-			'total_supporter' => $total_supporter,
+			'supporter_list' => $supporter_list,
 			'period' => $period,
 			'end_time' => $end_time,
 			'percent_complete' => $percent_complete,
+			'rewards' => $rewards,
+			'stock_list' => $stock_list,
 		]);
 	}
 }

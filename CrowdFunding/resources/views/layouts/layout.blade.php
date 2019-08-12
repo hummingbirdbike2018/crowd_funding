@@ -11,7 +11,6 @@
 		<!-- CSS -->
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 		<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<!-- script -->
 		<script src="{{ asset('js/app.js') }}" defer></script>
@@ -19,7 +18,7 @@
 	<body>
 		<header>
 			<div id="app">
-				<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+				<nav class="navbar navbar-expand-md navbar-dark bg-primary l-header">
 					<div class="container">
 						<a class="navbar-brand" href="{{ url('/') }}">
 							{{ config('app.name', 'CrowdFunding') }}
@@ -71,8 +70,8 @@
 											<i class="fas fa-user">メニュー</i>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-											<a class="dropdown-item"  href="{{ 'user/{id}/top' }}">マイページ</a>
-											<a class="dropdown-item"  href="{{ 'user/{id}/edit' }}">会員情報変更</a>
+											<a class="dropdown-item" href="{{ url('user/'.Auth::id().'/top') }}">マイページ</a>
+											<a class="dropdown-item" href="{{ url('user/'.Auth::id().'/edit') }}">会員情報変更</a>
 											<a class="dropdown-item" href="{{ route('logout') }}"
 												onclick="event.preventDefault();
 												document.getElementById('logout-form').submit();">
@@ -94,7 +93,7 @@
 			<div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalCenterTitle" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
-						<div class="modal-header alert alert-primary rounded-0">
+						<div class="modal-header alert alert-primary ">
 							<h6 class="modal-title" id="LoginModalCenterTitle">ログイン画面</h6>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
@@ -106,7 +105,7 @@
 								<div class="form-group row">
 									<label for="email" class="col-md-4 col-form-label text-md-right">{{ __('メールアドレス') }}</label>
 									<div class="col-md-6">
-										<input id="email" type="email" class="form-control rounded-0 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+										<input id="email" type="email" class="form-control  @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 										@error('email')
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $message }}</strong>
@@ -117,7 +116,7 @@
 								<div class="form-group row">
 									<label for="password" class="col-md-4 col-form-label text-md-right">{{ __('パスワード') }}</label>
 									<div class="col-md-6">
-										<input id="password" type="password" class="form-control rounded-0 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+										<input id="password" type="password" class="form-control  @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 										@error('password')
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $message }}</strong>
@@ -126,7 +125,7 @@
 									</div>
 								</div>
 								<div class="form-group row">
-									<div class="col-md-6 offset-md-4">
+									<div class="col-md-6 offset-md-3">
 										<div class="form-check">
 											<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 											<label class="form-check-label" for="remember">
@@ -136,8 +135,8 @@
 									</div>
 								</div>
 								<div class="form-group row mb-0">
-									<div class="col-md-6 offset-md-4 btn-group-sm">
-										<button type="submit" class="btn btn-primary rounded-0">
+									<div class="col-md-6 offset-md-3 btn-group-sm">
+										<button type="submit" class="btn btn-primary ">
 											{{ __('ログイン') }}
 										</button>
 										@if (Route::has('password.request'))
@@ -190,7 +189,7 @@
 										</div>
 									</div>
 									<div class="form-group form-check">
-										<div class="col-md-6 offset-md-4 btn-group-sm">
+										<div class="col-md-6 offset-md-3 btn-group-sm">
 											<input type="checkbox" class="form-check-input" id="terms_chk" required>
 											<label class="form-check-label" for="terms-check">
 												<a href="{{ 'terms' }}">利用規約</a>に同意する
@@ -198,7 +197,7 @@
 										</div>
 									</div>
 									<div class="form-group row mb-0">
-										<div class="col-md-6 offset-md-5 btn-group">
+										<div class="col-md-6 offset-md-3 btn-group">
 											<button type="submit" class="btn btn-primary">
 												{{ __('登録') }}
 											</button>
@@ -212,6 +211,20 @@
 			</div>
 
 		</header>
+		<!-- フラッシュメッセージ -->
+		@if (session('flash_message'))
+			<div class="container flash-massage">
+				<div class="alert alert-success">
+					{{ session('flash_message') }}
+				</div>
+			</div>
+		@elseif (session('flash_err_message'))
+			<div class="container flash-massage">
+				<div class="alert alert-danger">
+					{{ session('flash_err_message') }}
+				</div>
+			</div>
+		@endif
 		<main>
 			@yield('content')
 		</main>

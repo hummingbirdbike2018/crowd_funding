@@ -3,61 +3,63 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
 
-	public function index (int $id) {
+	public function index () {
 
-		$selected_user = User::Find($id); //全てのユーザを取得
-		$user = User::Where('user_id', $selected_user->id)->get(); //ユーザーID
+		$user_id = Auth::id(); //ログインのユーザを取得
+		$user = User::Where('user_id', $user_id)->get(); //ユーザーID
 
-		return view('user/edit',
+		return view('user.top',
 		[
 			'users' => $user	//view関数でmypageに上で取得した情報をusersをキーとして渡す
 		]);
 	}
 
+	public function edit () {
+		//ログインのユーザを取得
+		$selected_user = Auth::user();
+		// 対象のユーザ情報を取得する
+		$user = User::find($selected_user->id);
+		return view('user.edit',
+		[
+			'user' => $user
+		]);
+	}
 
 	public function store (Request $request) {
 
-		//リクエストされたuer_idで会員情報を取得
-		$user = new User();
-
-		//編集対象の会員データに入力値を保存
-		$user->display = $request->display;
-		$user->name = $request->name;
-		$user->furigana = $request->furigana;
-		$user->tel = $request->tel;
-		$user->post_code = $request->post_code;
-		$user->address = $request->address;
-		$user->building = $request->building;
-		$user->email = $request->email;
-		$user->password = $request->password;
-		$user->save();
-
-		//
-		return redirect()->route('user.edit', [
-				'id' => $user->id,
-		 ]);
+		//POSTで受けとったデータを配列に格納
+		$user_data = [
+			'display' => $request->display,
+			'name' => $request->name,
+			'name_kana' => $request->name_kana,
+			'tel' => $request->tel,
+			'post_code' => $request->post_code,
+			'address' => $request->address,
+			'building' => $request->building,
+			'email' => $request->email,
+			'password' => $request->password
+		];
+		//フォームに入力された内容をDBに上書き
+		User::where('id', Auth::id())->update($user_data);
 	}
 
 
 	public function image(Request $request) {
-			//インスタンスを用意
-			$user = new User();
-			//画像の保存先
-			$user->user_image = $request->user_image->storeAs('public/storage', $time.'_'.Auth::user()->id . '.jpg');
-			//登録ユーザーからidを取得
-			$user->user_id = Auth::user()->id;
-			// インスタンスの状態をデータベースに書き込む
-			$user->save();
-			//「設定する」をクリックしたら会員情報変更ページへリダイレクト
-			return redirect()->route('user.edit', [
-					'id' => $user->id,
-			 ]);
-		}
+		//ログイン中のuserを取得
+		$user = User::where('id', Auth::id);
+		//画像の保存先
+		$user->user_image = $request->user_image->storeAs('public/storage', $time.'_'.Auth::user()->id . '.jpg');
+		//保存
+		$user->save();
+		//「設定する」をクリックしたら会員情報変更ページへリダイレクト
+		return redirect()->route('user.edit', [
+			'id' => $user->id,
+		]);
 	}
+}
