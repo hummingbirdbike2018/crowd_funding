@@ -1,15 +1,14 @@
 @extends('layouts.layout')
-
 @section('content')
-<!-- パンくずリスト -->
-<nav aria-label="breadcrumb">
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item"><a href="{{ url('/') }}">TOP</a></li>
-		<li class="breadcrumb-item active" aria-current="page">掲載に関するご相談</li>
-	</ol>
-</nav>
 
 <div class="container ">
+	<!-- パンくずリスト -->
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{{ url('/') }}">TOP</a></li>
+			<li class="breadcrumb-item active" aria-current="page">掲載に関するご相談</li>
+		</ol>
+	</nav>
 	<ul class="nav nav-pills my-3 active" id="pills-tab" role="tablist">
 		<li class="nav-item">
 			<a class="nav-link active show" id="pills-products-tab" data-toggle="pill" href="#pills-products" role="tab" aria-controls="pills-products" aria-selected="true">起案に関するお問い合わせ(プロダクト系)</a>
@@ -19,13 +18,12 @@
 		</li>
 	</ul>
 	<div class="tab-content" id="pills-tabContent">
-
 		<div class="tab-pane fade show active" id="pills-products" role="tabpanel" aria-labelledby="pills-products-tab">
 			<!-- プロダクト起案フォーム -->
-			<div class= "container">
-				<div class="border bg-light rounded p-4 shadow p-3 mb-5 w-90 p-3 ">
-				<form action="{{ 'draft/store' }}" method="POST">
-					@csrf
+			<div class="border bg-light rounded p-4 shadow p-3 mb-5 w-90 p-3 ">
+				<div class= "container">
+					<form action="{{ 'draft/store' }}" method="POST">
+						@csrf
 						<div class="contact_form row">
 							<div class= "contact_form is_products w-75 ">
 								<div class="form-group form-content">
@@ -62,12 +60,7 @@
 									<textarea class="form-control  mb-2" id="faq2" rows="3" placeholder="クラウドファンディング経験のある方からの紹介の場合もお書きください(審査が通りやすくなります)" value="{{ old('faq2') }}"></textarea>
 									<small class="required-item text-danger">*は必須入力です。</small>
 								</div>
-									<div class="form-group form-check">
-										<input type="checkbox" class="form-check-input" id="terms_chk" required>
-										<label class="form-check-label" for="terms-check">
-											<a href="{{ 'terms' }}">利用規約</a>に同意する
-										</label>
-									</div>
+									<label><input type="checkbox" class="terms_check" required><a href="{{ 'terms' }}">利用規約</a>に同意する</label>
 									<button type="submit" class="btn btn-primary  mt-3 px-5 float-right">確認画面へ</button>
 							</div>
 						</div>
@@ -79,11 +72,10 @@
 
 		<div class="tab-pane fade" id="pills-not-products" role="tabpanel" aria-labelledby="pills-not-products-tab">
 			<!-- プロダクト以外 -->
-			<div class= "container">
-				<div class="border bg-light rounded p-4 shadow p-3 mb-5 w-90 p-3 ">
-				<form action="{{ 'store' }}" method="POST">
-					@csrf
-					<form>
+			<div class="border bg-light rounded p-4 shadow p-3 mb-5 w-90 p-3 ">
+				<div class= "container">
+					<form action="{{ 'store' }}" method="POST">
+						@csrf
 						<div class="contact_form row">
 							<div class= "contact_form is_no_products w-75 ">
 								<div class="form-group form-content">
@@ -130,12 +122,7 @@
 									<textarea class="form-control  mb-2" id="faq2" rows="3" placeholder="クラウドファンディング経験のある方からの紹介の場合もお書きください(審査が通りやすくなります)" value="{{ old('faq2') }}"></textarea>
 									<small class="required-item text-danger">*は必須入力です。</small>
 								</div>
-									<div class="form-group form-check">
-										<input type="checkbox" class="form-check-input" id="terms_chk" required>
-										<label class="form-check-label" for="terms-check">
-											<a href="{{ 'terms' }}">利用規約</a>に同意する
-										</label>
-									</div>
+									<label><input type="checkbox" class="terms_check" required><a href="{{ 'terms' }}">利用規約</a>に同意する</label>
 									<button type="submit" class="btn btn-primary  mt-3 px-5 float-right">送信する</button>
 							</div>
 						</div>
@@ -147,5 +134,4 @@
 </div>
 
 @endsection
-
 @include('footer')
