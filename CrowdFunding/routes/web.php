@@ -26,16 +26,16 @@ Route::get('/user/{id}/disable', function () { return view('user/disable'); });
 Route::get('draft', 'DraftController@index');
 Route::post('draft/store', 'DraftController@store');
 //プロジェクトページ
-Route::get('/projects/{id}', 'ProjectController@index');
+Route::get('/projects/{id}', 'ProjectController@index')->name('project.top');
 //支援選択ページ
-Route::get('/projects/{id}/supports/select', 'SupportController@index')->name('select');
+Route::get('/projects/{id}/supports/select', 'SupportController@index')->name('reward.select');
 //個別支援ページ
-Route::get('/projects/{id}/supports/{reward_id}', 'SupportController@showSelectedReward')->name('selected');
+Route::get('/projects/{id}/supports/{reward_id}', 'SupportController@showSelectedReward')->name('reward.selected');
 Route::post('/projects/{id}/supports/{reward_id}', 'SupportController@storeSelectedReward');
 //支援内容確認ページ
-Route::post('/projects/{id}/supports/{reward_id}/confirm', 'SupportController@confirmSelectedReward')->name('confirm');
+Route::post('/projects/{id}/supports/{reward_id}/confirm', 'SupportController@confirmSelectedReward')->name('support.confirm');
 //支援完了ページ
-Route::post('/projects/{id}/supports/{reward_id}/complete', 'SupportController@completeSelectedReward')->name('complete');
+Route::post('/projects/{id}/supports/{reward_id}/complete', 'SupportController@completeSelectedReward')->name('supoort.complete');
 
 // Route::post('draft/confirm', 'DraftController@confirm')->name('confirm');
 // Route::post('draft/complete', 'DraftController@confirm')->name('complete');

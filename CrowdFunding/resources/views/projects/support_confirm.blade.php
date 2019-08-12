@@ -88,8 +88,10 @@
 			<input type="hidden" name="pj_id" class="form-control" id="pj_id" value="{{ $pj_id }}">
 			<input type="hidden" name="reward_id" class="form-control" id="reward_id" value="{{ $reward_id }}">
 			@csrf
-			<button type="submit" name="action" class="btn btn-light inline-block" value="back">内容を修正する</button>
-			<button type="submit" name="action" class="btn btn-danger inline-block" value="pay">この内容で支援する</button>
+			<!-- <div class="btn-group mx-auto"> -->
+				<button type="submit" name="action" class="btn btn-light" value="back">内容を修正する</button>
+				<button type="submit" name="action" class="btn btn-danger" value="pay">この内容で支援する</button>
+			<!-- </div> -->
 		</form>
 	</div>
 </div>

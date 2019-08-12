@@ -32,7 +32,7 @@ img {
 
 .card_progress_info, .card_planner_info {
 	color: #828e8d;
-	font-size: 80%;
+	font-size: 100%;
 }
 
 .card_planner_info {
@@ -132,10 +132,6 @@ img {
 	border-radius: 0;
 }
 
-.terms_check {
-
-}
-
 .edit_user {
 	justify-content: center;
 }
@@ -209,18 +205,47 @@ img {
 }
 
 .card-title {
-	font-size: x-small;
+	font-size: normal;
 }
 
-.card_total_amount, .total_amount {
-	font-size: large;
+.total_amount {
+	font-size: xx-large;
 	font-weight: bold;
-	color: #FFBF00;
-	letter-spacing: inherit;
+	color: #ffbd2e;
 }
 
+.rw_price {
+	font-size: x-large;
+	font-weight: bold;
+	color: #ffbd2e;
+}
 
+.supporter {
+	font-size: normal;
+	font-weight: bold;
+	color: #309b92;
+}
 
+.quantity, .stock {
+	font-size: normal;
+	font-weight: bold;
+	color: #ffbd2e;
+}
+
+.card_total_amount {
+	font-size: x-large;
+	font-weight: bold;
+	color: #ffbd2e;
+}
+
+.project-supporter, .project-period {
+	font-size: x-large;
+}
+
+.card-brand {
+	display: inline;
+	list-style: none;
+}
 /* スマホ用スタイル */
 @media screen and (max-width: 767px) {
 
@@ -228,4 +253,5 @@ img {
 	.cbox-inner {
 		width:48%;
 	}
+
 }

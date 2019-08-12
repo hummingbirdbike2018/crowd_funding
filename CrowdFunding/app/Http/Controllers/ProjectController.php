@@ -21,13 +21,13 @@ class ProjectController extends Controller
 		$total_amount = Reward::where('pj_id', $id)->sum('rw_price'); // 総支援額
 		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
 		$stock_list     = array();		// Rewardごとの残り個数を格納する配列
-		$itr = 1;
+		$id = 1;
 		for($i = 0; $i < $rewards->count(); $i++)
 		{
-			$supporter_list[] = Support::where('reward_id', $itr)
+			$supporter_list[] = Support::where('reward_id', $id)
 				->where('pj_id', $id)->count();
 			$stock_list[] = $rewards[$i]['rw_quantity'] - $supporter_list[$i];
-			$itr++;
+			$id++;
 		}
 
 		// プロジェクトの開始日

@@ -5,6 +5,7 @@
 <div id="payment">
 	<div class="container">
 		<div class="row">
+			<h3 class="py-3" id="pj_title">{!! nl2br(e( $project->pj_title )) !!}</h3>
 			<div class="col-md-7">
 			@foreach($rewards as $reward)
 				<form action="{{ $reward->id.'/confirm' }}" method="POST" enctype="multipart/form-data">
@@ -16,19 +17,19 @@
 								<tr>
 									<th scope="row"><img src="../../../../storage/product_img/project_{{$reward->id}}/{{$reward->rw_image }}"></th>
 									<td>
-										<p>{{ $reward->rw_title }}</p>
+										<h5 class="card-title">{{ $reward->rw_title }}</h5>
 											<input type="hidden" name="rw_title" class="" value="{{ $reward->rw_title }}">
-										<p>限定 {{ $reward->rw_quantity }} 個</p>
+										<p class="quantity">限定 {{ $reward->rw_quantity }} 個</p>
 											<input type="hidden" name="rw_quantity" class="" value="{{ $reward->rw_quantity }}">
-										<p>¥ {{ number_format($reward->rw_price) }}</p>
+										<p class="rw_price">¥ {{ number_format($reward->rw_price) }}</p>
 											<input type="hidden" name="rw_price" class="" value="¥ {{ number_format($reward->rw_price) }}">
 										<p>{{ $reward->rw_body }}
 											<input type="hidden" name="rw_body" class="" value="{{ $reward->rw_body }}">
 										<p>予定配送時期 {{ $reward->rw_season }}
 											<input type="hidden" name="rw_season" class="" value="{{ $reward->rw_season }}">
-										<p>{{  $supporter }} 人が支援
+										<p class="supporter">{{  $supporter }} 人が支援
 											<input type="hidden" name="supporter" class="" value="{{ $reward->supporter }}">
-										<br>残り {{ $reward->rw_quantity - $supporter }} 個
+										<p class="stock">残り {{ $reward->rw_quantity - $supporter }} 個
 											<input type="hidden" name="stock" class="" value="{{ $reward->rw_quantity - $supporter }}">
 									</td>
 								</tr>
@@ -95,16 +96,17 @@
 							<p class="mt-5" id="selected_reward">決済情報</p>
 							<table class="table payment_table">
 								<thead class="thead-light">
-
 								<tr>
 									<th scope="row">決済方法</th>
 									<td class="w-75">
 										クレジットカード決済
-										<img src="/crowd_funding/CrowdFunding/public/storage/visa.gif">
-										<img src="/crowd_funding/CrowdFunding/public/storage/jcb.gif">
-										<img src="/crowd_funding/CrowdFunding/public/storage/master.gif">
-										<img src="/crowd_funding/CrowdFunding/public/storage/ae.gif"><p>
-										<small>募集期間内に支援が目標金額に達した場合のみ、クレジットカード決済が行われます</small>
+										<ul class="card-brand">
+											<li><img src="/crowd_funding/CrowdFunding/public/storage/visa.gif"></li>
+											<li><img src="/crowd_funding/CrowdFunding/public/storage/jcb.gif"></li>
+											<li><img src="/crowd_funding/CrowdFunding/public/storage/master.gif"></li>
+											<li><img src="/crowd_funding/CrowdFunding/public/storage/ae.gif"></li>
+										</ul>
+										<p><small>募集期間内に支援が目標金額に達した場合のみ、クレジットカード決済が行われます</small>
 
 										<div class="form-check form-check-inline">
 											<label><input class="form-check-input" type="radio" v-on:change="handler" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>登録済みカードで決済</label>
@@ -218,8 +220,6 @@
 							</tr>
 						</tbody>
 					</table>
-					<a href="{{ $project->id.'/supports/select' }}"  class="btn btn-primary">このプロジェクトを支援する</a><p>
-					<small>{{ $end_time }} までに目標金額に達すると、プロジェクトが成立となり、決済が完了します。</small>
 				</div>
 			</div>
 		</div>

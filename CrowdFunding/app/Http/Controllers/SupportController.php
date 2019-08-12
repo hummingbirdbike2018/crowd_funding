@@ -77,6 +77,18 @@ class SupportController extends Controller
 		$supporter =  Support::where('reward_id', $reward_id)->count();//支援者数
 		$user = User::Where('id', Auth::id())->get(); //usersテーブルからIDに紐づくユーザ情報を取得
 		$payment = Card::where('user_id', Auth::id())->get();//card_infoテーブルからIDに紐づくカード情報を取得
+		$rewards = $project->rewards;// プロジェクトIDに紐づくリワードテーブルを取得
+		$total_amount = Reward::where('pj_id', $id)->sum('rw_price'); // 総支援額
+		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
+		$stock_list     = array();		// Rewardごとの残り個数を格納する配列
+		$id = 1;
+		for($i = 0; $i < $rewards->count(); $i++)
+		{
+			$supporter_list[] = Support::where('reward_id', $id)
+				->where('pj_id', $id)->count();
+			$stock_list[] = $rewards[$i]['rw_quantity'] - $supporter_list[$i];
+			$id++;
+		}
 
 		return view('projects.selected_support',
 		[
@@ -88,6 +100,9 @@ class SupportController extends Controller
 			'supporter' => $supporter,
 			'users' => $user,
 			'payments' => $payment,
+			'total_amount' => $total_amount,
+			'supporter_list' => $supporter_list,
+			'stock_list' => $stock_list,
 		]);
 	}
 

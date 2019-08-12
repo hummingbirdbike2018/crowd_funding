@@ -44,11 +44,10 @@ class HomeController extends Controller
 
 		for($i = 0; $i < $projects->count(); $i++)
 		{
-
 			// 起案者を設定する
 			$planner = Planner::select()
-														->join('projects', 'projects.planner_id', '=', 'planners.id')
-														->get();
+													->join('projects', 'projects.planner_id', '=', 'planners.id')
+													->get();
 			$planner_list[] = $planner[$i]['name'];
 			// 総支援者数を設定する
 			$supporter_list[] = Support::where('reward_id', $id)->count();
