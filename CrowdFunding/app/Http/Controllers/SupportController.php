@@ -17,20 +17,21 @@ use Illuminate\Support\Facades\Mail;
 
 class SupportController extends Controller
 {
-	public function index (int $id) {
+	public function index (int $id)
+	{
 		// プロジェクトを取得
 		$project = Project::find($id);
 		// プロジェクトIDに紐づくリワードテーブルを取得
 		$reward = Reward::where('pj_id', $id)->get();
 
-		$total_amount   = 0;			// 総支援額
+		$total_amount = Reward::where('pj_id', $id)->sum('rw_price'); // 総支援額
 		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
 		$stock_list     = array();		// Rewardごとの残り個数を格納する配列
-
+		$itr = 1;
 		for($i = 0; $i < $reward->count(); $i++) {
-			$supporter_list[] = Support::where('reward_id', $id++)->get()->count();
-			$total_amount += $reward[$i]['rw_price'] * $supporter_list[$i];
+			$supporter_list[] = Support::where('reward_id', $itr)->get()->count();
 			$stock_list[] = $reward[$i]['rw_quantity'] - $supporter_list[$i];
+			$itr++;
 		}
 
 		// プロジェクトの終了日
@@ -57,12 +58,21 @@ class SupportController extends Controller
 		]);
 	}
 
-	public function showSelectedReward($id,$reward_id) {
-
+	public function showSelectedReward($id,$reward_id)
+	{
 		// プロジェクトを取得
 		$project = Project::find($id);
 		// 選択されたリターンIDに紐づくリワードテーブルを取得
 		$reward = Reward::where('id', $reward_id)->get();
+		// 総支援額
+		$total_amount = Reward::where('pj_id', $id)->sum('rw_price');
+
+		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
+		$itr = 1;
+		for($i = 0; $i < $reward->count(); $i++) {
+			$supporter_list[] = Support::where('reward_id', $itr)->get()->count();
+			$itr++;
+		}
 
 		// プロジェクトの開始日
 		$start_day = new Carbon($project->created_at);
@@ -73,7 +83,7 @@ class SupportController extends Controller
 		$end_time = $end_day_str.'23:59';									// 終了までの日数
 		$period = $start_day->diffInDays($end_day); 						// 残り日数
 		$target_amount = $project->target_amount; 							// 目標金
-		$percent_complete = floor($project->target_amount / $target_amount * 100);	// 達成率
+		$percent_complete = floor($total_amount / $target_amount * 100);	// 達成率
 		$supporter =  Support::where('reward_id', $reward_id)->count();//支援者数
 		$user = User::Where('id', Auth::id())->get(); //usersテーブルからIDに紐づくユーザ情報を取得
 		$payment = Card::where('user_id', Auth::id())->get();//card_infoテーブルからIDに紐づくカード情報を取得
@@ -81,6 +91,8 @@ class SupportController extends Controller
 		return view('projects.selected_support',
 		[
 			'project' => $project,
+			'total_amount' => $total_amount,
+			'supporter_list' => $supporter_list,
 			'period' => $period,
 			'end_time' => $end_time,
 			'percent_complete' => $percent_complete,
@@ -92,14 +104,13 @@ class SupportController extends Controller
 	}
 
 	public function storeSelectedReward(Request $request) {
-
 		//view側へ値を渡す処理
 		return view('projects.selected_support');
 	}
 
 
-	public function confirmSelectedReward (Request $request,$id,$reward_id) {
-
+	public function confirmSelectedReward (Request $request,$id,$reward_id)
+	{
 		//うけとったリクエスト内容を格納
 		$support_data = $request->all();
 		//二重送信防止
@@ -141,37 +152,35 @@ class SupportController extends Controller
 		}
 
 
-		public function completeSelectedReward (Request $request,$id,$reward_id) {
+	public function completeSelectedReward (Request $request,$id,$reward_id)
+	{
+		//受け取ったリクエスト内容を格納
+		$support_data = $request->all();
+		// var_dump($support_data);
+		// exit;
 
-			//受け取ったリクエスト内容を格納
-			$support_data = $request->all();
-			// var_dump($support_data);
-			// exit;
-
-			//戻るボタン押下時、リクエスト内容を持たせて入力画面へリダイレクト
-			if($request->action === 'back') {
-					// return back()->withInput([$support_data,]);
-					return redirect()->route('selected', [
-						'id' => $id,
-						'reward_id' => $reward_id,
-					])
-						->withInput([$support_data,]);
-			}
-
-			//二重送信防止
-			$request->session()->regenerateToken();
-			//ログインユーザのメールアドレスにメールを送信
-			Mail::to(Auth::user()->email)->send(new SupportConfirm($support_data));
-
-
-			//createメソッドでcard_infoテーブルにRequestで受けとった情報を保存
-			$data = Support::create([
-				'user_id' => Auth::id(),
-				'comment' => $request->comment,
-				'reward_id' => $request->reward_id,
-				'pj_id' => $request->pj_id,
-			]);
-			//支援完了ページに$support_data(Requestで受けとったデータ)を渡す
-			return view('projects.support_complete', $support_data);
+		//戻るボタン押下時、リクエスト内容を持たせて入力画面へリダイレクト
+		if($request->action === 'back') {
+			// return back()->withInput([$support_data,]);
+			return redirect()->route('selected', [
+				'id' => $id,
+				'reward_id' => $reward_id,
+			])->withInput([$support_data,]);
 		}
+
+		//二重送信防止
+		$request->session()->regenerateToken();
+		//ログインユーザのメールアドレスにメールを送信
+		Mail::to(Auth::user()->email)->send(new SupportConfirm($support_data));
+
+		//createメソッドでcard_infoテーブルにRequestで受けとった情報を保存
+		$data = Support::create([
+			'user_id' => Auth::id(),
+			'comment' => $request->comment,
+			'reward_id' => $request->reward_id,
+			'pj_id' => $request->pj_id,
+		]);
+		//支援完了ページに$support_data(Requestで受けとったデータ)を渡す
+		return view('projects.support_complete', $support_data);
 	}
+}

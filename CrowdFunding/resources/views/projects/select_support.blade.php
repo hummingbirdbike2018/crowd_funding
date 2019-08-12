@@ -61,7 +61,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<a href="{{ $project->id.'/supports/select' }}"  class="btn btn-primary">このプロジェクトを支援する</a><p>
+				<!-- <a href="{{ $project->id.'/supports/select' }}"  class="btn btn-primary">このプロジェクトを支援する</a><p> -->
 				<small>{{ $end_time }} までに目標金額に達すると、プロジェクトが成立となり、決済が完了します。</small>
 			</div>
 		</div>
