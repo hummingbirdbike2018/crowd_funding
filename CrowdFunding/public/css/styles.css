@@ -8,14 +8,8 @@ html, body {
 	position: relative; */
 }
 
-main {
+main, .flash-massage {
 	margin-top: 75px;
-}
-
-footer {
-	/* position: absolute;
-	width: 100%;
-	bottom: 0; */
 }
 
 img {
@@ -98,12 +92,6 @@ img {
 	background-repeat: no-repeat;
 	background-position: center center;
 	position: relative;
-}
-
-.block {
-	/* padding: 60px 0 40px;
-	position: relative;
-	min-width: 1080px; */
 }
 
 .block_title {
