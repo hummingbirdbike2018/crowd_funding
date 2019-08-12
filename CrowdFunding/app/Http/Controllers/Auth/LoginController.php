@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 
 class LoginController extends Controller
@@ -37,4 +38,43 @@ class LoginController extends Controller
 	{
 		$this->middleware('guest')->except('logout');
 	}
+
+	/**
+	* ログイン後の処理
+	*
+	* @param  \Illuminate\Http\Request  $request
+	* @param  mixed  $user
+	* @return \Illuminate\Http\Response
+	*/
+	protected function authenticated(Request $request)
+	{
+		// ログインしたら、TOPへ移動
+		return redirect('/')->with('flash_message', __('ログインしました。'));
+	}
+
+	/**
+	 * ログアウト処理
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function logout(Request $request)
+	{
+		$this->guard()->logout();
+		$request->session()->invalidate();
+
+		// ログアウトしたら、TOPへ移動
+		return $this->loggedOut($request) ?: redirect('/')->with('flash_message', __('ログアウトしました。'));
+	}
+
+	/**
+	 * ログインした時のリダイレクト先
+	 * Where to redirect users after login.
+	 *
+	 * @var string
+	 */
+	// protected function redirectTo() {
+	// 	session()->flash('msg_success', 'ログインしました');
+	// 	return '/';
+	// }
 }

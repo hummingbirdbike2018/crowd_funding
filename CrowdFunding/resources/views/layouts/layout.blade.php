@@ -128,7 +128,7 @@
 									</div>
 								</div>
 								<div class="form-group row">
-									<div class="col-md-6 offset-md-4">
+									<div class="col-md-6 offset-md-3">
 										<div class="form-check">
 											<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 											<label class="form-check-label" for="remember">
@@ -138,7 +138,7 @@
 									</div>
 								</div>
 								<div class="form-group row mb-0">
-									<div class="col-md-6 offset-md-4 btn-group-sm">
+									<div class="col-md-6 offset-md-3 btn-group-sm">
 										<button type="submit" class="btn btn-primary ">
 											{{ __('ログイン') }}
 										</button>
@@ -192,7 +192,7 @@
 										</div>
 									</div>
 									<div class="form-group form-check">
-										<div class="col-md-6 offset-md-4 btn-group-sm">
+										<div class="col-md-6 offset-md-3 btn-group-sm">
 											<input type="checkbox" class="form-check-input" id="terms_chk" required>
 											<label class="form-check-label" for="terms-check">
 												<a href="{{ 'terms' }}">利用規約</a>に同意する
@@ -200,7 +200,7 @@
 										</div>
 									</div>
 									<div class="form-group row mb-0">
-										<div class="col-md-6 offset-md-5 btn-group">
+										<div class="col-md-6 offset-md-3 btn-group">
 											<button type="submit" class="btn btn-primary">
 												{{ __('登録') }}
 											</button>
@@ -214,6 +214,20 @@
 			</div>
 
 		</header>
+		<!-- フラッシュメッセージ -->
+		@if (session('flash_message'))
+			<div class="container flash-massage">
+				<div class="alert alert-success">
+					{{ session('flash_message') }}
+				</div>
+			</div>
+		@elseif (session('flash_err_message'))
+			<div class="container flash-massage">
+				<div class="alert alert-danger">
+					{{ session('flash_err_message') }}
+				</div>
+			</div>
+		@endif
 		<main>
 			@yield('content')
 		</main>
