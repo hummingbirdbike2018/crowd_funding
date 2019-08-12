@@ -41,16 +41,17 @@ class HomeController extends Controller
 		$period = array();
 		// 起案者を格納する配列
 		$planner_list = array();
+		// 起案者テーブルとプロジェクトテーブルを結合する
+		$planner = Planner::select()
+			->join('projects', 'projects.planner_id', '=', 'planners.id')
+			->get();
 
 		for($i = 0; $i < $projects->count(); $i++)
 		{
 			// 起案者を設定する
-			$planner = Planner::select()
-													->join('projects', 'projects.planner_id', '=', 'planners.id')
-													->get();
 			$planner_list[] = $planner[$i]['name'];
 			// 総支援者数を設定する
-			$supporter_list[] = Support::where('reward_id', $id)->count();
+			$supporter_list[] = Support::where('pj_id', $id)->count();
 			// 総支援額を設定する
 			$total_amount_list[] = Reward::where('pj_id', $id)->sum('rw_price');
 			// 達成率を設定する
