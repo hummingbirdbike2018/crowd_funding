@@ -18,8 +18,9 @@ Route::get('/terms', function () { return view('terms'); });
 //プロジェクトページ
 Route::get('/projects/{id}', 'ProjectController@index')->name('project.top');
 
-// Route::post('draft/confirm', 'DraftController@confirm')->name('confirm');
-// Route::post('draft/complete', 'DraftController@confirm')->name('complete');
+Route::get('/draft', 'DraftController@index')->name('draft');
+Route::post('/draft/confirm', 'DraftController@confirm')->name('confirm');
+Route::post('/draft/complete', 'DraftController@confirm')->name('complete');
 
 Route::group(['middleware' => ['auth']], function() {
 	//会員情報変更
