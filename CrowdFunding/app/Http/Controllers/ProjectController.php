@@ -22,6 +22,8 @@ class ProjectController extends Controller
 			->join('supports', 'supports.user_id', '=', 'users.id')
 			->where('pj_id', $id)
 			->get();
+		// プロジェクトIDに紐づくreportsテーブルを取得
+		$reports = $project->reports;
 		// プロジェクトIDに紐づくrewardsテーブルを取得
 		$rewards = $project->rewards;
 		// プロジェクトIDに紐づくplannersテーブルを取得
@@ -53,6 +55,7 @@ class ProjectController extends Controller
 		//view側へ値を渡す処理
 		return view('projects/project_description',
 		[
+			'reports' => $reports,
 			'users' => $users,
 			'planner' => $planner,
 			'project' => $project,

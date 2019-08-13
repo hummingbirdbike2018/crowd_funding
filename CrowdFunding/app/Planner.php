@@ -11,6 +11,10 @@ class Planner extends Model
 		return $this->hasMany('App\Project','planner_id');//projectsテーブルとのリレーション
 	}
 
+	public function reports(){
+		return $this->hasMany('App\Report','planner_id');//reportsテーブルとのリレーション
+	}
+
 	protected $fillable = [
 		'id', 'name', 'name_kana', 'tel', 'post_code', 'address', 'building',
 		'email', 'status', 'intro', 'icon_img', 'dis_reason', 'remember_token',

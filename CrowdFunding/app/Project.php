@@ -15,6 +15,10 @@ class Project extends Model
 		return $this->hasMany('App\Support','pj_id');//supportテーブルとのリレーション
 	}
 
+	public function reports(){
+		return $this->hasMany('App\Report','pj_id');//reportsテーブルとのリレーション
+	}
+
 	public function planners(){
 		return $this->belongsTo('App\Planner','id');//plannersテーブルとのリレーション
 	}

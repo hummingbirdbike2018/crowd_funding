@@ -208,6 +208,7 @@ th, td {
 	margin-right: 0.1rem;
 	color:black;
 }
+
 .nav-tabs {
 	border-bottom: 0;
 }
@@ -262,7 +263,7 @@ th, td {
 	font-weight: bold;
 }
 
-img.user_image, img.default_user_image {
+img.user_image, img.default_user_image, img.planner_img {
 	width: 36px;
 	height: 36px;
 }

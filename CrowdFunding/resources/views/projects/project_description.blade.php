@@ -9,9 +9,22 @@
 			<div class="tab-menu">
 				<nav>
 					<div class="nav nav-tabs" id="nav-tab" role="tablist">
+						<!-- ホームタブ -->
 						<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">ホーム</a>
-						<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">活動報告</a>
-						<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">コメント</a>
+						<!-- 活動報告タブ -->
+						@if(count($reports) == 0)
+						<a class="nav-item nav-link disabled" id="nav-report-tab" data-toggle="tab" href="#nav-report" role="tab" aria-controls="nav-report" aria-selected="false">活動報告</a>
+						@else
+						<a class="nav-item nav-link" id="nav-report-tab" data-toggle="tab" href="#nav-report" role="tab" aria-controls="nav-report" aria-selected="false">活動報告
+						<span class="badge badge-pill badge-primary text-light">{{ count($reports) }}</span></a>
+						@endif
+						<!-- コメントタブ -->
+						@if(count($users) == 0)
+						<a class="nav-item nav-link disabled" id="nav-comment-tab" data-toggle="tab" href="#" role="tab" aria-controls="nav-comment" aria-selected="false">コメント</a>
+						@else
+						<a class="nav-item nav-link" id="nav-comment-tab" data-toggle="tab" href="#nav-comment" role="tab" aria-controls="nav-comment" aria-selected="false">コメント
+						<span class="badge badge-pill badge-primary text-light">{{ count($users) }}</span></a>
+						@endif
 					</div>
 					<div class="shadow p-3 mb-5 bg-white rounded">
 						<!-- プロジェクト説明 -->
@@ -25,36 +38,67 @@
 								{{ $project->product_detail_3 }}<br>
 							</div>
 							<!-- 活動報告 -->
-							<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-							</div>
-							<!-- コメント -->
-							<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-							@foreach($users as $user)
-								<div class="comment_container row">
-									<div class="comment-user col-md-2">
-										@if($user->user_img != NULL)
-										<img class="user_image" src="../../storage/user_img/user_{{ $user->id }}/{{ $user->user_img }}" alt="user_image">
-										@else
-										<img class="default_user_image" src="../../storage/user_img/default/user_default_img.png" alt="default_user_image">
-										@endif
-										<div class="comment-screen_name">
-											{{$user->display}}
-										</div>
+							@foreach($reports as $report)
+							<div class="tab-pane fade" id="nav-report" role="tabpanel" aria-labelledby="nav-report-tab">
+								<div class="report_container border bg-light p-2">
+									<div class="report-heading mb-5">
+										<h5>{!! nl2br(e( $report->report_title )) !!}</h5>
 									</div>
-									<div class="comment-status col-md-10">
-										<div class="card my-2">
-											<div class="card-body">
-												<div class="comment-content pb-2">
-													{!! nl2br(e( $user->comment )) !!}
-												</div>
-												<div class="comment-created_at">
-													{{$user->created_at}}
+									<div class="report-area">
+										<div class="report-text_1">
+											{!! nl2br(e( $report->report_text_1 )) !!}
+										</div>
+											<img class="report-img_1" src="../../storage/planner_img/planner_{{ $report->planner_id }}/report_{{ $report->id }}/{{ $report->report_img_1 }}">
+										<!-- <div class="report-text_2">
+											{!! nl2br(e( $report->report_text_2 )) !!}
+										</div>
+											<img class="report-img_2" src="../../storage/planner_img/planner_{{ $report->planner_id }}/report_{{ $report->id }}/{{ $report->report_img_2 }}">
+										<div class="report-text_3">
+											{!! nl2br(e( $report->report_text_3 )) !!}
+										</div>
+										<img class="report-img_3" src="../../storage/planner_img/planner_{{ $report->planner_id }}/report_{{ $report->id }}/{{ $report->report_img_3 }}">
+										<div class="report-text_4">
+											{!! nl2br(e( $report->report_text_4 )) !!}
+										</div>
+										<img class="report-img_4" src="../../storage/planner_img/planner_{{ $report->planner_id }}/report_{{ $report->id }}/{{ $report->report_img_4 }}">
+									</div> -->
+									<div class="post_date font-weight-bold">
+										{{ $report->created_at }}
+									</div>
+								</div>
+							</div>
+						</div>
+							@endforeach
+							<!-- コメント -->
+							<div class="tab-pane fade" id="nav-comment" role="tabpanel" aria-labelledby="nav-comment-tab">
+								<div class="comment_container border bg-light p-2">
+								@foreach($users as $user)
+									<div class="row">
+										<div class="comment-user col-md-2">
+											@if($user->user_img != NULL)
+											<img class="user_image" src="../../storage/user_img/user_{{ $user->id }}/{{ $user->user_img }}" alt="user_image">
+											@else
+											<img class="default_user_image" src="../../storage/user_img/default/user_default_img.png" alt="default_user_image">
+											@endif
+											<div class="comment-screen_name">
+												{{$user->display}}
+											</div>
+										</div>
+										<div class="comment-status col-md-10">
+											<div class="card my-2">
+												<div class="card-body">
+													<div class="comment-content pb-2">
+														{!! nl2br(e( $user->comment )) !!}
+													</div>
+													<div class="comment-created_at">
+														{{$user->created_at}}
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
+								@endforeach
 								</div>
-							@endforeach
 							</div>
 						</div>
 					</div>
@@ -127,7 +171,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- リターンメニュー -->
+			<!-- リターンリスト -->
 			@for($i = 0; $i < count($rewards); $i++)
 			<div class="shadow-sm p-3 mb-5 bg-white rounded" style="width: 20rem;">
 				<h4 class="card-title">{!! nl2br(e( $rewards[$i]->rw_title )) !!}</h4>
