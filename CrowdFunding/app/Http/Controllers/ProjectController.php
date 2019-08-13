@@ -6,6 +6,7 @@ use App\Project;
 use App\Reward;
 use App\Support;
 use App\Planner;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -14,8 +15,13 @@ use Illuminate\Http\Request;
 class ProjectController extends Controller
 {
 	public function index (int $id) {
-		// プロジェクトを取得
+
 		$project = Project::find($id);
+		// プロジェクトidに紐づくユーザー情報とコメントを取得
+		$users = User::select()
+			->join('supports', 'supports.user_id', '=', 'users.id')
+			->where('pj_id', $id)
+			->get();
 		// プロジェクトIDに紐づくrewardsテーブルを取得
 		$rewards = $project->rewards;
 		// プロジェクトIDに紐づくplannersテーブルを取得
@@ -47,6 +53,7 @@ class ProjectController extends Controller
 		//view側へ値を渡す処理
 		return view('projects/project_description',
 		[
+			'users' => $users,
 			'planner' => $planner,
 			'project' => $project,
 			'total_amount' => $total_amount,

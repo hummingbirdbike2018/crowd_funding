@@ -262,6 +262,10 @@ th, td {
 	font-weight: bold;
 }
 
+img.user_image, img.default_user_image {
+	width: 36px;
+	height: 36px;
+}
 
 /* スマホ用スタイル */
 @media screen and (max-width: 767px) {

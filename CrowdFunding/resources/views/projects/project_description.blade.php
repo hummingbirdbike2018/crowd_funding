@@ -5,36 +5,63 @@
 		<h4 class="py-3 text-center" id="pj_title">{!! nl2br(e( $project->pj_title )) !!}</h4>
 	</div>
 	<div class="row">
-		<div class="col col-md-6">
-			<div class="main">
-			<nav>
-				<div class="nav nav-tabs" id="nav-tab" role="tablist">
-					<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">ホーム</a>
-					<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">活動報告</a>
-					<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">コメント</a>
-				</div>
-				<div class="shadow p-3 mb-5 bg-white rounded">
-					<!-- プロジェクト説明 -->
-					<div class="tab-content" id="nav-tabContent">
-						<div class="tab-pane fade show active " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-							<img class="mb-2" src="../../storage/product_img/project_{{$project->id}}/{{$project->product_img_1}}"><br>
-							{{ $project->product_detail_1 }}<br>
-							<img class="my-4" src="../../storage/product_img/project_{{$project->id}}/{{$project->product_img_2}}"><br>
-							{{ $project->product_detail_2 }}<br>
-							<img class="my-4" src="../../storage/product_img/project_{{$project->id}}/{{$project->product_img_3}}"><br>
-							{{ $project->product_detail_3 }}<br>
-						</div>
-						<!-- 活動報告 -->
-						<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-						</div>
-						<!-- コメント -->
-						<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+		<div class="col col-md-7">
+			<div class="tab-menu">
+				<nav>
+					<div class="nav nav-tabs" id="nav-tab" role="tablist">
+						<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">ホーム</a>
+						<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">活動報告</a>
+						<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">コメント</a>
+					</div>
+					<div class="shadow p-3 mb-5 bg-white rounded">
+						<!-- プロジェクト説明 -->
+						<div class="tab-content" id="nav-tabContent">
+							<div class="tab-pane fade show active " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+								<img class="mb-2" src="../../storage/product_img/project_{{$project->id}}/{{$project->product_img_1}}"><br>
+								{{ $project->product_detail_1 }}<br>
+								<img class="my-4" src="../../storage/product_img/project_{{$project->id}}/{{$project->product_img_2}}"><br>
+								{{ $project->product_detail_2 }}<br>
+								<img class="my-4" src="../../storage/product_img/project_{{$project->id}}/{{$project->product_img_3}}"><br>
+								{{ $project->product_detail_3 }}<br>
+							</div>
+							<!-- 活動報告 -->
+							<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+							</div>
+							<!-- コメント -->
+							<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+							@foreach($users as $user)
+								<div class="comment_container row">
+									<div class="comment-user col-md-2">
+										@if($user->user_img != NULL)
+										<img class="user_image" src="../../storage/user_img/user_{{ $user->id }}/{{ $user->user_img }}" alt="user_image">
+										@else
+										<img class="default_user_image" src="../../storage/user_img/default/user_default_img.png" alt="default_user_image">
+										@endif
+										<div class="comment-screen_name">
+											{{$user->display}}
+										</div>
+									</div>
+									<div class="comment-status col-md-10">
+										<div class="card my-2">
+											<div class="card-body">
+												<div class="comment-content pb-2">
+													{!! nl2br(e( $user->comment )) !!}
+												</div>
+												<div class="comment-created_at">
+													{{$user->created_at}}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							@endforeach
+							</div>
 						</div>
 					</div>
 				</nav>
 			</div>
 		</div>
-		<div class="col col-md-">
+		<div class="col col-md-5">
 			<div class="shadow-sm p-3 mb-5 bg-white rounded" style="width: 20rem;">
 				<!-- 達成率表示 -->
 				<div class="text text-muted">現在の支援総額</div>
@@ -102,29 +129,28 @@
 			</div>
 			<!-- リターンメニュー -->
 			@for($i = 0; $i < count($rewards); $i++)
-				<div class="shadow-sm p-3 mb-5 bg-white rounded" style="width: 20rem;">
-					<h4 class="card-title">{!! nl2br(e( $rewards[$i]->rw_title )) !!}</h4>
-					<p class="card-text rw_price">¥ {{ number_format($rewards[$i]->rw_price) }}</p>
-					<p class="card-text quantity">限定 {{ $rewards[$i]->rw_quantity }}個</p>
-					<img src="../../storage/product_img/project_{{$project->id}}/{{$rewards[$i]->rw_image }}"><br>
-					<p class="card-text mt-2">{!! nl2br(e( $rewards[$i]->rw_body )) !!}</p>
-					<span class="card-text">予定配送時期：{!! nl2br(e( $rewards[$i]->rw_season )) !!}</span>
-					<table class="table table-borderless">
-						<tbody>
-							<tr>
-								<td class="supporter">{{ $supporter_list[$i] }} 人が支援</td>
-								<td class="stock">残り {{ $stock_list[$i] }} 個</td>
-							</tr>
-						</tbody>
-					</table>
-					@if($stock_list[$i] != 0)
-						<a href="{{ $project->id.'/supports/'.$rewards[$i]->id }}" class="btn btn-primary">支援する</a>
-					@else
-						<a href="#" class="btn btn-primary disabled">SOLD OUT</a>
-					@endif
-				</div>
-			@endfor
+			<div class="shadow-sm p-3 mb-5 bg-white rounded" style="width: 20rem;">
+				<h4 class="card-title">{!! nl2br(e( $rewards[$i]->rw_title )) !!}</h4>
+				<p class="card-text rw_price">¥ {{ number_format($rewards[$i]->rw_price) }}</p>
+				<p class="card-text quantity">限定 {{ $rewards[$i]->rw_quantity }}個</p>
+				<img src="../../storage/product_img/project_{{$project->id}}/{{$rewards[$i]->rw_image }}"><br>
+				<p class="card-text mt-2">{!! nl2br(e( $rewards[$i]->rw_body )) !!}</p>
+				<span class="card-text">予定配送時期：{!! nl2br(e( $rewards[$i]->rw_season )) !!}</span>
+				<table class="table table-borderless">
+					<tbody>
+						<tr>
+							<td class="supporter">{{ $supporter_list[$i] }} 人が支援</td>
+							<td class="stock">残り {{ $stock_list[$i] }} 個</td>
+						</tr>
+					</tbody>
+				</table>
+				@if($stock_list[$i] != 0)
+					<a href="{{ $project->id.'/supports/'.$rewards[$i]->id }}" class="btn btn-primary">支援する</a>
+				@else
+					<a href="#" class="btn btn-primary disabled">SOLD OUT</a>
+				@endif
 			</div>
+		@endfor
 		</div>
 	</div>
 </div>
