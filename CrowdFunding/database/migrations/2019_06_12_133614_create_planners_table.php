@@ -25,6 +25,10 @@ class CreatePlannersTable extends Migration
 						$table->string('address');
 						$table->string('building');
 						$table->string('intro');
+						$table->string('facebook')->nullable();
+						$table->string('twitter')->nullable();
+						$table->string('instagram')->nullable();
+						$table->string('web_site')->nullable();
 						$table->integer('status')->default(1);
 						$table->string('dis_reason')->nullable();
 						$table->rememberToken();

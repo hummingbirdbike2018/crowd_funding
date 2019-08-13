@@ -102,14 +102,8 @@
 									<th scope="row">決済方法</th>
 									<td class="w-75">
 										クレジットカード決済
-										<ul class="card-brand">
-											<li><img src="/crowd_funding/CrowdFunding/public/storage/visa.gif"></li>
-											<li><img src="/crowd_funding/CrowdFunding/public/storage/jcb.gif"></li>
-											<li><img src="/crowd_funding/CrowdFunding/public/storage/master.gif"></li>
-											<li><img src="/crowd_funding/CrowdFunding/public/storage/ae.gif"></li>
-										</ul>
+										<img src="../../../../storage/payment/card_icon.png">
 										<p><small>募集期間内に支援が目標金額に達した場合のみ、クレジットカード決済が行われます</small>
-
 										<div class="form-check form-check-inline">
 											<label><input class="form-check-input" type="radio" v-on:change="handler" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>登録済みカードで決済</label>
 										</div>

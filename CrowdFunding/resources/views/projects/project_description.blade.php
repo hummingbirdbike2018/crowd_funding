@@ -1,19 +1,20 @@
 @extends('layouts.layout')
 @section('content')
-
-<div class="container bg-light">
+<div class="container">
 	<div class="heading-container">
 		<h4 class="py-3 text-center" id="pj_title">{!! nl2br(e( $project->pj_title )) !!}</h4>
 	</div>
 	<div class="row">
-		<div class="col col-md-7">
-			<div class="shadow-sm p-3 mb-5 bg-white rounded">
-				<nav>
-					<div class="nav nav-tabs" id="nav-tab" role="tablist">
-						<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">ホーム</a>
-						<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">活動報告</a>
-						<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">コメント</a>
-					</div>
+		<div class="col col-md-6">
+			<div class="main">
+			<nav>
+				<div class="nav nav-tabs" id="nav-tab" role="tablist">
+					<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">ホーム</a>
+					<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">活動報告</a>
+					<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">コメント</a>
+				</div>
+				<div class="shadow p-3 mb-5 bg-white rounded">
+					<!-- プロジェクト説明 -->
 					<div class="tab-content" id="nav-tabContent">
 						<div class="tab-pane fade show active " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 							<img class="mb-2" src="../../storage/product_img/project_{{$project->id}}/{{$project->product_img_1}}"><br>
@@ -23,16 +24,19 @@
 							<img class="my-4" src="../../storage/product_img/project_{{$project->id}}/{{$project->product_img_3}}"><br>
 							{{ $project->product_detail_3 }}<br>
 						</div>
+						<!-- 活動報告 -->
 						<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 						</div>
+						<!-- コメント -->
 						<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
 						</div>
 					</div>
 				</nav>
 			</div>
 		</div>
-		<div class="col col-md-5">
+		<div class="col col-md-">
 			<div class="shadow-sm p-3 mb-5 bg-white rounded" style="width: 20rem;">
+				<!-- 達成率表示 -->
 				<div class="text text-muted">現在の支援総額</div>
 				<strong>
 					<span class="text-black display-4v total_amount">¥{{ number_format($total_amount) }}</span>
@@ -63,6 +67,40 @@
 				<a href="{{ $project->id.'/supports/select' }}"  class="btn btn-primary">このプロジェクトを支援する</a><p>
 				<small>{{ $end_time }} までに目標金額に達すると、プロジェクトが成立となり、決済が完了します。</small>
 			</div>
+			<!-- 起案者情報 -->
+			<div class="planner_info shadow-sm p-3 mb-5 bg-white rounded" style="width: 20rem;">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="planner_img">
+							<img src="../../storage/planner_img/planner_{{ $planner->id }}/{{ $planner->planner_img }}"></div>
+					</div>
+					<div class="col-md-9">
+						<div class="planner_name mb-2">
+							{{ $planner->name }}
+						</div>
+						<div class="planner_intro">
+							{{ $planner->intro }}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="planner_sns">
+							<!-- <a href="{{ $planner->facebook }}" class="button btn-facebook btn-sm"><i class="fab fa-facebook-square"></i></a>
+							<a href="{{ $planner->twitter }}" class="button btn-twitter btn-sm"><i class="fab fa-twitter-square"></i></a>
+							<a href="{{ $planner->instagram }}" class="button btn-instagram btn-sm"><i class="fab fa-instagram"></i></a>
+							<a href="{{ $planner->web_site }}" class="button btn-web btn-sm"><i class="fas fa-globe-asia"></i></a> -->
+						</div>
+					</div>
+					<div class="col-md-9">
+						<div class="planner_btn">
+							<a href="planner_profile/{{ $planner->id }}" class="btn btn-secondary btn-sm my-2" role="button" aria-pressed="true">プロフィールを見る</a>
+							<a href="contact_planner/{{ $planner->id }}" class="btn btn-success btn-sm" role="button" aria-pressed="true">お問い合わせ</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- リターンメニュー -->
 			@for($i = 0; $i < count($rewards); $i++)
 				<div class="shadow-sm p-3 mb-5 bg-white rounded" style="width: 20rem;">
 					<h4 class="card-title">{!! nl2br(e( $rewards[$i]->rw_title )) !!}</h4>
@@ -86,6 +124,7 @@
 					@endif
 				</div>
 			@endfor
+			</div>
 		</div>
 	</div>
 </div>

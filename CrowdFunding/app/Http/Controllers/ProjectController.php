@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Project;
 use App\Reward;
 use App\Support;
+use App\Planner;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -15,9 +16,10 @@ class ProjectController extends Controller
 	public function index (int $id) {
 		// プロジェクトを取得
 		$project = Project::find($id);
-		// プロジェクトIDに紐づくリワードテーブルを取得
+		// プロジェクトIDに紐づくrewardsテーブルを取得
 		$rewards = $project->rewards;
-
+		// プロジェクトIDに紐づくplannersテーブルを取得
+		$planner = $project->planners;
 		$total_amount = Reward::where('pj_id', $id)->sum('rw_price'); // 総支援額
 		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
 		$stock_list     = array();		// Rewardごとの残り個数を格納する配列
@@ -45,6 +47,7 @@ class ProjectController extends Controller
 		//view側へ値を渡す処理
 		return view('projects/project_description',
 		[
+			'planner' => $planner,
 			'project' => $project,
 			'total_amount' => $total_amount,
 			'supporter_list' => $supporter_list,

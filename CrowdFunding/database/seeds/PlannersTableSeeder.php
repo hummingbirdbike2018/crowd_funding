@@ -24,7 +24,10 @@ class PlannersTableSeeder extends Seeder
 				'post_code' => '111-0000',
 				'address' => '東京都',
 				'building' => 'xxビル1F',
-				'intro' => '株式会社クラウドファンディングは創業〇〇年の歴史をもつ企業です。\r\n 革新的なサービス、プロダクトを皆様にご提供できるよう精進して参ります。',
+				// 'facebook' => 'https://www.facebook.com/yahoojapan/',
+				// 'web_site' => 'https://www.yahoo.co.jp',
+				'intro' => '株式会社クラウドファンディングは創業〇〇年の歴史をもつ企業です。
+				革新的なサービス、プロダクトを皆様にご提供できるよう精進して参ります。',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now(),
 					],
@@ -39,7 +42,8 @@ class PlannersTableSeeder extends Seeder
 					'post_code' => '111-0000',
 					'address' => '東京都',
 					'building' => 'xxビル1F',
-					'intro' => '株式会社クラウドファンディングは創業〇〇年の歴史をもつ企業です。\r\n 革新的なサービス、プロダクトを皆様にご提供できるよう精進して参ります。',
+					'intro' => '株式会社クラウドファンディングは創業〇〇年の歴史をもつ企業です。
+					革新的なサービス、プロダクトを皆様にご提供できるよう精進して参ります。',
 					'created_at' => Carbon::now(),
 					'updated_at' => Carbon::now(),
 					],
@@ -54,7 +58,8 @@ class PlannersTableSeeder extends Seeder
 					'post_code' => '111-0000',
 					'address' => '東京都',
 					'building' => 'xxビル1F',
-					'intro' => '株式会社クラウドファンディングは創業〇〇年の歴史をもつ企業です。\r\n 革新的なサービス、プロダクトを皆様にご提供できるよう精進して参ります。',
+					'intro' => '株式会社クラウドファンディングは創業〇〇年の歴史をもつ企業です。
+					革新的なサービス、プロダクトを皆様にご提供できるよう精進して参ります。',
 					'created_at' => Carbon::now(),
 					'updated_at' => Carbon::now(),
 				],
@@ -69,7 +74,8 @@ class PlannersTableSeeder extends Seeder
 				'post_code' => '111-0000',
 				'address' => '東京都',
 				'building' => 'xxビル1F',
-				'intro' => '株式会社クラウドファンディングは創業〇〇年の歴史をもつ企業です。\r\n 革新的なサービス、プロダクトを皆様にご提供できるよう精進して参ります。',
+				'intro' => '株式会社クラウドファンディングは創業〇〇年の歴史をもつ企業です。
+				革新的なサービス、プロダクトを皆様にご提供できるよう精進して参ります。',
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now(),
 				],

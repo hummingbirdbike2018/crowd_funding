@@ -16,7 +16,8 @@ class RewardsTableSeeder extends Seeder
 			[
 				'id' => 1,
 				'pj_id' => 1,
-				'rw_title' => '【音楽用無線モデル】Early Bird (41%OFF)',
+				'rw_title' => '【音楽用無線モデル】
+				Early Bird (41%OFF)',
 				'rw_body' => '無線モデルearsopen PEACE 左右1セット
 (製品カラーはブラック・ホワイトからお選びいただけます。)',
 				'rw_image' => 'reward1.png',
@@ -29,7 +30,8 @@ class RewardsTableSeeder extends Seeder
 			[
 				'id' => 2,
 				'pj_id' => 1,
-				'rw_title' => '【音楽用無線モデル】GREEN限定(30%OFF)',
+				'rw_title' => '【音楽用無線モデル】
+				GREEN限定(30%OFF)',
 				'rw_body' => '無線モデルearsopen PEACE 左右1セット
 (製品カラーはブラック・ホワイトからお選びいただけます。)',
 				'rw_image' => 'reward2.png',
@@ -42,7 +44,8 @@ class RewardsTableSeeder extends Seeder
 			[
 				'id' => 3,
 				'pj_id' => 1,
-				'rw_title' => '【音楽用無線モデル】Early Bird (41%OFF)',
+				'rw_title' => '【音楽用無線モデル】
+				Early Bird (41%OFF)',
 				'rw_body' => '無線モデルearsopen PEACE 左右1セット
 (製品カラーはブラック・ホワイトからお選びいただけます。)
 ※ご購入の際に在籍している学校名の入力が必要です。',
@@ -56,7 +59,8 @@ class RewardsTableSeeder extends Seeder
 			[
 				'id' => 4,
 				'pj_id' => 2,
-				'rw_title' => 'Standard（最終追加分）【20%OFF/11月発送】',
+				'rw_title' => 'Standard（最終追加分）
+				【20%OFF/11月発送】',
 				'rw_body' => 'BZ7005-74E',
 				'rw_image' => 'reward1.png',
 				'rw_quantity' => '1500',
@@ -68,7 +72,8 @@ class RewardsTableSeeder extends Seeder
 			[
 				'id' => 5,
 				'pj_id' => 2,
-				'rw_title' => 'Standard（最終追加分）【20%OFF/11月発送】',
+				'rw_title' => 'Standard（最終追加分）
+				【20%OFF/11月発送】',
 				'rw_body' => 'BZ7005-74X',
 				'rw_image' => 'reward2.png',
 				'rw_quantity' => '1500',
@@ -80,7 +85,8 @@ class RewardsTableSeeder extends Seeder
 			[
 				'id' => 6,
 				'pj_id' => 2,
-				'rw_title' => 'Standard（最終追加分）【20%OFF/11月発送】',
+				'rw_title' => 'Standard（最終追加分）
+				【20%OFF/11月発送】',
 				'rw_body' => 'BZ7007-61E',
 				'rw_image' => 'reward3.png',
 				'rw_quantity' => '1500',
@@ -128,7 +134,8 @@ class RewardsTableSeeder extends Seeder
 			[
 				'id' => 10,
 				'pj_id' => 4,
-				'rw_title' => 'Early Bird 「CR-M1」 限定200個 23%OFF',
+				'rw_title' => 'Early Bird 「CR-M1」
+				限定200個 23%OFF',
 				'rw_body' => 'Artio CR-M1',
 				'rw_image' => 'reward1.jpg',
 				'rw_quantity' => '200',
@@ -140,7 +147,8 @@ class RewardsTableSeeder extends Seeder
 			[
 				'id' => 11,
 				'pj_id' => 4,
-				'rw_title' => 'Value Plus「CR-M1」 限定300個 17%OFF',
+				'rw_title' => 'Value Plus「CR-M1」
+				限定300個 17%OFF',
 				'rw_body' => 'Artio CR-M1',
 				'rw_image' => 'reward2.jpg',
 				'rw_quantity' => '300',
@@ -152,7 +160,8 @@ class RewardsTableSeeder extends Seeder
 			[
 				'id' => 12,
 				'pj_id' => 4,
-				'rw_title' => 'Value Plus「CR-V1」 限定300個 20%OFF',
+				'rw_title' => 'Value Plus「CR-V1」
+				限定300個 20%OFF',
 				'rw_body' => 'Artio CR-V1',
 				'rw_image' => 'reward3.jpg',
 				'rw_quantity' => '300',
@@ -164,7 +173,8 @@ class RewardsTableSeeder extends Seeder
 			[
 				'id' => 13,
 				'pj_id' => 5,
-				'rw_title' => '【限定各200個】BASECAMP 既製モデル 13%OFF',
+				'rw_title' => '【限定各200個】
+				BASECAMP 既製モデル 13%OFF',
 				'rw_body' => 'BASECAMP 既製モデル 1本
 ※カスタマイズできないモデルとなります。いずれもムーブメントのカレンダーは黒背景でのご用意。',
 				'rw_image' => 'reward1.jpg',
@@ -190,7 +200,8 @@ class RewardsTableSeeder extends Seeder
 			[
 				'id' => 15,
 				'pj_id' => 5,
-				'rw_title' => '【限定200枚】BASECAMP カスタマイズチケット（10%OFF）',
+				'rw_title' => '【限定200枚】
+				BASECAMP カスタマイズチケット（10%OFF）',
 				'rw_body' => 'BASECAMPのカスタマイズチケットをお送りいたします。
 お客様でカスタマイズモデルを完成させていただきます。いずれもムーブメントのカレンダーは黒背景でのご用意。',
 				'rw_image' => 'reward3.jpg',
@@ -203,7 +214,8 @@ class RewardsTableSeeder extends Seeder
 			[
 				'id' => 16,
 				'pj_id' => 6,
-				'rw_title' => 'GREEN限定価格「MHaudio UA-1」(10%OFF)',
+				'rw_title' => 'GREEN限定価格
+				「MHaudio UA-1」(10%OFF)',
 				'rw_body' => '・「MHaudio UA-1」1台
 ※価格は税・送料込みの総額となります。',
 				'rw_image' => 'reward1.jpg',
@@ -216,7 +228,8 @@ class RewardsTableSeeder extends Seeder
 			[
 				'id' => 17,
 				'pj_id' => 6,
-				'rw_title' => '「MHaudio UA-1」聴き比べ替球セット(14%OFF)',
+				'rw_title' => '「MHaudio UA-1」
+				聴き比べ替球セット(14%OFF)',
 				'rw_body' => '「MHaudio UA-1」
 交換用真空管(プランにより種類・個数が異なります)
 ※プランの詳細については、本文をご確認ください。
@@ -231,7 +244,8 @@ class RewardsTableSeeder extends Seeder
 			[
 				'id' => 18,
 				'pj_id' => 6,
-				'rw_title' => 'カスタムモデル「MHaudio UA-1」(14%OFF)',
+				'rw_title' => 'カスタムモデル
+				「MHaudio UA-1」(14%OFF)',
 				'rw_body' => '「MHaudio UA-1」
 カスタムモデル各種
 ※プランの詳細については、本文をご確認ください。
@@ -246,7 +260,8 @@ class RewardsTableSeeder extends Seeder
 			[
 				'id' => 19,
 				'pj_id' => 7,
-				'rw_title' => '特割！LIMITED VALUE PLUS・ 限定70個【25% OFF】',
+				'rw_title' => '特割！LIMITED VALUE PLUS
+				 限定70個【25% OFF】',
 				'rw_body' => '本体価格：
 18,900円→14,100円（25%OFF）
 

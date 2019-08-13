@@ -19,6 +19,7 @@
 				 </div>
 			 </div>
 			 <nav aria-label="...">
+				 <!-- ページネーション -->
 				 <ul class="pagination">
 					 <li class="page-item disabled">
 						 <a class="page-link" href="#" tabindex="-1">戻る</a>

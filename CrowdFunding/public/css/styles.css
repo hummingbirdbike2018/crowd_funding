@@ -16,6 +16,12 @@ img {
 	max-width: 100%
 }
 
+th, td {
+	text-align: left;
+	vertical-align: top;
+	font-weight: normal;
+}
+
 .navbar.transparent.navbar-inverse .navbar-inner {
 	 background: rgba(0,0,0,0.4);
 }
@@ -191,6 +197,21 @@ img {
 	zoom:1;
 }
 
+.nav-tabs .nav-link.active {
+	border-radius: 0;
+	background-color: white;
+}
+
+.nav-tabs .nav-link {
+	border-radius: 0;
+	background-color: #e6e8e8;
+	margin-right: 0.1rem;
+	color:black;
+}
+.nav-tabs {
+	border-bottom: 0;
+}
+
 .card-title {
 	font-size: normal;
 }
@@ -229,16 +250,19 @@ img {
 	font-size: x-large;
 }
 
-.card-brand {
-	display: inline;
-	list-style: none;
+.planner_name, .planner_intro {
+	font-size: small;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
 }
 
-.nav-link {
-	border: 1px solid transparent;
-		border-top-left-radius: 0.25rem;
-		border-top-right-radius: 0.25rem;
+.planner_name {
+	font-weight: bold;
 }
+
+
 /* スマホ用スタイル */
 @media screen and (max-width: 767px) {
 
