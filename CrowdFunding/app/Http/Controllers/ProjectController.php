@@ -27,7 +27,8 @@ class ProjectController extends Controller
 		// プロジェクトIDに紐づくrewardsテーブルを取得
 		$rewards = $project->rewards;
 		// プロジェクトIDに紐づくplannersテーブルを取得
-		$planner = $project->planners;
+		$planner = Planner::where('id', $project->planner_id)->first();
+
 		$total_amount = Reward::where('pj_id', $id)->sum('rw_price'); // 総支援額
 		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
 		$stock_list     = array();		// Rewardごとの残り個数を格納する配列
