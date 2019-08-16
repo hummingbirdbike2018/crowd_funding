@@ -2,13 +2,6 @@
 @section('content')
 
 <div class="container ">
-	<!-- パンくずリスト -->
-	<nav aria-label="breadcrumb">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{{ url('/') }}">TOP</a></li>
-			<li class="breadcrumb-item active" aria-current="page">掲載に関するご相談</li>
-		</ol>
-	</nav>
 	<ul class="nav nav-pills my-3 active" id="pills-tab" role="tablist">
 		<li class="nav-item">
 			<a class="nav-link active show" id="pills-products-tab" data-toggle="pill" href="#pills-products" role="tab" aria-controls="pills-products" aria-selected="true">起案に関するお問い合わせ(プロダクト系)</a>

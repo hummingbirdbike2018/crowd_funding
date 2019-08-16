@@ -1,6 +1,22 @@
 @extends('layouts.layout')
 @section('content')
-	<div class="top_bannner mb-5"></div>
+	<div class="top_bannner mb-5">
+		<div class="cover-text">
+			<h2>繋がる・叶える、資金集めを始めよう！</h2>
+			<h5>　　　　クラウドファンディングプラットフォーム</h5>
+		</div>
+		<div class="cover-btn">
+			@guest
+			<a class="btn cover_btn_1" href="#Register" data-toggle="modal" data-target="#RegisterModal">さっそく始める</a>
+			<a class="btn cover_btn_2" href="#Login" data-toggle="modal" data-target="#LoginModal">登録済みの方はこちら</a>
+			@else
+			<form class="form-inline search-form">
+				<input type="search" class="form-control mr-2" placeholder="プロジェクトを検索" aria-label="検索...">
+				<button type="submit" class="btn btn-primary">検索</button>
+			 </form>
+			@endguest
+		</div>
+	</div>
 	<div class="block_col">
 		<h2 class="block_title">PROJECTS<span class="sub_title">プロジェクト一覧</span></h2>
 	</div>
