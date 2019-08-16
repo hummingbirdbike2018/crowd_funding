@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html lang="ja">
-	<head>
+<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<title>{{ config('app.name', 'Laravel') }}</title>
@@ -14,7 +14,8 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<!-- script -->
 		<script src="{{ asset('js/app.js') }}" defer></script>
-	<body>
+</head>
+<body>
 		<header>
 			<div id="app">
 				<nav class="navbar navbar-expand-md navbar-dark bg-primary l-header">
@@ -208,7 +209,6 @@
 					</div>
 				</div>
 			</div>
-
 		</header>
 		<!-- フラッシュメッセージ -->
 		@if (session('flash_message'))
@@ -230,6 +230,6 @@
 		<footer>
 			@yield('footer')
 		</footer>
-	</head>
-	</body>
+</head>
+</body>
 </html>

@@ -34,6 +34,8 @@ class SupportController extends Controller
 			$itr++;
 		}
 
+		// プロジェクトの開始日
+		$start_day = new Carbon($project->created_at);
 		// プロジェクトの終了日
 		$end_day = new Carbon($project->created_at);
 		$end_day->addDay($project->period);
@@ -81,7 +83,8 @@ class SupportController extends Controller
 		$end_day->addDay($project->period);
 		$end_day_str = date_format($end_day , 'Y年m月d日');
 		$end_time = $end_day_str.'23:59';									// 終了までの日数
-		$period = $start_day->diffInDays($end_day); 						// 残り日数
+		$now_datetime = Carbon::now();
+		$period = $end_day->diffInDays($now_datetime);						// 残り日数
 		$target_amount = $project->target_amount; 							// 目標金
 		$percent_complete = floor($total_amount / $target_amount * 100);	// 達成率
 		$supporter =  Support::where('reward_id', $reward_id)->count();//支援者数

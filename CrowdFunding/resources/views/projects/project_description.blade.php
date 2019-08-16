@@ -40,34 +40,19 @@
 							<!-- 活動報告 -->
 							@foreach($reports as $report)
 							<div class="tab-pane fade" id="nav-report" role="tabpanel" aria-labelledby="nav-report-tab">
-								<div class="report_container border bg-light p-2">
-									<div class="report-heading mb-5">
-										<h5>{!! nl2br(e( $report->report_title )) !!}</h5>
-									</div>
-									<div class="report-area">
-										<div class="report-text_1">
-											{!! nl2br(e( $report->report_text_1 )) !!}
+								<div class="container">
+									<div class="card">
+										<h5 class="card-header report_title">{{ $report->report_title }}</h5>
+										<div class="card-body">
+											<div class="card-text">
+												{!! nl2br(e( $report->report_text_1 )) !!}
+												<img class="report-img_1 disabled" src="../../storage/planner_img/planner_{{ $report->planner_id }}/report_{{ $report->id }}/{{ $report->report_img_1 }}">
+												{{ $report->created_at }}
+											</div>
 										</div>
-											<img class="report-img_1" src="../../storage/planner_img/planner_{{ $report->planner_id }}/report_{{ $report->id }}/{{ $report->report_img_1 }}">
-										<!-- <div class="report-text_2">
-											{!! nl2br(e( $report->report_text_2 )) !!}
-										</div>
-											<img class="report-img_2" src="../../storage/planner_img/planner_{{ $report->planner_id }}/report_{{ $report->id }}/{{ $report->report_img_2 }}">
-										<div class="report-text_3">
-											{!! nl2br(e( $report->report_text_3 )) !!}
-										</div>
-										<img class="report-img_3" src="../../storage/planner_img/planner_{{ $report->planner_id }}/report_{{ $report->id }}/{{ $report->report_img_3 }}">
-										<div class="report-text_4">
-											{!! nl2br(e( $report->report_text_4 )) !!}
-										</div>
-										<img class="report-img_4" src="../../storage/planner_img/planner_{{ $report->planner_id }}/report_{{ $report->id }}/{{ $report->report_img_4 }}">
-									</div> -->
-									<div class="post_date font-weight-bold">
-										{{ $report->created_at }}
 									</div>
 								</div>
 							</div>
-						</div>
 							@endforeach
 							<!-- コメント -->
 							<div class="tab-pane fade" id="nav-comment" role="tabpanel" aria-labelledby="nav-comment-tab">
