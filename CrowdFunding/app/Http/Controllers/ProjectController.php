@@ -22,16 +22,16 @@ class ProjectController extends Controller
 			->join('supports', 'supports.user_id', '=', 'users.id')
 			->where('pj_id', $id)
 			->get();
-		// リワードテーブルとサポートテーブルを結合する
-		$rewards = Reward::select()
-			->join('supports', 'supports.reward_id', '=', 'rewards.id')
-			->get();
 		// プロジェクトIDに紐づくreportsテーブルを取得
 		$reports = $project->reports;
+		//プロジェクトIDに紐づくrewardsテーブルを取得
+		$rewards = $project->rewards;
 		// プロジェクトIDに紐づくplannersテーブルを取得
 		$planner = Planner::where('id', $project->planner_id)->first();
-
-		$total_amount = $rewards->where('pj_id', $id)->sum('rw_price'); // 総支援額
+		 // 総支援額
+		$total_amount = Reward::select()
+				->join('supports', 'supports.reward_id', '=', 'rewards.id')
+				->sum('rw_price');
 		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
 		$stock_list     = array();		// Rewardごとの残り個数を格納する配列
 		$itr = 1;

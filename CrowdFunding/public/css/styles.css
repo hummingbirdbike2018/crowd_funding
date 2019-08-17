@@ -230,11 +230,6 @@ i {
 	background: rgba(0, 92, 180, 1);
 }
 
-.search-form {
-	position: absolute;
-	top: 13rem;
-	left: 40rem;
-}
 
 .block_title {
 	font-weight: bold;
@@ -416,6 +411,11 @@ img.user_image, img.default_user_image {
 	-webkit-line-clamp: 3;
 }
 
+.search-form {
+	position: absolute;
+	top: 13rem;
+	left: 40rem;
+
 /* スマホ用スタイル */
 @media screen and (max-width: 767px) {
 
@@ -423,7 +423,3 @@ img.user_image, img.default_user_image {
 	.cbox-inner {
 		width:48%;
 	}
-
-
-
-}

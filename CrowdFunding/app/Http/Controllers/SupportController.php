@@ -21,10 +21,12 @@ class SupportController extends Controller
 	{
 		// プロジェクトを取得
 		$project = Project::find($id);
-		// プロジェクトIDに紐づくリワードテーブルを取得
-		$reward = Reward::where('pj_id', $id)->get();
-
-		$total_amount = Reward::where('pj_id', $id)->sum('rw_price'); // 総支援額
+		//プロジェクトIDに紐づくrewardsテーブルを取得
+		$reward = $project->rewards;
+		// 総支援額
+		$total_amount = Reward::select()
+				->join('supports', 'supports.reward_id', '=', 'rewards.id')
+				->sum('rw_price');
 		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
 		$stock_list     = array();		// Rewardごとの残り個数を格納する配列
 		$itr = 1;
@@ -64,14 +66,16 @@ class SupportController extends Controller
 	{
 		// プロジェクトを取得
 		$project = Project::find($id);
-		// 選択されたリターンIDに紐づくリワードテーブルを取得
+		//プロジェクトIDに紐づくrewardsテーブルを取得
 		$reward = Reward::where('id', $reward_id)->get();
+		$reward_list = $project->rewards;
 		// 総支援額
-		$total_amount = Reward::where('pj_id', $id)->sum('rw_price');
-
+		$total_amount = Reward::select()
+				->join('supports', 'supports.reward_id', '=', 'rewards.id')
+				->sum('rw_price');
 		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
 		$itr = 1;
-		for($i = 0; $i < $reward->count(); $i++) {
+		for($i = 0; $i < $reward_list->count(); $i++) {
 			$supporter_list[] = Support::where('reward_id', $itr)->get()->count();
 			$itr++;
 		}
@@ -91,22 +95,13 @@ class SupportController extends Controller
 		$user = User::Where('id', Auth::id())->get(); //usersテーブルからIDに紐づくユーザ情報を取得
 		$payment = Card::where('user_id', Auth::id())->get();//card_infoテーブルからIDに紐づくカード情報を取得
 		$rewards = $project->rewards;// プロジェクトIDに紐づくリワードテーブルを取得
-		$total_amount = Reward::where('pj_id', $id)->sum('rw_price'); // 総支援額
-		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
 		$stock_list     = array();		// Rewardごとの残り個数を格納する配列
-		$id = 1;
-		for($i = 0; $i < $rewards->count(); $i++)
-		{
-			$supporter_list[] = Support::where('reward_id', $id)
-				->where('pj_id', $id)->count();
-			$stock_list[] = $rewards[$i]['rw_quantity'] - $supporter_list[$i];
-			$id++;
-		}
 
 		return view('projects.selected_support',
 		[
 			'project' => $project,
 			'total_amount' => $total_amount,
+
 			'supporter_list' => $supporter_list,
 			'period' => $period,
 			'end_time' => $end_time,
