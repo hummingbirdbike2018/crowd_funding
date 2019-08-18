@@ -15,6 +15,8 @@
 Route::get('/', 'HomeController@index')->name('top');
 //利用規約
 Route::get('/terms', function () { return view('terms'); });
+//サイト紹介
+Route::get('/site_info', function () { return view('site_info'); });
 //プロジェクトページ
 Route::get('/projects/{id}', 'ProjectController@index')->name('project.top');
 
