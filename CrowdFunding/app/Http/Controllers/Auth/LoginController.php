@@ -48,8 +48,7 @@ class LoginController extends Controller
 	*/
 	protected function authenticated(Request $request)
 	{
-		// ログインしたら、TOPへ移動
-		return redirect('/')->with('flash_message', __('ログインしました。'));
+		return back()->with('flash_message', __('ログインしました。'));
 	}
 
 	/**
@@ -66,15 +65,4 @@ class LoginController extends Controller
 		// ログアウトしたら、TOPへ移動
 		return $this->loggedOut($request) ?: redirect('/')->with('flash_message', __('ログアウトしました。'));
 	}
-
-	/**
-	 * ログインした時のリダイレクト先
-	 * Where to redirect users after login.
-	 *
-	 * @var string
-	 */
-	// protected function redirectTo() {
-	// 	session()->flash('msg_success', 'ログインしました');
-	// 	return '/';
-	// }
 }

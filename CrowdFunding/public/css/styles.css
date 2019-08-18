@@ -8,8 +8,34 @@ html, body {
 	position: relative; */
 }
 
-main, .flash-massage {
+main {
 	/* margin-top: 75px; */
+}
+
+.l-flash {
+	position: fixed;
+	z-index: 10;
+	top: 60px;
+	width: 100%;
+	padding: 18px 0;
+	background-color: #199086;
+	color: #fff;
+	font-size: 150%;
+	opacity: .8;
+	text-align: center;
+}
+
+.l-flash-err {
+	position: fixed;
+	z-index: 10;
+	top: 60px;
+	width: 100%;
+	padding: 18px 0;
+	background-color: #FF3366;
+	color: #fff;
+	font-size: 150%;
+	opacity: .8;
+	text-align: center;
 }
 
 img {
@@ -442,3 +468,4 @@ a.dropdown-item {
 	.cbox-inner {
 		width:48%;
 	}
+}

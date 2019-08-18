@@ -49,6 +49,7 @@
 					<a href="./projects/{{$project->id}}"></a>
 				</div>
 			@endforeach
+		</div>
 	</div>
 	<!-- 新着プロジェクト一覧 -->
 	<!-- <div class="block_col mt-5">

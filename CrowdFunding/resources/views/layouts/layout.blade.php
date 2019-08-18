@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="ja">
-<head>
+	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- CSRF Token -->
@@ -14,17 +14,17 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 		<!-- script -->
 		<script src="{{ asset('js/app.js') }}" defer></script>
-</head>
-<body>
+	</head>
+	<body>
 		<header>
 			<nav class="navbar navbar-expand-md navbar-dark l-header fixed-top">
 				<a class="navbar-brand" href="{{ url('/') }}">
 					<img alt="ロゴ" src="/crowd_funding/CrowdFunding/public/img/logo.png" width="110" height="40"></a>
 				<div class="collapse navbar-collapse" id="navbar-header">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item"><a class="nav-link active" href="site_info">当サイトについて</a></li>
-						<li class="nav-item"><a class="nav-link" a href="draft">掲載について</a></li>
-						<li class="nav-item"><a class="nav-link" a href="contact">お問い合わせ</a></li>
+						<li class="nav-item"><a class="nav-link active" href="{{ url('/site_info') }}">当サイトについて</a></li>
+						<li class="nav-item"><a class="nav-link" a href="{{ url('/draft') }}">掲載について</a></li>
+						<li class="nav-item"><a class="nav-link" a href="{{ url('/contact') }}">お問い合わせ</a></li>
 					</ul>
 					<ul class="navbar-nav ml-auto">
 					@guest
@@ -110,7 +110,7 @@
 								</div>
 								<div class="form-group row mb-0">
 									<div class="col-md-6 offset-md-3 btn-group-sm">
-										<button type="submit" class="btn modal-btn">
+										<button id="submitLogin" type="submit" class="btn modal-btn">
 											{{ __('ログイン') }}
 										</button>
 										@if (Route::has('password.request'))
@@ -188,17 +188,17 @@
 		</header>
 		<!-- フラッシュメッセージ -->
 		@if (session('flash_message'))
-			<div class="container flash-massage">
-				<div class="alert alert-success">
-					{{ session('flash_message') }}
-				</div>
+		<div class="flash flash-notice l-flash">
+			<div class="container">
+				{{ session('flash_message') }}
 			</div>
+		</div>
 		@elseif (session('flash_err_message'))
-			<div class="container flash-massage">
-				<div class="alert alert-danger">
-					{{ session('flash_err_message') }}
-				</div>
+		<div class="flash flash-notice l-flash-err">
+			<div class="container">
+				{{ session('flash_err_message') }}
 			</div>
+		</div>
 		@endif
 		<main>
 			@yield('content')
@@ -206,6 +206,13 @@
 		<footer>
 			@yield('footer')
 		</footer>
-</head>
-</body>
+	</body>
 </html>
+
+@if(Session::has('errors'))
+	<!-- <script>
+	$(document).ready(function(){
+		$('#LoginModal').modal({show: true});
+	});
+	</script> -->
+@endif

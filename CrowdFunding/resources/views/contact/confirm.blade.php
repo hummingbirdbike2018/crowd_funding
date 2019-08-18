@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.layout')
 @section('title','お問い合わせ内容の確認')
 
 @section('content')
