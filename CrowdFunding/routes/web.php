@@ -22,7 +22,7 @@ Route::get('/projects/{id}', 'ProjectController@index')->name('project.top');
 
 Route::get('/draft', 'DraftController@index')->name('draft');
 Route::post('/draft/confirm', 'DraftController@confirm')->name('confirm');
-Route::post('/draft/complete', 'DraftController@confirm')->name('complete');
+Route::post('/draft/complete', 'DraftController@complete')->name('complete');
 
 Route::group(['middleware' => ['auth']], function() {
 	//会員情報変更

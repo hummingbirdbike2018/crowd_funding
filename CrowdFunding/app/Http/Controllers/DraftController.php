@@ -9,7 +9,7 @@ class DraftController extends Controller
 {
 	public function index()
 	{
-			return view('draft');
+		return view('draft.draft');
 	}
 
 	//プロダクト系起案フォームデータ処理
@@ -42,7 +42,6 @@ class DraftController extends Controller
 	//プロダクト以外起案フォームデータ処理
 	public function store2(Request $request)
 	{
-
 		//インスタンス
 		$draft = new Draft();
 
@@ -69,13 +68,11 @@ class DraftController extends Controller
 
 	public function confirm()
 	{
-			return view('draft.confirm');
+		return view('draft.confirm');
 	}
 
 	public function complete()
 	{
-			return view('draft.complete');
+		return view('draft.complete');
 	}
-
-
 }

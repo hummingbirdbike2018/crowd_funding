@@ -15,7 +15,7 @@
 			<!-- プロダクト起案フォーム -->
 			<div class="border bg-light rounded p-4 shadow p-3 mb-5 w-90 p-3 ">
 				<div class= "container">
-					<form action="{{ 'draft/store' }}" method="POST">
+					<form action="draft/confirm" method="POST">
 						@csrf
 						<div class="contact_form row">
 							<div class= "contact_form is_products w-75 ">
@@ -67,7 +67,7 @@
 			<!-- プロダクト以外 -->
 			<div class="border bg-light rounded p-4 shadow p-3 mb-5 w-90 p-3 ">
 				<div class= "container">
-					<form action="{{ 'store' }}" method="POST">
+					<form action="draft/confirm" method="POST">
 						@csrf
 						<div class="contact_form row">
 							<div class= "contact_form is_no_products w-75 ">
