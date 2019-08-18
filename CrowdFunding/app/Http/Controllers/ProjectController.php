@@ -31,7 +31,9 @@ class ProjectController extends Controller
 		 // 総支援額
 		$total_amount = Reward::select()
 				->join('supports', 'supports.reward_id', '=', 'rewards.id')
+				->where('rewards.pj_id', $id)
 				->sum('rw_price');
+
 		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
 		$stock_list     = array();		// Rewardごとの残り個数を格納する配列
 		$itr = 1;
