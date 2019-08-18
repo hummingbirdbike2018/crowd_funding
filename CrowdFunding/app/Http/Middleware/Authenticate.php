@@ -16,7 +16,7 @@ class Authenticate extends Middleware
 	{
 		if (!$request->expectsJson()) {
 			$request->session()->flash('flash_err_message', __('ログインしてください。'));
-			return route('top');
+			return url()->previous();
 		}
 	}
 }
