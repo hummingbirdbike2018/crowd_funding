@@ -304,6 +304,17 @@ i {
 	zoom:1;
 }
 
+.pj_img {
+	position: relative;
+}
+
+.project-successs-bar {
+	background-image: url('../img/successs.png');
+	/* position: absolute; */
+	top: 0;
+	left: 0;
+}
+
 .select-reward {
 	position: relative;
 	z-index: 1;
@@ -415,7 +426,15 @@ img.user_image, img.default_user_image {
 	position: absolute;
 	top: 13rem;
 	left: 40rem;
+}
 
+.dropdown-menu.show {
+	background: rgba(0, 0, 0, 0.8);
+	}
+
+a.dropdown-item {
+	color: white;
+}
 /* スマホ用スタイル */
 @media screen and (max-width: 767px) {
 
