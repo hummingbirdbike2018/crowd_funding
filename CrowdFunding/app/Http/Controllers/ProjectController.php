@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 class ProjectController extends Controller
 {
 	public function index (int $id) {
-
+		// プロジェクトidに紐づくプロジェクトテーブルを取得する
 		$project = Project::find($id);
 		// プロジェクトidに紐づくユーザー情報とコメントを取得
 		$users = User::select()
