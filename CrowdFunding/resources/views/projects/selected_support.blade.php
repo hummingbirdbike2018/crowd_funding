@@ -138,25 +138,20 @@
 								<tr v-if="show">
 									<th scope="row">有効期限</th>
 									<td class="w-75">
-										<!-- <div class="form-group row">
+										<div class="form-group row">
 											<div class="col">
 												<select class="custom-select rounded-0" name="exp_mon">
-													<option value="0">test</option>
+													@foreach($exp_mon as $mon)
+													<option value="{{$mon}}">{{$mon}}</option>
+													@endforeach
 												</select>
 											</div>/
 											<div class="col">
 												<select class="custom-select rounded-0" name="exp_year">
-													<option value="0">test</option>
+													@foreach($exp_year as $year)
+													<option value="{{$year}}">{{$year}}</option>
+													@endforeach
 												</select>
-											</div>
-										</div> -->
-
-										<div class="form-group row">
-											<div class="col">
-												<input type="text" name="exp_mon" class="form-control rounded-0" value="{{ old('exp_mon') }}" placeholder="MM">
-											</div>/
-											<div class="col">
-												<input type="text" name="exp_year" class="form-control rounded-0" value="{{ old('exp_year') }}" placeholder="YY">
 											</div>
 										</div>
 									</td>
