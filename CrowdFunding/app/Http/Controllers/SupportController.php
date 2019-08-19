@@ -73,11 +73,12 @@ class SupportController extends Controller
 		// 総支援額
 		$total_amount = Reward::select()
 				->join('supports', 'supports.reward_id', '=', 'rewards.id')
+				->where('rewards.pj_id', $id)
 				->sum('rw_price');
 		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
 		$itr = 1;
 		for($i = 0; $i < $reward_list->count(); $i++) {
-			$supporter_list[] = Support::where('reward_id', $itr)->get()->count();
+			$supporter_list[] = Support::where('reward_id', $itr)->where('pj_id', $id)->get()->count();
 			$itr++;
 		}
 
