@@ -1,5 +1,4 @@
 @extends('layouts.layout')
-
 @section('content')
 
 <div id="payment">
@@ -9,10 +8,9 @@
 		</div>
 		<div class="row">
 			<div class="col-md-7">
-			@foreach($rewards as $reward)
 				<form action="{{ $reward->id.'/confirm' }}" method="POST" enctype="multipart/form-data">
-					<h3 class="py-3" id="pj_title"></h3>
 					<div class="shadow-sm p-3 mb-5 bg-white rounded">
+						<!-- 支援内容 -->
 						<p class="py-3 " id="selected_reward">支援内容</p>
 						<div class="reward_container">
 							<table class="table selected_reward_table">
@@ -20,81 +18,84 @@
 									<th scope="row"><img src="../../../../storage/product_img/project_{{$reward->pj_id}}/{{$reward->rw_image }}"></th>
 									<td>
 										<h5 class="card-title">{!! nl2br(e( $reward->rw_title )) !!}</h5>
-											<input type="hidden" name="rw_title" class="" value="{{ $reward->rw_title }}">
+										<input type="hidden" name="rw_title" class="" value="{{ $reward->rw_title }}">
 										<p class="quantity">限定 {{ $reward->rw_quantity }} 個</p>
-											<input type="hidden" name="rw_quantity" class="" value="{{ $reward->rw_quantity }}">
+										<input type="hidden" name="rw_quantity" class="" value="{{ $reward->rw_quantity }}">
 										<p class="rw_price">¥ {{ number_format($reward->rw_price) }}</p>
-											<input type="hidden" name="rw_price" class="" value="¥ {{ number_format($reward->rw_price) }}">
-										<p>{{ $reward->rw_body }}
-											<input type="hidden" name="rw_body" class="" value="{{ $reward->rw_body }}">
-										<p>予定配送時期 {{ $reward->rw_season }}
-											<input type="hidden" name="rw_season" class="" value="{{ $reward->rw_season }}">
-										<p class="supporter">{{  $supporter }} 人が支援
-											<input type="hidden" name="supporter" class="" value="{{ $reward->supporter }}">
-										<p class="stock">残り {{ $reward->rw_quantity - $supporter }} 個
-											<input type="hidden" name="stock" class="" value="{{ $reward->rw_quantity - $supporter }}">
+										<input type="hidden" name="rw_price" class="" value="¥ {{ number_format($reward->rw_price) }}">
+										<p>{{ $reward->rw_body }}</p>
+										<input type="hidden" name="rw_body" class="" value="{{ $reward->rw_body }}">
+										<p>予定配送時期 {{ $reward->rw_season }}</p>
+										<input type="hidden" name="rw_season" class="" value="{{ $reward->rw_season }}">
+										<p class="supporter">{{  $supporter }} 人が支援</p>
+										<input type="hidden" name="supporter" class="" value="{{ $reward->supporter }}">
+										<p class="stock">残り {{ $reward->rw_quantity - $supporter }} 個</p>
+										<input type="hidden" name="stock" class="" value="{{ $reward->rw_quantity - $supporter }}">
 									</td>
 								</tr>
 							</table>
 							<a  class="float-right" href="{{'select'}}">リターンを変更する</a>
 							<table class="table selected_reward_misc">
 								<thead class="thead-light">
-									<tr>
-										<th scope="row">支援額</th>
-										<td>¥　{{ number_format($reward->rw_price) }}</td>
-			@endforeach
-									</tr>
-									<tr>
-										<th scope="row">コメント</th>
-										<td class="w-75">
-											<textarea class="w-75" name="comment" value="{{ old('comment') }}" placeholder="例：応援しています。"  cols="50" rows="3"></textarea><br>
-											<small class="text-danger">※記載したコメントと登録名は、支援したプロジェクトページの「応援コメント」欄に掲載されますので、個人情報に関する投稿はお控え下さい。</samll>
-										</td>
-									</tr>
+								<tr>
+									<th scope="row">支援額</th>
+									<td>¥　{{ number_format($reward->rw_price) }}</td>
+								</tr>
+								<tr>
+									<th scope="row">コメント</th>
+									<td class="w-75">
+										<textarea class="w-75" name="comment" value="{{ old('comment') }}" placeholder="例：応援しています。"  cols="50" rows="3"></textarea><br>
+										<small class="text-danger">※記載したコメントと登録名は、支援したプロジェクトページの「応援コメント」欄に掲載されますので、個人情報に関する投稿はお控え下さい。</samll>
+									</td>
+								</tr>
 							</table>
+
+							<!-- 配送先情報 -->
 							<p class="mt-5" id="selected_reward">配送先情報</p>
 							<table class="table shipping_table">
-							@foreach($users as $user)
-								<thead class="thead-light">
-								<tr>
-									<th scope="row">氏名</th>
+								@foreach($users as $user)
+									<thead class="thead-light">
+									<tr>
+										<th scope="row">氏名</th>
 										<td class="w-75">
 											<input type="text" name="name" class="form-control my-2" value="{{ $user->name }}" placeholder="例：山田　太郎">
 										</td>
-								</tr>
-								<tr>
-									<th scope="row">フリガナ</th>
+									</tr>
+									<tr>
+										<th scope="row">フリガナ</th>
 										<td class="w-75">
 											<input type="text" name="name_kana" class="form-control my-2" value="{{ $user->name_kana }}" placeholder="例：ヤマダ　タロウ">
 										</td>
-								</tr>
-								<tr>
-									<th scope="row">郵便番号</th>
+									</tr>
+									<tr>
+										<th scope="row">郵便番号</th>
 										<td class="w-75">
 											<input type="text" name="post_code" class="form-control my-2" value="{{ $user->post_code }}" placeholder="例：150-0034">
 										</td>
-								</tr>
-								<tr>
-									<th scope="row">都道府県市区町村</th>
+									</tr>
+									<tr>
+										<th scope="row">都道府県市区町村</th>
 										<td class="w-75">
 											<input type="text" name="address" class="form-control my-2" value="{{ $user->address }}" placeholder="例：東京都渋谷区代官山町">
 										</td>
-								</tr>
-								<tr>
-									<th scope="row">番地・建物名</th>
+									</tr>
+									<tr>
+										<th scope="row">番地・建物名</th>
 										<td class="w-75">
 											<input type="text" name="building" class="form-control my-2" value="{{ $user->building }}" placeholder="例：1-1">
 										</td>
-								</tr>
-								<tr>
-									<th scope="row">電話番号</th>
+									</tr>
+									<tr>
+										<th scope="row">電話番号</th>
 										<td class="w-75">
 											<input type="text" name="tel" class="form-control my-2" value="{{ $user->tel }}" placeholder="例：03-123-4567">
 										</td>
-								</tr>
-							@endforeach
+									</tr>
+								@endforeach
 							</table>
 							<label><input type="checkbox" name="address_check">この住所情報をマイページに登録する</label><br>
+
+							<!-- 決済情報 -->
 							<p class="mt-5" id="selected_reward">決済情報</p>
 							<table class="table payment_table">
 								<thead class="thead-light">
@@ -120,11 +121,10 @@
 											<select class="custom-select rounded-0" name="card_no">
 												<option value="{{$payment->card_no}}">{{$payment->card_no}}</option>
 											</select>
-										@endforeach
 										</div>
+										@endforeach
 									</td>
 								</tr>
-
 								<tr v-if="show">
 									<th scope="row">カード番号</th>
 									<td class="w-75">
@@ -138,6 +138,19 @@
 								<tr v-if="show">
 									<th scope="row">有効期限</th>
 									<td class="w-75">
+										<!-- <div class="form-group row">
+											<div class="col">
+												<select class="custom-select rounded-0" name="exp_mon">
+													<option value="0">test</option>
+												</select>
+											</div>/
+											<div class="col">
+												<select class="custom-select rounded-0" name="exp_year">
+													<option value="0">test</option>
+												</select>
+											</div>
+										</div> -->
+
 										<div class="form-group row">
 											<div class="col">
 												<input type="text" name="exp_mon" class="form-control rounded-0" value="{{ old('exp_mon') }}" placeholder="MM">
@@ -170,13 +183,11 @@
 									</td>
 								</tr>
 							</table>
-
-								<label v-if="show"><input type="checkbox" class="mb-4" name="card_check">カード情報を保存する</label>
-
-								<p>※入力された配送先情報は、本プロジェクト起案者に提供されます</p>
-								@csrf
-								<label><input type="checkbox" class="terms_check" required><a href="{{ '/crowd_funding/CrowdFunding/public/terms' }}">利用規約</a>に同意する</label>
-								<button type="submit" name="action" class="btn btn-primary" value="confirm">確認画面へ進む</button>
+							<label v-if="show"><input type="checkbox" class="mb-4" name="card_check">カード情報を保存する</label>
+							<p>※入力された配送先情報は、本プロジェクト起案者に提供されます</p>
+							@csrf
+							<label><input type="checkbox" class="terms_check" required><a href="{{ '/crowd_funding/CrowdFunding/public/terms' }}">利用規約</a>に同意する</label>
+							<button type="submit" name="action" class="btn btn-primary" value="confirm">確認画面へ進む</button>
 							<div class="suppport_notice">
 								<small>【要確認】<br>
 									・残り{{ $period }} 日で支援総額が¥{{ number_format($project->target_amount) }}に達しない場合は、プロジェクト不成立となりカードの決済は行われません。また、リターンも発生しません。<br>
@@ -187,6 +198,8 @@
 					</div>
 				</form>
 			</div>
+
+			<!-- プロジェクトプロパティ -->
 			<div class="col col-md-5">
 				<div class="shadow-sm p-3 mb-5 bg-white rounded" style="width: 20rem;">
 					<div class="text text-muted">現在の支援総額</div>
@@ -221,6 +234,6 @@
 		</div>
 	</div>
 </div>
-@endsection
 
+@endsection
 @include('footer')

@@ -63,58 +63,63 @@ class SupportController extends Controller
 		]);
 	}
 
-	public function showSelectedReward($id,$reward_id)
+	public function showSelectedReward($id, $reward_id)
 	{
 		// プロジェクトを取得
 		$project = Project::find($id);
-		//プロジェクトIDに紐づくrewardsテーブルを取得
-		$reward = Reward::where('id', $reward_id)->get();
-		$reward_list = $project->rewards;
+		// rewardsテーブルを取得
+		$reward = Reward::find($reward_id);
 		// 総支援額
 		$total_amount = Reward::select()
-				->join('supports', 'supports.reward_id', '=', 'rewards.id')
-				->where('rewards.pj_id', $id)
-				->sum('rw_price');
-		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
+			->join('supports', 'supports.reward_id', '=', 'rewards.id')
+			->where('rewards.pj_id', $id)
+			->sum('rw_price');
+		// Rewardごとの支援者数を格納する配列
+		$supporter_list = array();
+		// 支援者数を取得する
 		$itr = 1;
-		for($i = 0; $i < $reward_list->count(); $i++) {
+		for($i = 0; $i < $reward->count(); $i++) {
 			$supporter_list[] = Support::where('reward_id', $itr)->where('pj_id', $id)->get()->count();
 			$itr++;
 		}
-
 		// プロジェクトの開始日
 		$start_day = new Carbon($project->created_at);
 		// プロジェクトの終了日
 		$end_day = new Carbon($project->created_at);
 		$end_day->addDay($project->period);
 		$end_day_str = date_format($end_day , 'Y年m月d日');
-		$end_time = $end_day_str.'23:59';									// 終了までの日数
+		// 終了までの日数
+		$end_time = $end_day_str.'23:59';
 		$now_datetime = Carbon::now();
-		$period = $end_day->diffInDays($now_datetime);						// 残り日数
-		$target_amount = $project->target_amount; 							// 目標金
-		$percent_complete = floor($total_amount / $target_amount * 100);	// 達成率
-		$supporter =  Support::where('reward_id', $reward_id)->count();//支援者数
-		$user = User::Where('id', Auth::id())->get(); //usersテーブルからIDに紐づくユーザ情報を取得
-		$payment = Card::where('user_id', Auth::id())->get();//card_infoテーブルからIDに紐づくカード情報を取得
-		$rewards = $project->rewards;// プロジェクトIDに紐づくリワードテーブルを取得
-		$stock_list     = array();		// Rewardごとの残り個数を格納する配列
+		// 残り日数
+		$period = $end_day->diffInDays($now_datetime);
+		// 目標金額
+		$target_amount = $project->target_amount;
+		// 達成率
+		$percent_complete = floor($total_amount / $target_amount * 100);
+		// 支援者数
+		$supporter =  Support::where('reward_id', $reward_id)->count();
+		// ログイン中のユーザ情報を取得
+		$user = User::Where('id', Auth::id())->get();
+		// card_infoテーブルからIDに紐づくカード情報を取得
+		$payment = Card::where('user_id', Auth::id())->get();
+		// プロジェクトIDに紐づくリワードテーブルを取得
+		$rewards = $project->rewards;
 
 		return view('projects.selected_support',
 		[
 			'project' => $project,
 			'total_amount' => $total_amount,
-
 			'supporter_list' => $supporter_list,
 			'period' => $period,
 			'end_time' => $end_time,
 			'percent_complete' => $percent_complete,
-			'rewards' => $reward,
+			'reward' => $reward,
 			'supporter' => $supporter,
 			'users' => $user,
 			'payments' => $payment,
 			'total_amount' => $total_amount,
 			'supporter_list' => $supporter_list,
-			'stock_list' => $stock_list,
 		]);
 	}
 
