@@ -113,7 +113,7 @@
 										</div>
 									</td>
 								</tr>
-								<tr>
+								<tr v-if="select">
 									<th scope="row">カード選択</th>
 									<td>
 										@foreach($payments as $payment)

@@ -49221,14 +49221,17 @@ var app = new Vue({
 var payment = new Vue({
   el: '#payment',
   data: {
-    show: false
+    show: false,
+    select: true
   },
   methods: {
     handler: function handler(event) {
       if (event.target.value === 'option1') {
         this.show = false;
+        this.select = true;
       } else {
         this.show = true;
+        this.select = false;
       }
     }
   }

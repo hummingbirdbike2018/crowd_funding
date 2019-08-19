@@ -36,14 +36,17 @@ const app = new Vue({
 const payment = new Vue({
 	el: '#payment',
 	data: {
-		show: false
+		show: false,
+		select: true
 	},
 	methods: {
 		handler: function (event) {
 			if (event.target.value === 'option1') {
 				this.show = false
+				this.select = true
 			} else {
 				this.show = true
+				this.select = false
 			}
 		}
 	}
