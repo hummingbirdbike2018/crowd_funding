@@ -25,13 +25,14 @@ class SupportController extends Controller
 		$reward = $project->rewards;
 		// 総支援額
 		$total_amount = Reward::select()
-				->join('supports', 'supports.reward_id', '=', 'rewards.id')
-				->sum('rw_price');
+			->join('supports', 'supports.reward_id', '=', 'rewards.id')
+			->where('rewards.pj_id', $id)
+			->sum('rw_price');
 		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
 		$stock_list     = array();		// Rewardごとの残り個数を格納する配列
 		$itr = 1;
 		for($i = 0; $i < $reward->count(); $i++) {
-			$supporter_list[] = Support::where('reward_id', $itr)->get()->count();
+			$supporter_list[] = Support::where('reward_id', $itr)->where('pj_id', $id)->get()->count();
 			$stock_list[] = $reward[$i]['rw_quantity'] - $supporter_list[$i];
 			$itr++;
 		}
