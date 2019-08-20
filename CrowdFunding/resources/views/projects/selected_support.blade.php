@@ -130,9 +130,9 @@
 									<td class="w-75">
 										<small>半角英数でご入力ください。</small>
 										<div class="form-group">
-											<input type="text" name="card_no" class="form-control rounded-0" value="{{ old('card_no') }}" placeholder="●●●● ●●●● ●●●● ●●●●">
+											<input v-model="number" type="text" name="card_no" class="form-control rounded-0" value="{{ old('card_no') }}" maxlength="16" placeholder="●●●● ●●●● ●●●● ●●●●">
 										</div>
-										<p></p>
+										<font color="red">@{{message}}</font>
 									</td>
 								</tr>
 								<tr v-if="show">
@@ -141,16 +141,16 @@
 										<div class="form-group row">
 											<div class="col">
 												<select class="custom-select rounded-0" name="exp_mon">
-													@foreach($exp_mon as $mon)
-													<option value="{{$mon}}">{{$mon}}</option>
-													@endforeach
+													@for($i = 1; $i <= 12; $i++)
+													<option value="{{$i}}">{{$i}}</option>
+													@endfor
 												</select>
 											</div>/
 											<div class="col">
 												<select class="custom-select rounded-0" name="exp_year">
-													@foreach($exp_year as $year)
-													<option value="{{$year}}">{{$year}}</option>
-													@endforeach
+													@for($i = idate("Y"); $i <= (idate("Y") + 15); $i++)
+													<option value="{{$i}}">{{$i}}</option>
+													@endfor
 												</select>
 											</div>
 										</div>

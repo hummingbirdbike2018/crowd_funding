@@ -49222,7 +49222,17 @@ var payment = new Vue({
   el: '#payment',
   data: {
     show: false,
-    select: true
+    select: true,
+    number: '',
+    message: ''
+  },
+  watch: {
+    number: function number(newKeyword, oldKeyword) {
+      this.debouncedGetAnswer();
+    }
+  },
+  created: function created() {
+    this.debouncedGetAnswer = _.debounce(this.numberCheck, 1000);
   },
   methods: {
     handler: function handler(event) {
@@ -49232,6 +49242,27 @@ var payment = new Vue({
       } else {
         this.show = true;
         this.select = false;
+      }
+    },
+    numberCheck: function numberCheck() {
+      if (this.number === '') {
+        this.message = '';
+        return;
+      }
+
+      var a, s, i, x;
+      a = this.number.split("").reverse();
+      s = 0;
+
+      for (i = 0; i < a.length; i++) {
+        x = a[i] * (1 + i % 2);
+        s += x > 9 ? x - 9 : x;
+      }
+
+      if (s % 10 != 0) {
+        this.message = 'カード番号が誤っています。番号をご確認ください。';
+      } else {
+        this.message = '';
       }
     }
   }

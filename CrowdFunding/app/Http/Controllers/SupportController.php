@@ -103,18 +103,7 @@ class SupportController extends Controller
 		$user = User::Where('id', Auth::id())->get();
 		// card_infoテーブルからIDに紐づくカード情報を取得
 		$payment = Card::where('user_id', Auth::id())->get();
-		// クレジットカードの有効期限（月）の選択肢を格納した配列
-		$exp_mon = array();
-		for($i = 1; $i <= 12; $i++)
-		{
-			$exp_mon[] = $i;
-		}
-		// クレジットカードの有効期限（年）の選択肢を格納した配列
-		$exp_year = array();
-		for($i = idate("Y"); $i <= (idate("Y") + 15); $i++)
-		{
-			$exp_year[] = $i;
-		}
+
 		return view('projects.selected_support',
 		[
 			'project' => $project,
@@ -129,8 +118,6 @@ class SupportController extends Controller
 			'payments' => $payment,
 			'total_amount' => $total_amount,
 			'supporter_list' => $supporter_list,
-			'exp_mon' => $exp_mon,
-			'exp_year' => $exp_year,
 		]);
 	}
 
