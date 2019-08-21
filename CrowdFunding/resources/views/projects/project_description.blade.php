@@ -61,7 +61,7 @@
 									<div class="row">
 										<div class="comment-user col-md-2">
 											@if($user->user_img != NULL)
-											<img class="user_image" src="../../storage/user_img/user_{{ $user->id }}/{{ $user->user_img }}" alt="user_image">
+											<img class="user_image" src="../../storage/user_img/user_{{ $user->user_id }}/{{ $user->user_img }}" alt="user_image">
 											@else
 											<img class="default_user_image" src="../../storage/user_img/default/user_default_img.png" alt="default_user_image">
 											@endif
@@ -98,7 +98,9 @@
 					<span class="text-black display-4v total_amount">¥{{ number_format($total_amount) }}</span>
 				</strong>
 				<div class="progress">
-					<div class="progress-bar progress-bar bg-warning" role="progressbar" aria-valuenow="{{ $percent_complete }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $percent_complete }}%">{{ $percent_complete }}%</div>
+					<div class="progress-bar" role="progressbar" aria-valuenow="{{ $percent_complete }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $percent_complete }}%">
+						{{ $percent_complete }}%
+					</div>
 				</div>
 				<div class="text-muted">目標金額 ¥{{ number_format($project->target_amount) }}</div>
 				<div class="border"></div>

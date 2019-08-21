@@ -20,15 +20,18 @@
 			<nav class="navbar navbar-expand-md navbar-dark l-header fixed-top">
 				<a class="navbar-brand" href="{{ url('/') }}">
 					<img alt="ロゴ" src="/crowd_funding/CrowdFunding/public/img/logo.png" width="110" height="40"></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 				<div class="collapse navbar-collapse" id="navbar-header">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item"><a class="nav-link active" href="{{ url('/site_info') }}">当サイトについて</a></li>
+						<li class="nav-item"><a class="nav-link" href="{{ url('/site_info') }}">当サイトについて</a></li>
 						<li class="nav-item"><a class="nav-link" a href="{{ url('/draft') }}">掲載について</a></li>
 						<li class="nav-item"><a class="nav-link" a href="{{ url('/contact') }}">お問い合わせ</a></li>
 					</ul>
 					<ul class="navbar-nav ml-auto">
 					@guest
-						<li class="nav-item"><a class="nav-link active" href="#login" data-toggle="modal" data-target="#LoginModal">ログイン</a></li>
+						<li class="nav-item"><a class="nav-link" href="#login" data-toggle="modal" data-target="#LoginModal">ログイン</a></li>
 						@if (Route::has('register'))
 						<li class="nav-item"><a class="nav-link" a href="#register" data-toggle="modal" data-target="#RegisterModal">新規登録</a></li>
 						@endif
@@ -210,9 +213,9 @@
 </html>
 
 @if(Session::has('errors'))
-	<!-- <script>
+	<script>
 	$(document).ready(function(){
 		$('#LoginModal').modal({show: true});
 	});
-	</script> -->
+	</script>
 @endif

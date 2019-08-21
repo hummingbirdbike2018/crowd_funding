@@ -56,8 +56,9 @@ i {
 	font-weight: normal;
 }
 
-.progress {
-	margin-bottom: 16px;
+.progress-bar{
+		margin-top: 20px;
+		margin-bottom: 25px;
 }
 
 .card_progress_info, .card_planner_info {
@@ -120,7 +121,7 @@ i {
 }
 
 .modal-header {
-	background: rgba(0, 0, 0, 0.6);
+	/* background: rgba(0, 0, 0, 0.2); */
 	color:white;
 	border: none;
 }
@@ -133,7 +134,7 @@ i {
 }
 
 .modal-body {
-	background: rgba(0, 0, 0, 0.6);
+	/* background: rgba(0, 0, 0, 0.1); */
 }
 
 .modal-email, .modal-pass {
@@ -215,45 +216,46 @@ i {
 
 .cover-text {
 	position: absolute;
-	top: 7rem;
-	left: 30rem;
+	top: 6rem;
+	left: 27rem;
 	color: rgba(255, 255, 255, 0.7);
 }
 
 .cover_btn_1 {
 	position: absolute;
-	top: 13rem;
+	top: 14rem;
 	left: 37rem;
 	color: rgba(255, 255, 255, 0.8);
-	background: rgba(3, 152, 78, 0.9);
+	background: rgba(3, 152, 78, 1);
 }
 
 .cover_btn_1:hover {
 	color: rgba(255, 255, 255, 1);
-	background: rgba(3, 152, 78, 0.7);
+	background: rgba(3, 152, 78, 0.9);
 }
 
 .cover_btn_1:active {
 	color: rgba(255, 255, 255, 1);
-	background: rgba(3, 152, 78, 1);
+	background: rgba(3, 152, 78, 0.8);
 }
 
 .cover_btn_2 {
 	position: absolute;
-	top: 13rem;
-	left: 46rem;
+	top: 14rem;
+	left: 47rem;
 	color: rgba(255, 255, 255, 0.8);
-	background: rgba(0, 92, 180, 0.9);
+	background: rgba(0, 92, 180, 1);
 }
 
 .cover_btn_2:hover {
 	color: rgba(255, 255, 255, 1);
-	background: rgba(0, 92, 180, 0.7);
+	background: rgba(0, 92, 180, 0.9);
 }
 
 .cover_btn_2:active {
 	color: rgba(255, 255, 255, 1);
-	background: rgba(0, 92, 180, 1);
+	background: rgba(0, 92, 180, 0.8
+		);
 }
 
 
@@ -382,7 +384,8 @@ i {
 }
 
 .card-title {
-	font-size: normal;
+	height: 120px;
+	font-size: 13px;
 }
 
 .total_amount {
@@ -451,7 +454,17 @@ img.user_image, img.default_user_image {
 .search-form {
 	position: absolute;
 	top: 13rem;
-	left: 40rem;
+	left: 29rem;
+}
+
+.search-btn {
+	background: rgba(0, 92, 180, 0.9);
+	color:white;
+}
+
+input.form-control.search-bar {
+	width:500px;
+	padding:1rem;
 }
 
 .dropdown-menu.show {

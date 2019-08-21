@@ -39,7 +39,9 @@
 					<span class="total_amount">¥{{ number_format($total_amount) }}</span>
 				</strong>
 				<div class="progress">
-					<div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="{{ $percent_complete }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $percent_complete }}%">{{ $percent_complete }}%</div>
+					<div class="progress-bar" role="progressbar" aria-valuenow="{{ $percent_complete }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $percent_complete }}%">
+						{{$percent_completes[$key]}}%
+					</div>
 				</div>
 				<div class="text-muted">目標金額 ¥{{ number_format($project->target_amount) }}</div>
 				<div class="border"></div>

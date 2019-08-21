@@ -25,7 +25,7 @@
 			@foreach($projects as $key => $project)
 				<div class="cbox-inner d-flex">
 					<div class="shadow-sm p-3 mb-5 bg-white rounded">
-						<div class="project-successs-bar">
+						<div class="project_image">
 							<img class="pj_img" src="../storage/product_img/project_{{$project->id}}/{{$project->product_img_1}}">
 						</div>
 						<div class="project_detail">
@@ -33,10 +33,10 @@
 							<div class="card_planner_info"><i class="fa fa-user"></i>{{$planner_list[$key]}}</div>
 							<div class="card_progress">
 								<div class="card_total_amount">￥ {{number_format($total_amounts[$key])}}</div>
-								<div class="progress">
-									<div class="progress-bar progress-bar bg-warning"
-										role="progressbar" aria-valuenow="{{$percent_completes[$key]}}" aria-valuemin="0"
-										aria-valuemax="100" style="width:{{$percent_completes[$key]}}%">{{$percent_completes[$key]}}%
+								<div class="progress yellow">
+									<div class="progress-bar" role="progressbar" aria-valuenow="{{$percent_completes[$key]}}" aria-valuemin="0"
+										aria-valuemax="100" style="width:{{$percent_completes[$key]}}%">
+										{{$percent_completes[$key]}}%
 									</div>
 								</div>
 								<div class="card_progress_info">
@@ -118,6 +118,5 @@
 			<a href="./projects/{{$project->id}}"></a>
 		</div>
 	</div> -->
-</div>
 @endsection
 @include('footer')
