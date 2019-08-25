@@ -17,12 +17,15 @@ class CreateProjectsTable extends Migration
 			$table->increments('id');
 			$table->string('pj_title');
 			$table->unsignedInteger('planner_id');
-			$table->text('product_detail_1');
-			$table->text('product_detail_2');
-			$table->text('product_detail_3');
-			$table->string('product_img_1');
-			$table->string('product_img_2');
-			$table->string('product_img_3');
+			for($i = 1; $i <= 10; $i++) {
+			$table->string('product_detail_heading_'.$i)->nullable();
+			}
+			for($i = 1; $i <= 10; $i++) {
+			$table->text('product_detail_'.$i)->nullable();
+			}
+			for($i = 1; $i <= 10; $i++) {
+			$table->string('product_img_'.$i)->nullable();
+			}
 			$table->integer('target_amount');
 			$table->integer('period');
 			$table->integer('status')->default(1);

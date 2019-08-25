@@ -216,7 +216,7 @@ class RewardsTableSeeder extends Seeder
 				'pj_id' => 6,
 				'rw_title' => 'GREEN限定価格
 				「MHaudio UA-1」(10%OFF)',
-				'rw_body' => '・「MHaudio UA-1」1台
+				'rw_body' => '「MHaudio UA-1」1台
 ※価格は税・送料込みの総額となります。',
 				'rw_image' => 'reward1.jpg',
 				'rw_quantity' => '50',
@@ -288,7 +288,7 @@ class RewardsTableSeeder extends Seeder
 ・マニュアル
 ・Type-C USB ケーブル
 ・MicroUSB ケーブル',
-				'rw_image' => 'reward1.png',
+				'rw_image' => 'reward2.png',
 				'rw_quantity' => '100',
 				'rw_season' => '2019年9月',
 				'rw_price' => '15800',
@@ -307,7 +307,7 @@ class RewardsTableSeeder extends Seeder
 ・マニュアル 　 ×2
 ・Type-C USB ケーブル　×2
 ・MicroUSB ケーブル　　×2',
-				'rw_image' => 'reward1.png',
+				'rw_image' => 'reward3.png',
 				'rw_quantity' => '25',
 				'rw_season' => '2019年9月',
 				'rw_price' => '24100',
@@ -337,7 +337,7 @@ class RewardsTableSeeder extends Seeder
 				'id' => 23,
 				'pj_id' => 8,
 				'rw_title' => '「SO WHITE MINI SHAVER」2セット',
-				'rw_body' => '・「SO WHITE MINI SHAVER」本体 x1
+				'rw_body' => '「SO WHITE MINI SHAVER」本体 x1
 ・取り扱い説明書 x1
 ・Type-C充電ケーブル x1
 ・保護カバー x1
@@ -356,7 +356,7 @@ class RewardsTableSeeder extends Seeder
 				'id' => 24,
 				'pj_id' => 8,
 				'rw_title' => '「SO WHITE MINI SHAVER」5セット',
-				'rw_body' => '・「SO WHITE MINI SHAVER」本体 x1
+				'rw_body' => '「SO WHITE MINI SHAVER」本体 x1
 ・取り扱い説明書 x1
 ・Type-C充電ケーブル x1
 ・保護カバー x1

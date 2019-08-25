@@ -20,7 +20,7 @@
 							</div>
 							<div class="reward_body">
 								<td>
-									<p>{{ $rewards[$i]->rw_body }}
+									<p class="select-reward-body">{!! nl2br(e( $rewards[$i]->rw_body )) !!}
 									<p class="supporter">{{  $supporter_list[$i] }} 人が支援
 									<p class="stock">残り {{ $stock_list[$i] }} 個
 								</td>
@@ -39,8 +39,9 @@
 					<span class="total_amount">¥{{ number_format($total_amount) }}</span>
 				</strong>
 				<div class="progress">
-					<div class="progress-bar" role="progressbar" aria-valuenow="{{ $percent_complete }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $percent_complete }}%">
-						{{$percent_completes[$key]}}%
+					<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$percent_complete}}" aria-valuemin="0"
+						aria-valuemax="100" style="width:{{$percent_complete}}%">
+						{{$percent_complete}}%
 					</div>
 				</div>
 				<div class="text-muted">目標金額 ¥{{ number_format($project->target_amount) }}</div>

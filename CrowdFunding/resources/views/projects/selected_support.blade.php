@@ -17,20 +17,20 @@
 								<tr>
 									<th scope="row"><img src="../../../../storage/product_img/project_{{$reward->pj_id}}/{{$reward->rw_image }}"></th>
 									<td>
-										<h5 class="card-title">{!! nl2br(e( $reward->rw_title )) !!}</h5>
-										<input type="hidden" name="rw_title" class="" value="{{ $reward->rw_title }}">
+										<h5 class="selected-card-title">{!! nl2br(e( $reward->rw_title )) !!}</h5>
+										<input type="hidden" name="rw_title"  value="{{ $reward->rw_title }}">
 										<p class="quantity">限定 {{ $reward->rw_quantity }} 個</p>
-										<input type="hidden" name="rw_quantity" class="" value="{{ $reward->rw_quantity }}">
+										<input type="hidden" name="rw_quantity"  value="{{ $reward->rw_quantity }}">
 										<p class="rw_price">¥ {{ number_format($reward->rw_price) }}</p>
-										<input type="hidden" name="rw_price" class="" value="¥ {{ number_format($reward->rw_price) }}">
-										<p>{{ $reward->rw_body }}</p>
-										<input type="hidden" name="rw_body" class="" value="{{ $reward->rw_body }}">
+										<input type="hidden" name="rw_price"  value="¥ {{ number_format($reward->rw_price) }}">
+										<p>{!! nl2br(e( $reward->rw_body )) !!}</p>
+										<input type="hidden" name="rw_body"  value="{{ $reward->rw_body }}">
 										<p>予定配送時期 {{ $reward->rw_season }}</p>
-										<input type="hidden" name="rw_season" class="" value="{{ $reward->rw_season }}">
+										<input type="hidden" name="rw_season"  value="{{ $reward->rw_season }}">
 										<p class="supporter">{{  $supporter }} 人が支援</p>
-										<input type="hidden" name="supporter" class="" value="{{ $reward->supporter }}">
+										<input type="hidden" name="supporter"  value="{{ $reward->supporter }}">
 										<p class="stock">残り {{ $reward->rw_quantity - $supporter }} 個</p>
-										<input type="hidden" name="stock" class="" value="{{ $reward->rw_quantity - $supporter }}">
+										<input type="hidden" name="stock"  value="{{ $reward->rw_quantity - $supporter }}">
 									</td>
 								</tr>
 							</table>
@@ -39,7 +39,7 @@
 								<thead class="thead-light">
 								<tr>
 									<th scope="row">支援額</th>
-									<td>¥　{{ number_format($reward->rw_price) }}</td>
+									<td class="selected-reward-price">¥　{{ number_format($reward->rw_price) }}</td>
 								</tr>
 								<tr>
 									<th scope="row">コメント</th>
@@ -202,8 +202,9 @@
 						<span class="text-black display-4v total_amount">¥{{ number_format($total_amount) }}</span>
 					</strong>
 					<div class="progress">
-						<div class="progress-bar" role="progressbar" aria-valuenow="{{ $percent_complete }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $percent_complete }}%">
-							{{$percent_completes[$key]}}%
+						<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$percent_complete}}" aria-valuemin="0"
+							aria-valuemax="100" style="width:{{$percent_complete}}%">
+							{{$percent_complete}}%
 						</div>
 					</div>
 					<div class="text-muted">目標金額 ¥{{ number_format($project->target_amount) }}</div>

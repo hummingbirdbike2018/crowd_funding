@@ -98,8 +98,9 @@
 					<span class="text-black display-4v total_amount">¥{{ number_format($total_amount) }}</span>
 				</strong>
 				<div class="progress">
-					<div class="progress-bar" role="progressbar" aria-valuenow="{{ $percent_complete }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $percent_complete }}%">
-						{{ $percent_complete }}%
+					<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$percent_complete}}" aria-valuemin="0"
+						aria-valuemax="100" style="width:{{$percent_complete}}%">
+						{{$percent_complete}}%
 					</div>
 				</div>
 				<div class="text-muted">目標金額 ¥{{ number_format($project->target_amount) }}</div>
@@ -161,7 +162,7 @@
 			<!-- リターンリスト -->
 			@for($i = 0; $i < count($rewards); $i++)
 			<div class="shadow-sm p-3 mb-5 bg-white rounded" style="width: 20rem;">
-				<h4 class="card-title">{!! nl2br(e( $rewards[$i]->rw_title )) !!}</h4>
+				<h4 class="reward-card-title">{!! nl2br(e( $rewards[$i]->rw_title )) !!}</h4>
 				<p class="card-text rw_price">¥ {{ number_format($rewards[$i]->rw_price) }}</p>
 				<p class="card-text quantity">限定 {{ $rewards[$i]->rw_quantity }}個</p>
 				<img src="../../storage/product_img/project_{{$project->id}}/{{$rewards[$i]->rw_image }}"><br>

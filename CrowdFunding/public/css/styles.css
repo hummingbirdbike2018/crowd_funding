@@ -42,10 +42,13 @@ img {
 	max-width: 100%
 }
 
-th, td {
-	text-align: left;
+.table thead th {
 	vertical-align: top;
-	font-weight: normal;
+}
+
+.table .thead-light th {
+	background-color: #fafafa;
+	border-color: #f2f2f2;
 }
 
 header {
@@ -56,9 +59,10 @@ i {
 	font-weight: normal;
 }
 
-.progress-bar{
-		margin-top: 20px;
-		margin-bottom: 25px;
+.progress{
+	margin-top: 20px;
+	margin-bottom: 25px;
+	font-size: 20px;
 }
 
 .card_progress_info, .card_planner_info {
@@ -217,7 +221,7 @@ i {
 .cover-text {
 	position: absolute;
 	top: 6rem;
-	left: 27rem;
+	left: 32rem;
 	color: rgba(255, 255, 255, 0.7);
 }
 
@@ -367,6 +371,12 @@ i {
 	zoom:1;
 }
 
+.selected-reward-price {
+	font-size: 18px;
+	font-weight: bold;
+	color: red;
+}
+
 .nav-tabs .nav-link.active {
 	border-radius: 0;
 	background-color: white;
@@ -388,6 +398,14 @@ i {
 	font-size: 13px;
 }
 
+.reward-card-title {
+	font-size: 18px;
+}
+
+.selected-card-title {
+	font-size: 18px;
+}
+
 .total_amount {
 	font-size: xx-large;
 	font-weight: bold;
@@ -401,13 +419,13 @@ i {
 }
 
 .supporter {
-	font-size: normal;
+	font-size: large;
 	font-weight: bold;
 	color: #309b92;
 }
 
 .quantity, .stock {
-	font-size: normal;
+	font-size: large;
 	font-weight: bold;
 	color: #ffbd2e;
 }
