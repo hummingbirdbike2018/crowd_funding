@@ -36,14 +36,19 @@ class ProjectController extends Controller
 
 		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
 		$stock_list     = array();		// Rewardごとの残り個数を格納する配列
-		$itr = 1;
-		for($i = 0; $i < $rewards->count(); $i++)
-		{
-			$supporter_list[] = Support::where('reward_id', $itr)
-				->where('pj_id', $id)->count();
-			$stock_list[] = $rewards[$i]['rw_quantity'] - $supporter_list[$i];
-			$itr++;
-		}
+		$itr = Reward::select('id')		// pj_idに紐づくリターンIDを1件取得
+			->where('pj_id', $id)
+			->first();
+		$itr2 = $itr['id'];						// エラー回避のため一度変数に格納
+
+			//pj_idに紐づいたリターンIDの数だけループを回す
+			//Supportテーブルに対応した$idが連番なのでインクリメントで足す
+			for($i = 0; $i < $rewards->count(); $i++){
+					$supporter_list[] = Support::where('reward_id', $itr2)
+						->where('pj_id', $id)->count();
+					$stock_list[] = $rewards[$i]['rw_quantity'] - $supporter_list[$i];
+					$itr2++;
+				}
 
 		// プロジェクトの開始日
 		$start_day = new Carbon($project->created_at);
