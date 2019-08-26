@@ -30,11 +30,14 @@ class SupportController extends Controller
 			->sum('rw_price');
 		$supporter_list = array();		// Rewardごとの支援者数を格納する配列
 		$stock_list     = array();		// Rewardごとの残り個数を格納する配列
-		$itr = 1;
+		$itr = Reward::select('id')		// pj_idに紐づくリターンIDを1件取得
+			->where('pj_id', $id)
+			->first();
+		$itr2 = $itr['id'];						// エラー回避のため一度変数に格納
 		for($i = 0; $i < $reward->count(); $i++) {
-			$supporter_list[] = Support::where('reward_id', $itr)->where('pj_id', $id)->get()->count();
+			$supporter_list[] = Support::where('reward_id', $itr2)->where('pj_id', $id)->get()->count();
 			$stock_list[] = $reward[$i]['rw_quantity'] - $supporter_list[$i];
-			$itr++;
+			$itr2++;
 		}
 
 		// プロジェクトの開始日
@@ -77,10 +80,13 @@ class SupportController extends Controller
 		// Rewardごとの支援者数を格納する配列
 		$supporter_list = array();
 		// 支援者数を取得する
-		$itr = 1;
+		$itr = Reward::select('id')		// pj_idに紐づくリターンIDを1件取得
+			->where('pj_id', $id)
+			->first();
+		$itr2 = $itr['id'];						// エラー回避のため一度変数に格納
 		for($i = 0; $i < $reward->count(); $i++) {
-			$supporter_list[] = Support::where('reward_id', $itr)->where('pj_id', $id)->get()->count();
-			$itr++;
+			$supporter_list[] = Support::where('reward_id', $itr2)->where('pj_id', $id)->get()->count();
+			$itr2++;
 		}
 		// プロジェクトの開始日
 		$start_day = new Carbon($project->created_at);

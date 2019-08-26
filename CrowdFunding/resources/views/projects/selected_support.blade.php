@@ -25,7 +25,7 @@
 										<input type="hidden" name="rw_price"  value="¥ {{ number_format($reward->rw_price) }}">
 										<p>{!! nl2br(e( $reward->rw_body )) !!}</p>
 										<input type="hidden" name="rw_body"  value="{{ $reward->rw_body }}">
-										<p>予定配送時期 {{ $reward->rw_season }}</p>
+										<p>予定配送時期 {!! nl2br(e( $reward->rw_season )) !!}</p>
 										<input type="hidden" name="rw_season"  value="{{ $reward->rw_season }}">
 										<p class="supporter">{{  $supporter }} 人が支援</p>
 										<input type="hidden" name="supporter"  value="{{ $reward->supporter }}">
@@ -45,7 +45,7 @@
 									<th scope="row">コメント</th>
 									<td class="w-75">
 										<textarea class="w-75" name="comment" value="{{ old('comment') }}" placeholder="例：応援しています。"  cols="50" rows="3"></textarea><br>
-										<small class="text-danger">※記載したコメントと登録名は、支援したプロジェクトページの「応援コメント」欄に掲載されますので、個人情報に関する投稿はお控え下さい。</samll>
+										<p class="support-comment-notice text-danger">※記載したコメントと登録名は、支援したプロジェクトページの「応援コメント」欄に掲載されますので、個人情報に関する投稿はお控え下さい。</p>
 									</td>
 								</tr>
 							</table>
@@ -104,7 +104,7 @@
 									<td class="w-75">
 										クレジットカード決済
 										<img src="../../../../storage/payment/card_icon.png">
-										<p><small>募集期間内に支援が目標金額に達した場合のみ、クレジットカード決済が行われます</small>
+										<p class="payment-card-notice">募集期間内に支援が目標金額に達した場合のみ、クレジットカード決済が行われます</p>
 										<div class="form-check form-check-inline">
 											<label><input class="form-check-input" type="radio" v-on:change="handler" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>登録済みカードで決済</label>
 										</div>
@@ -179,15 +179,13 @@
 								</tr>
 							</table>
 							<label v-if="show"><input type="checkbox" class="mb-4" name="card_check">カード情報を保存する</label>
-							<p>※入力された配送先情報は、本プロジェクト起案者に提供されます</p>
 							@csrf
 							<label><input type="checkbox" class="terms_check" required><a href="{{ '/crowd_funding/CrowdFunding/public/terms' }}">利用規約</a>に同意する</label>
 							<button type="submit" name="action" class="btn btn-primary" value="confirm">確認画面へ進む</button>
 							<div class="suppport_notice">
-								<small>【要確認】<br>
+								【要確認】<br>
 									・残り{{ $period }} 日で支援総額が¥{{ number_format($project->target_amount) }}に達しない場合は、プロジェクト不成立となりカードの決済は行われません。また、リターンも発生しません。<br>
 									・支援を行うには、有効期限が残り100日以上の各種クレジットカードが必要です。<br>
-								</small>
 							</div>
 						</div>
 					</div>

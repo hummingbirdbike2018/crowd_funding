@@ -11,18 +11,18 @@
 				<tr>
 					<thead class="thead-light" >
 						<th scope="row">支援額</th>
-						<td class="w-75">{{ $rw_price }}</td>
+						<td class="w-75 selected-reward-price">{{ $rw_price }}</td>
 				</tr>
 				<tr>
 					<th scope="row">リターン内容</th>
-					<td class="w-75">{{ $rw_body }}</td>
+					<td class="w-75">{!! nl2br(e( $rw_body )) !!}</td>
 				</tr>
 				<tr>
 					<th scope="row" >コメント</th>
 					@if($comment == null)
 					<td class="w-75">（記入なし）</td>
 					@else
-					<td class="w-75">{{ $comment }}</td>
+					<td class="w-75">{!! nl2br(e( $comment )) !!}</td>
 					@endif
 				</tr>
 			</tbody>
@@ -88,10 +88,10 @@
 			<input type="hidden" name="pj_id" class="form-control" id="pj_id" value="{{ $pj_id }}">
 			<input type="hidden" name="reward_id" class="form-control" id="reward_id" value="{{ $reward_id }}">
 			@csrf
-			<!-- <div class="btn-group mx-auto"> -->
-				<button type="submit" name="action" class="btn btn-light" value="back">内容を修正する</button>
-				<button type="submit" name="action" class="btn btn-danger" value="pay">この内容で支援する</button>
-			<!-- </div> -->
+			<div class="row support-confirm-button my-5">
+				<button type="submit" name="action" class="col-md-2 btn btn-light mr-3" value="back">内容を修正する</button>
+				<button type="submit" name="action" class="col-md-2 btn btn-danger ml-3" value="pay">この内容で支援する</button>
+			</div>
 		</form>
 	</div>
 </div>

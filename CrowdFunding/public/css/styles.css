@@ -42,6 +42,10 @@ img {
 	max-width: 100%
 }
 
+.table {
+	margin-bottom: 0.5rem;
+}
+
 .table thead th {
 	vertical-align: top;
 }
@@ -404,6 +408,10 @@ i {
 
 .selected-card-title {
 	font-size: 18px;
+}
+
+.suppport_notice, .payment-card-notice, .support-comment-notice {
+	font-size: 12px;
 }
 
 .total_amount {
