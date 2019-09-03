@@ -10,6 +10,7 @@ use App\Card;
 use Carbon\Carbon;
 use App\Mail\SupportConfirm;
 use Illuminate\Http\Request;
+use App\Http\Requests\SupportRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -128,12 +129,13 @@ class SupportController extends Controller
 	}
 
 	public function storeSelectedReward(Request $request) {
+
 		//view側へ値を渡す処理
 		return view('projects.selected_support');
 	}
 
 
-	public function confirmSelectedReward (Request $request,$id,$reward_id)
+	public function confirmSelectedReward (SupportRequest $request,$id,$reward_id)
 	{
 		//うけとったリクエスト内容を格納
 		$support_data = $request->all();
@@ -167,6 +169,7 @@ class SupportController extends Controller
 				'last_name' => $request->last_name,
 			]);
 		}
+		
 
 			//確認ページに$support_data(Requestで受けとったデータ)とpj_id,reward_idを渡す
 			return view('projects.support_confirm', $support_data,[

@@ -44,8 +44,16 @@
 								<tr>
 									<th scope="row">コメント</th>
 									<td class="w-75">
-										<textarea class="w-75" name="comment" value="{{ old('comment') }}" placeholder="例：応援しています。"  cols="50" rows="3"></textarea><br>
-										<p class="support-comment-notice text-danger">※記載したコメントと登録名は、支援したプロジェクトページの「応援コメント」欄に掲載されますので、個人情報に関する投稿はお控え下さい。</p>
+										<textarea class="w-75" name="comment" value="{{ old('comment') }}" placeholder="例：応援しています。"  cols="30" rows="3"></textarea>
+										@if($errors->has('comment'))
+											@foreach($errors->get('comment') as $message)
+											<div class="text text-danger">
+												{{ $message }}<br>
+											</div>
+											@endforeach
+										@endif
+										<br>
+										<p class="support-comment-notice">※記載したコメントと登録名は、支援したプロジェクトページの「応援コメント」欄に掲載されますので、個人情報に関する投稿はお控え下さい。</p>
 									</td>
 								</tr>
 							</table>
@@ -59,36 +67,78 @@
 										<th scope="row">氏名</th>
 										<td class="w-75">
 											<input type="text" name="name" class="form-control my-2" value="{{ $user->name }}" placeholder="例：山田　太郎">
+											@if($errors->has('name'))
+												@foreach($errors->get('name') as $message)
+												<div class="text text-danger">
+													{{ $message }}<br>
+												</div>
+												@endforeach
+											@endif
 										</td>
 									</tr>
 									<tr>
 										<th scope="row">フリガナ</th>
 										<td class="w-75">
 											<input type="text" name="name_kana" class="form-control my-2" value="{{ $user->name_kana }}" placeholder="例：ヤマダ　タロウ">
+											@if($errors->has('name_kana'))
+												@foreach($errors->get('name_kana') as $message)
+												<div class="text text-danger">
+													{{ $message }}<br>
+												</div>
+												@endforeach
+											@endif
 										</td>
 									</tr>
 									<tr>
 										<th scope="row">郵便番号</th>
 										<td class="w-75">
 											<input type="text" name="post_code" class="form-control my-2" value="{{ $user->post_code }}" placeholder="例：150-0034">
+											@if($errors->has('post_code'))
+												@foreach($errors->get('post_code') as $message)
+												<div class="text text-danger">
+													{{ $message }}<br>
+												</div>
+												@endforeach
+											@endif
 										</td>
 									</tr>
 									<tr>
 										<th scope="row">都道府県市区町村</th>
 										<td class="w-75">
 											<input type="text" name="address" class="form-control my-2" value="{{ $user->address }}" placeholder="例：東京都渋谷区代官山町">
+											@if($errors->has('address'))
+												@foreach($errors->get('address') as $message)
+												<div class="text text-danger">
+													{{ $message }}<br>
+												</div>
+												@endforeach
+											@endif
 										</td>
 									</tr>
 									<tr>
 										<th scope="row">番地・建物名</th>
 										<td class="w-75">
 											<input type="text" name="building" class="form-control my-2" value="{{ $user->building }}" placeholder="例：1-1">
+											@if($errors->has('building'))
+												@foreach($errors->get('building') as $message)
+												<div class="text text-danger">
+													{{ $message }}<br>
+												</div>
+												@endforeach
+											@endif
 										</td>
 									</tr>
 									<tr>
 										<th scope="row">電話番号</th>
 										<td class="w-75">
 											<input type="text" name="tel" class="form-control my-2" value="{{ $user->tel }}" placeholder="例：03-123-4567">
+											@if($errors->has('tel'))
+												@foreach($errors->get('tel') as $message)
+												<div class="text text-danger">
+													{{ $message }}<br>
+												</div>
+												@endforeach
+											@endif
 										</td>
 									</tr>
 								@endforeach
@@ -119,6 +169,7 @@
 										@foreach($payments as $payment)
 										<div class="form-group">
 											<select class="custom-select rounded-0" name="card_no">
+												<option value="regist_card_non_select">選択してください</option>
 												<option value="{{$payment->card_no}}">{{$payment->card_no}}</option>
 											</select>
 										</div>
@@ -141,17 +192,34 @@
 										<div class="form-group row">
 											<div class="col">
 												<select class="custom-select rounded-0" name="exp_mon">
+													<option value="no_select_mon">有効期限 / 月</option>
 													@for($i = 1; $i <= 12; $i++)
 													<option value="{{$i}}">{{$i}}</option>
 													@endfor
 												</select>
-											</div>/
+												@if($errors->has('exp_mon'))
+													@foreach($errors->get('exp_mon') as $message)
+													<div class="text text-danger">
+														{{ $message }}<br>
+													</div>
+													@endforeach
+												@endif
+												@endif
+											</div>
 											<div class="col">
 												<select class="custom-select rounded-0" name="exp_year">
+													<option value="no_select_year">有効期限 / 年</option>
 													@for($i = idate("Y"); $i <= (idate("Y") + 15); $i++)
 													<option value="{{$i}}">{{$i}}</option>
 													@endfor
 												</select>
+												@if($errors->has('exp_year'))
+													@foreach($errors->get('exp_year') as $message)
+													<div class="text text-danger">
+														{{ $message }}<br>
+													</div>
+													@endforeach
+												@endif
 											</div>
 										</div>
 									</td>
@@ -162,6 +230,13 @@
 										<div class="form-group">
 											<input type="text" name="card_csv" class="form-control rounded-0" placeholder="例：123">
 										</div>
+										@if($errors->has('card_csv'))
+											@foreach($errors->get('card_csv') as $message)
+											<div class="text text-danger">
+												{{ $message }}<br>
+											</div>
+											@endforeach
+										@endif
 									</td>
 								</tr>
 								<tr v-if="show">
@@ -170,17 +245,38 @@
 										<div class="form-group row">
 											<div class="col">
 												<input type="text" name="first_name" class="form-control rounded-0" value="{{ old('first_name') }}" placeholder="例：TARO">
-											</div>/
+												@if($errors->has('first_name'))
+													@foreach($errors->get('first_name') as $message)
+													<div class="text text-danger">
+														{{ $message }}<br>
+													</div>
+													@endforeach
+												@endif
+											</div>
 											<div class="col">
 												<input type="text" name="last_name" class="form-control rounded-0" value="{{ old('last_name') }}" placeholder="例：YAMADA">
+												@if($errors->has('last_name'))
+													@foreach($errors->get('last_name') as $message)
+													<div class="text text-danger">
+														{{ $message }}<br>
+													</div>
+													@endforeach
+												@endif
 											</div>
 										</div>
 									</td>
 								</tr>
 							</table>
-							<label v-if="show"><input type="checkbox" class="mb-4" name="card_check">カード情報を保存する</label>
+							<label v-if="show"><input type="checkbox" class="mb-2" name="card_check">カード情報を保存する</label><br>
 							@csrf
-							<label><input type="checkbox" class="terms_check" required><a href="{{ '/crowd_funding/CrowdFunding/public/terms' }}">利用規約</a>に同意する</label>
+							<label><input type="checkbox" class="terms_check" name="terms_check"><a href="{{ '/crowd_funding/CrowdFunding/public/terms' }}">利用規約</a>に同意する</label>
+							@if($errors->has('terms_check'))
+								@foreach($errors->get('terms_check') as $message)
+								<div class="text text-danger">
+									{{ $message }}<br>
+								</div>
+								@endforeach
+							@endif
 							<button type="submit" name="action" class="btn btn-primary" value="confirm">確認画面へ進む</button>
 							<div class="suppport_notice">
 								【要確認】<br>
