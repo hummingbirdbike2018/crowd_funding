@@ -17,8 +17,7 @@ class CardTableSeeder extends Seeder
 				'card_no' => 1234423156788765,
 				'exp_mon' => 10,
 				'exp_year' => 20,
-				'first_name' => 'TARO',
-				'last_name' => 'YAMADA',
+				'card_holder_name' => 'TARO YAMADA',
 				 //bcryptで暗号化
 				 'card_csv' => bcrypt('123'),
 				 'created_at' => Carbon::now(),

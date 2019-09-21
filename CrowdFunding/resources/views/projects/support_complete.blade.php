@@ -10,7 +10,7 @@
 				<tr>
 					<thead class="thead-light">
 						<th scope="row">支援額</th>
-						<td class="w-75">{{$rw_price}}</td>
+						<td class="w-75 selected-reward-price">{{$rw_price}}</td>
 						</tr>
 				<tr>
 					<th scope="row">リターン内容</th>

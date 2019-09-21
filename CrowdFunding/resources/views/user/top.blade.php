@@ -2,26 +2,48 @@
 
 
 @section('content')
-
-<nav>
-	<div class="nav nav-tabs" id="nav-tab" role="tablist">
-		<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">支援したプロジェクト</a>
-		<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">投稿したプロジェクト</a>
-		<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">メッセージ</a>
+<div class="container user-container">
+	<div class="row mb-4">
+		<div class="col-sm-6">
+			<div class="card shadow">
+				<div class="um-card-body">
+					<h5 class="um-card-title">基本情報</h5>
+					<p class="um-card-text">登録メールアドレス、パスワードの変更、アイコンの設定・削除を行います。</p>
+					<a href="{{ route('user.show_basic') }}" class="btn btn-primary d-inline-block float-right">基本情報設定へ</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="card shadow">
+				<div class="um-card-body">
+					<h5 class="um-card-title">配送先情報</h5>
+					<p class="um-card-text">リターン配送先住所の確認・変更を行います。</p>
+					<a href="{{ route('user.show_address') }}" class="btn btn-primary d-inline-block float-right">配送先情報設定へ</a>
+				</div>
+			</div>
+		</div>
 	</div>
-</nav>
-<div class="tab-content" id="nav-tabContent">
-	<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-		
-	</div>
-	<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-		投稿したプロジェクトはありません。
-	</div>
-	<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-		メッセージはありません
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="card shadow">
+				<div class="um-card-body">
+					<h5 class="um-card-title">支援プロジェクト</h5>
+					<p class="um-card-text">支援したプロジェクトの一覧を表示します。</p>
+					<a href="{{ route('user.show_support') }}" class="btn btn-primary d-inline-block float-right">支援プロジェクト一覧へ</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="card">
+				<div class="um-card-body shadow">
+					<h5 class="um-card-title">退会申請</h5>
+					<p class="um-card-text">サービスの退会を行います。</p>
+					<a href="{{ url('user.disable') }}" class="btn btn-primary d-inline-block float-right">退会画面へ</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
-
 @endsection
 
 @include('footer')

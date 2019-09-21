@@ -16,6 +16,6 @@ class Card extends Model
 
 	protected $fillable = [
 			'card_no', 'user_id', 'card_csv', 'exp_mon',
-			'exp_year', 'first_name', 'last_name',
+			'exp_year', 'card_holder_name', 
 	];
 }

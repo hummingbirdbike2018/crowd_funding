@@ -25,19 +25,15 @@ class SupportRequest extends FormRequest
 		{
 
 				return [
-					'comment' => 'max:30',
-					'name' => 'required|string|max:10',
+					'comment' => 'max:50',
+					'name' => 'required|string|max:30',
 					'name_kana' => 'required|string|max:30',
 					'post_code' => 'required|string|max:8',
 					'address' => 'required|string|max:30',
-					'building' => 'max:20',
+					'building' => 'string|max:30',
 					'tel' => 'required|string|max:13',
-					'card_no' => 'required|digits:16',
-					'exp_mon' => 'required',
-					'exp_year' => 'required',
-					'card_csv' => 'required|digits:3',
-					'first_name' => 'required|alpha|max:20',
-					'last_name' => 'required|alpha|max:20',
+					'card_csv' => 'required_if:paymentSelectRadio, option2|digits:3',
+					'card_holder_name' => 'required_if:paymentSelectRadio, option2|string|max:30',
 					'terms_check' => 'required',
 				];
 		}
@@ -53,11 +49,8 @@ class SupportRequest extends FormRequest
 					'building' => '建物名',
 					'tel' => '電話番号',
 					'card_no' => 'カード番号',
-					'exp_mon' => '有効期限/月',
-					'exp_year' => '有効期限/年',
 					'card_csv' => 'セキュリティ番号',
-					'first_name' => 'カード名義(名)',
-					'last_name' => 'カード名義(氏)',
+					'card_holder_name' => 'カード名義',
 					'terms_check' => '利用規約',
 				];
 		}
@@ -73,11 +66,9 @@ class SupportRequest extends FormRequest
 					'building.max' => ':attribute は :max 文字以内 で入力してください。',
 					'tel.required' => ':attribute を入力してください。。',
 					'card_no.required' => ':attribute を入力してください。',
-					'exp_mon.required' => ':attribute を選択してください。',
-					'exp_year.required' => ':attribute を選択してください',
-					'card_csv.required' => ':attribute を入力してください。',
-					'first_name.required' => ':attribute を入力してください。',
-					'last_name.required' => ':attribute を入力してください。',
+					'card_csv.digits' => ':attribute下 :digits ケタを入力してください。',
+					'card_holder_name.required' => ':attribute を入力してください。',
+					'card_holder_name.alpha' => ':attribute は半角英字で入力してください。',
 					'terms_check.required' => ':attribute に同意してください。',
 				];
 		}

@@ -19,6 +19,13 @@ class CreateSupportTable extends Migration
 				$table->unsignedInteger('reward_id');
 				$table->unsignedInteger('pj_id');
 				$table->string('comment')->nullable();
+				$table->string('name');
+				$table->string('name_kana');
+				$table->string('post_code');
+				$table->string('address');
+				$table->string('building')->nullable();
+				$table->string('tel');
+				$table->string('card_no');
 				$table->timestamps();
 
 				// 外部キーを設定する

@@ -19,19 +19,26 @@ Route::get('/terms', function () { return view('terms'); });
 Route::get('/site_info', function () { return view('site_info'); });
 //プロジェクトページ
 Route::get('/projects/{id}', 'ProjectController@index')->name('project.top');
-
+//起案者フォーム
 Route::get('/draft', 'DraftController@index')->name('draft');
 Route::post('/draft/confirm', 'DraftController@confirm')->name('confirm');
 Route::post('/draft/complete', 'DraftController@complete')->name('complete');
 
 Route::group(['middleware' => ['auth']], function() {
-	//会員情報変更
-	Route::get('user/{id}/edit', 'UserController@edit');
-	Route::post('user/{id}/edit/store', 'UserController@store');
 	//マイページ
-	Route::get('/user/{id}/top', function () { return view('user/top'); });
+	Route::get('user/top', 'UserController@showUserMenu')->name('user.top');
+	//基本情報
+	Route::get('user/top/edit_basic', 'UserController@showBasicInfo')->name('user.show_basic');
+	Route::post('user/top/post', 'UserController@storeBasicInfo')->name('user.store_basic');
+	//配送先
+	Route::get('user/top/edit_address', 'UserController@showShippingAddress')->name('user.show_address');
+	Route::post('user/top/edit_address', 'UserController@storeShippingAddress')->name('user.store_address');
+	//支援プロジェクト一覧
+	Route::get('user/top/support_list', 'UserController@showSupportList')->name('user.show_support');
 	//退会
-	Route::get('/user/{id}/disable', function () { return view('user/disable'); });
+	Route::get('user/top/disable', 'UserController@showDisable')->name('user.disable');
+	Route::get('user/top/disable', 'UserController@showDisableConfirm')->name('user.disable.confirm');
+	Route::get('user/top/disable', 'UserController@showDisableComplete')->name('user.disable.complete');
 	//支援選択ページ
 	Route::get('/projects/{id}/supports/select', 'SupportController@index')->name('reward.select');
 	//個別支援ページ
