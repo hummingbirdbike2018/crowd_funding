@@ -26,7 +26,7 @@
 				<div class="collapse navbar-collapse" id="navbar-header">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item"><a class="nav-link" href="{{ url('/site_info') }}">当サイトについて</a></li>
-						<li class="nav-item"><a class="nav-link" a href="{{ url('/draft') }}">掲載について</a></li>
+						<!-- <li class="nav-item"><a class="nav-link" a href="{{ url('/draft') }}">掲載について</a></li> -->
 						<li class="nav-item"><a class="nav-link" a href="{{ url('/contact') }}">お問い合わせ</a></li>
 					</ul>
 					<ul class="navbar-nav ml-auto">
@@ -43,14 +43,13 @@
 							</div>
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								@if(Auth::user()->user_img != NULL)
-								<img class="user_image" src="/crowd_funding/CrowdFunding/storage/user_img/user_{{ Auth::id() }}/{{ Auth::user()->user_img }}" alt="user_image" >
+								<img class="user_image" src="/crowd_funding/CrowdFunding/storage/app/storage/user_img/user_{{ Auth::id() }}/{{ Auth::user()->user_img }}" alt="user_image">
 								@else
-								<img class="default_user_image" src="/crowd_funding/CrowdFunding/storage/user_img/default/user_default_img.png" alt="default_user_image">
+								<img class="default_user_image" src="/crowd_funding/CrowdFunding/app/storage/user_img/default/user_default_img.png" alt="default_user_image">
 								@endif
 							</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="{{ url('user/'.Auth::id().'/top') }}">マイページ</a>
-								<a class="dropdown-item" href="{{ url('user/'.Auth::id().'/edit') }}">会員情報変更</a>
+								<a class="dropdown-item" href="{{ route('user.top') }}">マイページ</a>
 								<a class="dropdown-item" href="{{ route('logout') }}"
 									onclick="event.preventDefault();
 									document.getElementById('logout-form').submit();">
