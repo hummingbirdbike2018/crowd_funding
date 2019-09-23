@@ -12,3 +12,4 @@
 	<p>ご入力いただいた内容は正しく送信されました。</p>
 </div>
 @endsection
+@include('footer')

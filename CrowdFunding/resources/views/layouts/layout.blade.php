@@ -202,12 +202,14 @@
 			</div>
 		</div>
 		@endif
-		<main>
-			@yield('content')
-		</main>
-		<footer>
-			@yield('footer')
-		</footer>
+		<div class="wrapper">
+			<main>
+				@yield('content')
+			</main>
+			<footer>
+				@yield('footer')
+			</footer>
+		</div>
 	</body>
 </html>
 
