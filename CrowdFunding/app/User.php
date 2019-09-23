@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class User extends Authenticatable
@@ -15,9 +16,14 @@ class User extends Authenticatable
 		return $this->belongsTo('App\Card', 'user_id');//card_infoテーブルとのリレーション
 	}
 
+	//論理削除用記述
+	use SoftDeletes;
+
+	protected $dates = ['deleted_at'];
+
 	protected $fillable = [
 		'display', 'name', 'name_kana', 'tel', 'post_code', 'address', 'building',
-		'email', 'password', 'disable', 'dis_reason', 'remember_token',
+		'email', 'password', 'remember_token',
 	];
 
 	/**

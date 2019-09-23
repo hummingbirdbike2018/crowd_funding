@@ -38,7 +38,7 @@
 				<div class="um-card-body shadow">
 					<h5 class="um-card-title">退会申請</h5>
 					<p class="um-card-text">サービスの退会を行います。</p>
-					<a href="{{ url('user.disable') }}" class="btn btn-primary d-inline-block float-right">退会画面へ</a>
+					<a href="{{ url('user/top/disable') }}" class="btn btn-primary d-inline-block float-right">退会画面へ</a>
 				</div>
 			</div>
 		</div>

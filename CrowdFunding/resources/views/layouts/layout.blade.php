@@ -45,7 +45,7 @@
 								@if(Auth::user()->user_img != NULL)
 								<img class="user_image" src="/crowd_funding/CrowdFunding/storage/app/storage/user_img/user_{{ Auth::id() }}/{{ Auth::user()->user_img }}" alt="user_image">
 								@else
-								<img class="default_user_image" src="/crowd_funding/CrowdFunding/app/storage/user_img/default/user_default_img.png" alt="default_user_image">
+								<img class="default_user_image" src="/crowd_funding/CrowdFunding/storage/app/storage/user_img/default/user_default_img.png" alt="default_user_image">
 								@endif
 							</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

@@ -9,6 +9,7 @@ use App\Reward;
 use App\Http\Requests\UserBasicRequest;
 use App\Http\Requests\UserAddressRequest;
 use App\Mail\ChangeEmail;
+use App\Mail\DisableComplete;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -109,15 +110,12 @@ class UserController extends Controller
 
 		$user = Auth::id(); //ログインのユーザを取得
 
-
-
 		//サポートテーブルに紐づいた支援情報を取得
 		$support_list = Support::select()
 							->join('projects', 'projects.id', '=', 'supports.pj_id')
 							->join('rewards', 'rewards.id', '=', 'supports.reward_id')
 							->where('user_id', $user)
 							->get();
-
 
 		//カード番号下4桁のみ表示
 		for($i=0; $i<count($support_list); $i++){
@@ -127,15 +125,10 @@ class UserController extends Controller
 			$reg_card_no[] = preg_replace($ptn, $rep, $str);
 		}
 
-			//
-			// var_dump($supports);
-			// exit;
-
 		return view('user.support_list',[
 			'user' => $user,
 			'support_list' => $support_list,
 			'card_no' => $reg_card_no,
-			'supports' => $supports,
 		]);
 	}
 
@@ -148,21 +141,26 @@ class UserController extends Controller
 		]);
 	}
 
-	public function showDisableConfirm () {
+	public function storeDisable (Request $request) {
+		//ログインのユーザを取得
+		$user = Auth::user();
+		//二重送信防止
+		$request->session()->regenerateToken();
+		//キャンセルボタン押下時、会員メニュー画面へリダイレクト
+		if($request->action === 'back') {
+			return redirect()->route('user.top');
+		}
 
-		$user = Auth::id(); //ログインのユーザを取得
+		//退会ボタン押下時、論理削除を実行、確認のメールを送信。その後、退会完了画面へリダイレクト
+		if($request->action === 'next') {
+			//論理削除
+			User::find($user->id)->delete();
+			//ログインユーザのメールアドレスにメールを送信
+			Mail::to($user->email)->send(new DisableComplete());
+			return redirect()->route('top');
+		}
 
-		return view('user.disable_confirm',[
-			'user' => $user,
-		]);
-	}
-
-
-	public function showDisableComplete () {
-
-		$user = Auth::id(); //ログインのユーザを取得
-
-		return view('user.disable_complete',[
+		return view('user.disable',[
 			'user' => $user,
 		]);
 	}

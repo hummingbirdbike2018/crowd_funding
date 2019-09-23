@@ -64,10 +64,6 @@
 		</div>
 	</div>
 	@endfor
-		<!-- ページネーション -->
-	<div class="d-flex justify-content-center mb-5">
-		{{ $supports->links() }}
-	</div>
 </div>
 
 @endsection

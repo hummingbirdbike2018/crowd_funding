@@ -37,8 +37,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('user/top/support_list', 'UserController@showSupportList')->name('user.show_support');
 	//退会
 	Route::get('user/top/disable', 'UserController@showDisable')->name('user.disable');
-	Route::get('user/top/disable', 'UserController@showDisableConfirm')->name('user.disable.confirm');
-	Route::get('user/top/disable', 'UserController@showDisableComplete')->name('user.disable.complete');
+	Route::post('user/top/disable', 'UserController@storeDisable')->name('user.disable.store');
 	//支援選択ページ
 	Route::get('/projects/{id}/supports/select', 'SupportController@index')->name('reward.select');
 	//個別支援ページ

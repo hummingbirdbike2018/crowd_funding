@@ -6,7 +6,7 @@
 		 <div class="container">
 			 <div class="comment">
 				 <div class="comment-user">
-					 <img class="attachment user image comment-image fallback" src="../../storage/user_img/user_{{ $user->id }}/{{ $user->user_img }}" alt="user_image">
+					 <img class="attachment user image comment-image fallback" src="../../storage/app/storage/user_img/user_{{ $user->id }}/{{ $user->user_img }}" alt="user_image">
 					 <div class="comment-screen_name">
 						 {{$user->display}}
 					 </div>

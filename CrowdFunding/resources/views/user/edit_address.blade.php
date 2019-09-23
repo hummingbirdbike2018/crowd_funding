@@ -3,12 +3,10 @@
 <div class="container">
 	<form action="{{ route('user.store_address') }}" method="POST" enctype="multipart/form-data">
 			@csrf
-		<div class= "edit_user_address mx-auto border p-5 col-md-6 bg-light">
+		<div class= "edit_user_address mx-auto border p-5 col-md-8 bg-light">
 			<div class= "is_address">
 				<h5 class="mt-4 mb-4">配送先情報</h5>
-				<small>
 					<p class="text-danger">リターンの配送先となりますので、お間違いのないようお願いいたします。</p>
-				</small>
 				<label for="name">{{ __('氏名') }}</label>
 				<input id="name" class="form-control  mb-2" name="name" value="{{ $user->name }}">
 				@if($errors->first('name'))

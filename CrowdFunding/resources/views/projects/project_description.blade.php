@@ -61,9 +61,9 @@
 									<div class="row">
 										<div class="comment-user col-md-2">
 											@if($user->user_img != NULL)
-											<img class="user_image" src="../../storage/user_img/user_{{ $user->user_id }}/{{ $user->user_img }}" alt="user_image">
+											<img class="user_image" src="../../storage/app/storage/user_img/user_{{ $user->user_id }}/{{ $user->user_img }}" alt="user_image">
 											@else
-											<img class="default_user_image" src="../../storage/user_img/default/user_default_img.png" alt="default_user_image">
+											<img class="default_user_image" src="../../storage/app/storage/user_img/default/user_default_img.png" alt="default_user_image">
 											@endif
 											<div class="comment-screen_name">
 												{{$user->display}}
